@@ -1,22 +1,21 @@
 import { useForm } from "react-hook-form";
-import { IUserInput } from "../@Types/types";
-import patterns from "../validation/patterns";
+import { IUser, IUserInput } from "../@Types/types";
 import "./Register.scss";
 import { BsEye, BsEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
 import { registerMock } from "../mocks/register";
-import auth from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import dialogs from "../ui/dialogs";
+import patterns from "../validations/patterns";
 
 const Register = () => {
     const navigate = useNavigate();
     const {
         register,
-        control,
         handleSubmit,
         formState: { errors },
-    } = useForm<IUserInput>({
+    } = useForm<IUser>({
         defaultValues: registerMock,
     });
 
@@ -25,7 +24,7 @@ const Register = () => {
 
     const [isBusiness, setIsBusiness] = useState(false);
 
-    const onRegister = (data: IUserInput) => {
+    const onRegister = (data: IUser) => {
         console.log(data)
         registerUser(data).then(() => {
             dialogs.success("Success", "Register").then(() => {

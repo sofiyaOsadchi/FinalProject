@@ -42,6 +42,11 @@ export type RegisterUser = {
     };
 };
 
+export type ILogin = {
+    email: string;
+    password: string;
+};
+
 export type IUserInput = {
     email: string;
     phone: string;
@@ -53,12 +58,13 @@ export type IUserInput = {
 };
 
 export type IUser = IUserInput & {
+    id: string;
     createdAt: Date;
     isAdmin: boolean;
     cart: ICartProduct[];
 };
 
-export type User = {
+/* export type User = {
     _id: string
     isBusiness: boolean
     email: string
@@ -74,7 +80,7 @@ export type User = {
         state: string
         zip: string
     }
-}
+} */
 
 export type ICartProduct = {
     productId: string;

@@ -1,15 +1,15 @@
 import { jwtDecode } from "jwt-decode";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import * as auth from "../services/auth";
-import dialogs from "../ui/dialogs";
-import { IUserInput, User } from "../@Types/types";
+import { IUser } from "../@Types/types";
+
 
 interface AuthContextType {
     token: string | null;
-    user: User | undefined;
+    user: IUser | undefined;
     isLoggedIn: boolean;
     login: (email: string, password: string) => Promise<void>
-    register: (form: IUserInput) => Promise<void>
+    register: (form: IUser) => Promise<void>
     logout: () => void;
 }
 
@@ -19,7 +19,7 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthContextProvider = ({ children }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
-    const [user, setUser] = useState<User | undefined>()
+    const [user, setUser] = useState<IUser | undefined>()
     const [loading, setLoading] = useState<boolean>(true)
 
 
@@ -49,7 +49,7 @@ export const AuthContextProvider = ({ children }) => {
 
     }
 
-    const register = async (form: IUserInput) => {
+    const register = async (form: IUser) => {
         await auth
             .register(form)
     }
