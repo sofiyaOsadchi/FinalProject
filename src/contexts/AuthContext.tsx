@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import * as auth from "../services/auth";
 import { IUser } from "../@Types/types";
 
@@ -13,10 +13,13 @@ interface AuthContextType {
     logout: () => void;
 }
 
+interface AuthContextProviderProps {
+    children: ReactNode;
+}
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
     const [user, setUser] = useState<IUser | undefined>()
