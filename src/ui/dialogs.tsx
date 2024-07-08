@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
-import "./dialogs.scss";
-export const showSuccessDialog = (title: string, text: string) => {
+/* import "./dialogs.scss";
+ */export const showSuccessDialog = (title: string, text: string) => {
     return Swal.fire({
         title,
         text,

@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import * as auth from "../services/auth";
-import { IUser } from "../@Types/types";
+import { AuthContextProviderProps, IUser } from "../@Types/types";
 
 
 interface AuthContextType {
@@ -11,10 +11,6 @@ interface AuthContextType {
     login: (email: string, password: string) => Promise<void>
     register: (form: IUser) => Promise<void>
     logout: () => void;
-}
-
-interface AuthContextProviderProps {
-    children: ReactNode;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);

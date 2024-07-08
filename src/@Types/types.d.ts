@@ -51,7 +51,6 @@ export type IUserInput = {
     email: string;
     phone: string;
     password: string;
-    isBusiness: boolean;
     address: IAddress;
     name: IName;
     image?: IImage;
@@ -63,6 +62,10 @@ export type IUser = IUserInput & {
     isAdmin: boolean;
     cart: ICartProduct[];
 };
+
+export interface AuthContextProviderProps {
+    children: ReactNode;
+}
 
 /* export type User = {
     _id: string

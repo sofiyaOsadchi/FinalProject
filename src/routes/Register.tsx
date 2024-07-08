@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { IUser, IUserInput } from "../@Types/types";
+import { IUser } from "../@Types/types";
 import "./Register.scss";
 import { BsEye, BsEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
@@ -22,7 +22,6 @@ const Register = () => {
     const { register: registerUser } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
 
-    const [isBusiness, setIsBusiness] = useState(false);
 
     const onRegister = (data: IUser) => {
         console.log(data)
@@ -32,13 +31,13 @@ const Register = () => {
             });
         })
             .catch((e) => {
-                dialogs.error("Register Error", e.response.data);
+                dialogs.error("Register Error", e.response.data.message);
             })
     };
 
-    const handleBusinessCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  /*   const handleBusinessCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsBusiness(e.target.checked);
-    };
+    }; */
 
     return (
         <div className="register-container">
@@ -283,34 +282,8 @@ const Register = () => {
                     )}
                 </section>
 
-                {/* isBusiness */}
-                {/*   <section className="checkbox-container">
-          <label htmlFor="isBusiness">Business</label>
-          <input id="isBusiness" type="checkbox" {...register("isBusiness")} />
-          {errors.isBusiness && (
-            <p className="text-red-500">{errors.isBusiness?.message}</p>
-          )}
-        </section> */}
-
-                {/* isBusiness */}
-                <section className="checkbox-container">
-                    <label htmlFor="isBusiness">Business</label>
-                    <input
-                        id="isBusiness"
-                        type="checkbox"
-                        defaultChecked={isBusiness}
-                        {...register("isBusiness")}
-                        onChange={handleBusinessCheckboxChange as any}
-                    />
-                    {errors.isBusiness && (
-                        <p className="text-red-500">{errors.isBusiness?.message}</p>
-                    )}
-                </section>
-
-
                 <button type="submit">Register</button>
             </form>
-            {/* <DevTool control={control} /> */}
         </div>
     );
 };
