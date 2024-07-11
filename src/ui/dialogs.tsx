@@ -1,11 +1,12 @@
 import Swal from "sweetalert2";
-/* import "./dialogs.scss";
- */export const showSuccessDialog = (title: string, text: string) => {
+
+
+ export const showSuccessDialog = (title: string, text: string) => {
     return Swal.fire({
         title,
         text,
         icon: "success",
-        position: "top-end",
+        position: "center",
         showConfirmButton: false,
         width: 400,
         timer: 1500,
@@ -20,7 +21,7 @@ export const showErrorDialog = (title: string, text: string) => {
         title,
         text,
         icon: "error",
-        position: "top-end",
+        position: "center",
         showConfirmButton: false,
         width: 400,
         timer: 2000,
@@ -34,6 +35,7 @@ export const showConfirmDialog = async () => {
         title: "Are you sure?",
         text: "You won't be able to revert this!",
         icon: "warning",
+        position: "center",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",

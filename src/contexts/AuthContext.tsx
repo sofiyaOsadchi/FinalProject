@@ -2,6 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { createContext, FC, useEffect, useMemo, useState } from "react";
 import * as auth from "../services/auth";
 import { AuthContextProviderProps, AuthContextType, IUser, DecodedToken } from "../@Types/types";
+import dialogs from "../ui/dialogs";
 
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -43,7 +44,7 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) 
         await auth
             .login({ email, password })
             .then((res) => {
-                const token = res.data.token; // וודא שהטוקן נשלף בצורה נכונה
+                const token = res.data; // וודא שהטוקן נשלף בצורה נכונה
                 setToken(token);
                 localStorage.setItem("token", token);
                 const decodedToken = jwtDecode<DecodedToken>(token);
@@ -63,6 +64,8 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) 
     };
 
 
+    
+
     const register = async (form: IUser) => {
         await auth
             .register(form)
@@ -72,7 +75,9 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) 
         setToken(null);
         setUser(undefined)
         localStorage.removeItem("token");
+        dialogs.success("Logout Successful", "You have been logged out successfully.");
     };
+
 
     return (
         <AuthContext.Provider value={{

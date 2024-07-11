@@ -5,7 +5,7 @@ import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import { useAuth } from "../hooks/useAuth";
 
 const Nav = () => {
-    const { isLoggedIn, user } = useAuth();
+    const { isLoggedIn, user, logout } = useAuth();
     return (
         <Navbar fluid rounded>
             <Navbar.Brand href="https://flowbite-react.com">
@@ -28,7 +28,7 @@ const Nav = () => {
                         <Dropdown.Item>Settings</Dropdown.Item>
                         <Dropdown.Item>Earnings</Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item>Sign out</Dropdown.Item>
+                        <Dropdown.Item onClick={() => logout()}>Sign out</Dropdown.Item>
                     </Dropdown>
                 )}
                 <Navbar.Toggle />
