@@ -1,21 +1,12 @@
 import { jwtDecode } from "jwt-decode";
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, FC, useEffect, useMemo, useState } from "react";
 import * as auth from "../services/auth";
-import { AuthContextProviderProps, IUser } from "../@Types/types";
+import { AuthContextProviderProps, AuthContextType, IUser, DecodedToken } from "../@Types/types";
 
-
-interface AuthContextType {
-    token: string | null;
-    user: IUser | undefined;
-    isLoggedIn: boolean;
-    login: (email: string, password: string) => Promise<void>
-    register: (form: IUser) => Promise<void>
-    logout: () => void;
-}
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
+export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
     const [user, setUser] = useState<IUser | undefined>()
@@ -28,7 +19,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
         setLoading(true)
         if (token) {
             const { _id } = jwtDecode(token) as any
-            auth.userDetails(_id).then((res) => {
+            auth.userDetails(_id, token).then((res) => {
                 setUser(res.data)
             }).finally(() => setLoading(false))
         }
@@ -38,7 +29,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     }, [token])
 
 
-    const login = async (email: string, password: string) => {
+    /* const login = async (email: string, password: string) => {
         await auth
             .login({ email, password })
             .then((res) => {
@@ -46,7 +37,31 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
                 localStorage.setItem("token", res.data);
             })
 
-    }
+    } */
+
+    const login = async (email: string, password: string) => {
+        await auth
+            .login({ email, password })
+            .then((res) => {
+                const token = res.data.token; // וודא שהטוקן נשלף בצורה נכונה
+                setToken(token);
+                localStorage.setItem("token", token);
+                const decodedToken = jwtDecode<DecodedToken>(token);
+                const userId = decodedToken._id;
+
+                auth.userDetails(userId, token)
+                    .then((res) => {
+                        setUser(res.data);
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                    });
+            })
+            .catch((error) => {
+                console.error("Login error:", error);
+            });
+    };
+
 
     const register = async (form: IUser) => {
         await auth
@@ -67,11 +82,3 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
         </AuthContext.Provider>
     )
 };
-
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error("useAuth must be used within an AuthContextProvider");
-    }
-    return context;
-}

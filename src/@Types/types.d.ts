@@ -100,7 +100,7 @@ export type ILogin = {
 export type IJWTPayload = {
     _id: string;
     isAdmin: boolean;
-    isBusiness: boolean;
+  /*   isBusiness: boolean; */
 };
 
 export type IProductInput = {
@@ -142,4 +142,19 @@ export type IOrder = {
 export interface SalesByDateQuery {
     startDate: string;
     endDate: string;
+};
+
+
+export interface AuthContextType {
+    token: string | null;
+    user: IUser | undefined;
+    isLoggedIn: boolean;
+    login: (email: string, password: string) => Promise<void>
+    register: (form: IUser) => Promise<void>
+    logout: () => void;
+}
+
+export interface DecodedToken {
+    _id: string;
+    // ניתן להוסיף כאן שדות נוספים מהטוקן לפי הצורך
 }

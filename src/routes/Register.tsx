@@ -5,7 +5,7 @@ import { BsEye, BsEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
 import { registerMock } from "../mocks/register";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import dialogs from "../ui/dialogs";
 import patterns from "../validations/patterns";
 
