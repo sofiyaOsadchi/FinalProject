@@ -6,12 +6,14 @@ import Login from "./Login";
 import { CarouselComponent } from "../components/Carousel";
 import Profile from "./Profile";
 import Product from "./Product";
+import Error from "./Error";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
-        /*     errorElement: <Error />, */
+        errorElement: <Error />, 
+       
         children: [
             { index: true, element: <><CarouselComponent /><Products /></> },
             { path: "/register", element: <Register /> },
