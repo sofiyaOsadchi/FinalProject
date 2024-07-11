@@ -67,31 +67,6 @@ export interface AuthContextProviderProps {
     children: ReactNode;
 }
 
-/* export type User = {
-    _id: string
-    isBusiness: boolean
-    email: string
-    name: {
-        first: string
-        middle: string
-        last: string
-    },
-    phone: string
-    address: {
-        street: string
-        city: string
-        state: string
-        zip: string
-    }
-} */
-
-export type ICartProduct = {
-    productId: string;
-    title: string;
-    price: number;
-    size: string;
-};
-
 export type ILogin = {
     email: string;
     password: string;
@@ -102,48 +77,6 @@ export type IJWTPayload = {
     isAdmin: boolean;
   /*   isBusiness: boolean; */
 };
-
-export type IProductInput = {
-    title: string;
-    subtitle: string;
-    description: string;
-    price: number;
-    image: IImage;
-    size: string;
-    quantity: number;
-    barcode: number;
-};
-
-export type IProduct = IProductInput & {
-    _id: string;
-    barcode: number;
-    createdAt: Date;
-    shoppingCart: string[];
-    quantity: number;
-    sold: number;
-    userId: string;
-};
-
-export type IOrderProduct = {
-    productId: string;
-    quantity: number;
-    size: string;
-};
-
-export type IOrder = {
-    userId: string;
-    products: IOrderProduct[];
-    totalAmount: number;
-    status: string;
-    createdAt: Date;
-    orderNumber: string;
-};
-
-export interface SalesByDateQuery {
-    startDate: string;
-    endDate: string;
-};
-
 
 export interface AuthContextType {
     token: string | null;

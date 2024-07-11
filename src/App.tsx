@@ -1,5 +1,5 @@
 import { DarkThemeToggle } from "flowbite-react";
-import Products from "./Products";
+
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <h1 className="text-2xl dark:text-white">Orime Shop</h1>
         <DarkThemeToggle />
       </div>
-      <Products />
+    
     </main>
   );
 }
