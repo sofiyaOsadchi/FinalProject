@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 import './Products.scss';
 import { IProduct } from '../@Types/productType';
 import { getAllProducts } from '../services/product';
+import { useSearch } from '../hooks/useSearch';
 
 const Products: FC = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
+    const { searchTerm } = useSearch();
 
     useEffect(() => {
         getAllProducts()
@@ -23,12 +25,18 @@ const Products: FC = () => {
             });
     }, []);
 
+    const filteredProducts = products.filter(product =>
+        product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.subtitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
     return (
         <div className="product-list-container">
-            {products.map(product => (
+            {filteredProducts.map(product => (
                 <Card key={product._id} className="product-card">
                     <Link to={`/products/${product._id}`}>
                         <img src={product.image.url} alt={product.image.alt} className="w-full h-48 object-cover rounded-t-lg" />

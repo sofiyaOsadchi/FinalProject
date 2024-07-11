@@ -30,15 +30,6 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) 
     }, [token])
 
 
-    /* const login = async (email: string, password: string) => {
-        await auth
-            .login({ email, password })
-            .then((res) => {
-                setToken(res.data);
-                localStorage.setItem("token", res.data);
-            })
-
-    } */
 
     const login = async (email: string, password: string) => {
         await auth
@@ -76,6 +67,7 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) 
         setUser(undefined)
         localStorage.removeItem("token");
         dialogs.success("Logout Successful", "You have been logged out successfully.");
+        
     };
 
 

@@ -91,3 +91,8 @@ export interface DecodedToken {
     _id: string;
     // ניתן להוסיף כאן שדות נוספים מהטוקן לפי הצורך
 }
+
+interface SearchContextType {
+    searchTerm: string;
+    setSearchTerm: (term: string) => void;
+}

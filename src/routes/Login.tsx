@@ -71,12 +71,13 @@ const Login = () => {
 
                 <div className="relative flex items-center mt-8">
                     <div className="border h-0 w-2/4 border-stone-300"></div>
-                    <div className=" text-stone-300 px-4 text-sm font-normal">OR</div>
-                    <div className=" border h-0 w-2/4 border-stone-300"></div>
+                    <div className="text-stone-300 px-4 text-sm font-normal">OR</div>
+                    <div className="border h-0 w-2/4 border-stone-300"></div>
                 </div>
                 <Link to="/register" type="submit"
-                    >Signup
-                    now</Link>
+                    className="border border-indigo-900 rounded-lg text-center text-indigo-900 bg-white text-base font-semibold w-full py-3 mt-9">
+                    Signup now
+                </Link>
             </form>
         </div>
     );
