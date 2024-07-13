@@ -57,7 +57,7 @@ export type IUserInput = {
 };
 
 export type IUser = IUserInput & {
-    id: string;
+    _id: string;
     createdAt: Date;
     isAdmin: boolean;
     cart: ICartProduct[];
@@ -105,3 +105,25 @@ interface SearchContextType {
 }
 
 export type FCC = ({ children }: { children: ReactNode }) => ReactNode;
+
+export type updateUserType = {
+    name: {
+        first: string;
+        middle: string;
+        last: string;
+    };
+    email: string;
+    phone: string;
+    image: {
+        url: string;
+        alt: string;
+    };
+    address: {
+        state: string;
+        country: string;
+        city: string;
+        street: string;
+        houseNumber: number;
+        zip: number;
+    };
+};

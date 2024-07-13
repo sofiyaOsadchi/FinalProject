@@ -10,6 +10,8 @@ import Error from "./Error";
 import ProtectedRouteUser from "./ProtectedRouteUser";
 import CreateProduct from "./CreateProduct";
 import ProtectedRouteAdmin from "./ProtectedRouteAdmin";
+import Users from "./Users";
+import UpdateUser from "./UpdateUser";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +37,9 @@ export const router = createBrowserRouter([
                         <CreateProduct />
                     </ProtectedRouteAdmin>
             },
+            { path: "/users", element: <Users />},
+            { path: "/users/:id", element: <UpdateUser /> },
+
 
         ],
     },
