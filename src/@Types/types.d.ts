@@ -87,12 +87,21 @@ export interface AuthContextType {
     logout: () => void;
 }
 
+export type ErrorType = {
+    status: number;
+    message: string;
+    details: string;
+};
+
 export interface DecodedToken {
     _id: string;
-    // ניתן להוסיף כאן שדות נוספים מהטוקן לפי הצורך
+    isAdmin: boolean;
 }
+
 
 interface SearchContextType {
     searchTerm: string;
     setSearchTerm: (term: string) => void;
 }
+
+export type FCC = ({ children }: { children: ReactNode }) => ReactNode;

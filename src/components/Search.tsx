@@ -1,9 +1,10 @@
+
 import { Stack, TextField } from "@mui/material";
 import { useSearch } from "../hooks/useSearch";
 import "./Search.scss";
 
 const Search = () => {
-    const { setSearchTerm } = useSearch(); 
+    const { setSearchTerm } = useSearch();
     return (
         <Stack className="search-container">
             <TextField
@@ -17,8 +18,8 @@ const Search = () => {
 
                 InputProps={{
                     style: {
-                        color: 'white', 
-                        borderColor: 'white' 
+                        color: 'white',
+                        borderColor: 'white'
                     }
                 }}
                 InputLabelProps={{

@@ -3,7 +3,8 @@
 
 import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import { useAuth } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { LuPackagePlus } from "react-icons/lu";
 
 const Nav = () => {
     const { isLoggedIn, user, logout } = useAuth();
@@ -14,7 +15,14 @@ const Nav = () => {
             <Navbar.Brand href="https://flowbite-react.com">
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Tsofiya Osadchi</span>
             </Navbar.Brand>
-            <div className="flex md:order-2">
+           
+
+            <div className="flex md:order-2 items-center">
+                {isLoggedIn && user?.isAdmin && (
+                    <Link to="/create-product" className="mr-4">
+                        <LuPackagePlus size={24} className="text-gray hover:text-gray-300" />
+                    </Link>
+                )}
                 {isLoggedIn && user && (
                     <Dropdown
                         arrowIcon={false}
@@ -33,7 +41,9 @@ const Nav = () => {
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
                     </Dropdown>
+                    
                 )}
+               
                 <Navbar.Toggle />
                 <DarkThemeToggle className="ml-2" />
             </div>

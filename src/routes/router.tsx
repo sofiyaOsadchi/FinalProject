@@ -7,6 +7,9 @@ import { CarouselComponent } from "../components/Carousel";
 import Profile from "./Profile";
 import Product from "./Product";
 import Error from "./Error";
+import ProtectedRouteUser from "./ProtectedRouteUser";
+import CreateProduct from "./CreateProduct";
+import ProtectedRouteAdmin from "./ProtectedRouteAdmin";
 
 export const router = createBrowserRouter([
     {
@@ -19,8 +22,19 @@ export const router = createBrowserRouter([
             { path: "/register", element: <Register /> },
             {path: "/login", element: <Login />},
             { path: "/carousel", element: <CarouselComponent />},
-            { path: "/profile", element: <Profile />},
+            {
+                path: "/profile", element:
+                    <ProtectedRouteUser>
+                        <Profile />
+                    </ProtectedRouteUser>
+            },
             { path: "/products/:id", element: <Product /> },
+            {
+                path: "/create-product", element:
+                    <ProtectedRouteAdmin>
+                        <CreateProduct />
+                    </ProtectedRouteAdmin>
+            },
 
         ],
     },
