@@ -5,6 +5,9 @@ import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { LuPackagePlus } from "react-icons/lu";
+import { AiOutlineProject } from "react-icons/ai";
+import { FiBox, FiUsers, FiTrendingUp } from "react-icons/fi";
+
 
 const Nav = () => {
     const { isLoggedIn, user, logout } = useAuth();
@@ -20,9 +23,21 @@ const Nav = () => {
             <div className="flex md:order-2 items-center">
                 {isLoggedIn && user?.isAdmin && (
                     <Link to="/create-product" className="mr-4">
-                        <LuPackagePlus size={24} className="text-gray hover:text-gray-300" />
+                        <FiBox size={24} className="text-gray hover:text-gray-300" />
                     </Link>
                 )}
+                
+                {isLoggedIn && user?.isAdmin && (
+                    <Link to="/users" className="mr-4">
+                        <FiUsers size={24} className="text-gray hover:text-gray-300" />
+                    </Link>
+                )}
+                {isLoggedIn && user?.isAdmin && (
+                    <Link to="/users" className="mr-4">
+                        <FiTrendingUp size={24} className="text-gray hover:text-gray-300" />
+                    </Link>
+                )}
+
                 {isLoggedIn && user && (
                     <Dropdown
                         arrowIcon={false}
@@ -62,3 +77,6 @@ const Nav = () => {
 };
 
 export default Nav;
+
+
+
