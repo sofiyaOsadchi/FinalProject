@@ -20,7 +20,7 @@ const Nav = () => {
 
             <div className="flex md:order-2 items-center">
 
-                <div className="mr-12">
+                <div className="mr-8">
                     <Search />
                 </div>
 
@@ -50,7 +50,7 @@ const Nav = () => {
 
 
                 {isLoggedIn && user?.isAdmin && (
-                    <Link to="/admin/products" className="mr-12">
+                    <Link to="/admin/products" className="mr-8">
                         <Tooltip
                             content="Analitycs"
                             placement="top"

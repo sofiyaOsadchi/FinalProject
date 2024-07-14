@@ -4,6 +4,7 @@ import { IProduct } from '../@Types/productType';
 import { Table } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import dialogs from '../ui/dialogs';
+import { FiTrash2 } from 'react-icons/fi';
 
 const AdminProducts = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -61,9 +62,10 @@ const AdminProducts = () => {
                                 </Link>
                             </Table.Cell>
                             <Table.Cell>
-                                <button onClick={() => onDelete(product._id)} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                                    delete
+                                <button onClick={() => onDelete(product._id)} className="text-red-600 hover:text-red-800">
+                                    <FiTrash2 size={20} />
                                 </button>
+                                
                             </Table.Cell>
                         </Table.Row>
                     ))}
