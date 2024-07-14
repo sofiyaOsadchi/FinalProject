@@ -19,13 +19,13 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
-        errorElement: <Error />, 
-       
+        errorElement: <Error />,
+
         children: [
             { index: true, element: <><CarouselComponent /><Products /></> },
             { path: "/register", element: <Register /> },
-            {path: "/login", element: <Login />},
-            { path: "/carousel", element: <CarouselComponent />},
+            { path: "/login", element: <Login /> },
+            { path: "/carousel", element: <CarouselComponent /> },
             {
                 path: "/profile", element:
                     <ProtectedRouteUser>
@@ -52,8 +52,14 @@ export const router = createBrowserRouter([
                     </ProtectedRouteAdmin>
             },
 
-            { path: "/admin/users", element: <Users />},
-            { path: "/users/:id", element: <UpdateUser /> },
+            { path: "/admin/users", element: <Users /> },
+
+            {
+                path: "/users/:id", element:
+                    <ProtectedRouteUser>
+                        <UpdateUser />
+                    </ProtectedRouteUser>
+            },
 
 
         ],
