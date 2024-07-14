@@ -16,7 +16,7 @@ const Users = () => {
     }, []);
 
     const handleDelete = (id: string) => {
-        dialogs.confirm( "Do you want to delete this user?")
+        dialogs.confirm("Are you sure?", "Do you want to delete this user?")
             .then((result) => {
                 if (result.isConfirmed) {
                     deleteUserById(id)

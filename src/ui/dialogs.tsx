@@ -30,10 +30,10 @@ export const showErrorDialog = (title: string, text: string) => {
         }
     });
 };
-export const showConfirmDialog = async (p0: string) => {
+export const showConfirmDialog = async (title: string, text: string) => {
     return await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title,
+        text,
         icon: "warning",
         position: "center",
         showCancelButton: true,
