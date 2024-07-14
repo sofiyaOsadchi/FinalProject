@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { getUserById, updateUser } from '../services/auth';
 import { useParams } from 'react-router-dom';
@@ -7,11 +7,14 @@ import './Register.scss';
 import dialogs from "../ui/dialogs";
 import { useNavigate } from "react-router-dom";
 import patterns from "../validations/patterns";
+import { useAuth } from '../hooks/useAuth';
 
 const UpdateUser = () => {
     const { id } = useParams<{ id: string }>();
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<updateUserType>();
+    const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<updateUserType>();
     const navigate = useNavigate();
+    const { updateUserContext } = useAuth();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (id) {
@@ -30,16 +33,21 @@ const UpdateUser = () => {
                     setValue('image.url', user.image?.url || '');
                     setValue('image.alt', user.image?.alt || '');
                     setValue('address.state', user.address.state || '');
+                    setLoading(false);
                 })
                 .catch(err => console.log(err));
+            setLoading(false);
         }
     }, [id, setValue]);
 
     const onSubmit = async (data: updateUserType) => {
         try {
             if (id) {
-                await updateUser(id, data);
+                const res = await updateUser(id, data);
+                const updatedUser = res.data;
+                updateUserContext(updatedUser); // Update user context
                 dialogs.success("Success", "User updated successfully").then(() => {
+                    reset(data);
                     navigate("/profile");
                 });
             }
@@ -48,6 +56,10 @@ const UpdateUser = () => {
             console.log(error);
         }
     };
+
+    if (loading) { // הצגת הודעת טעינה אם הנתונים עדיין בטעינה
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="register-container">
@@ -252,3 +264,7 @@ const UpdateUser = () => {
 };
 
 export default UpdateUser;
+function fetchUserData() {
+    throw new Error('Function not implemented.');
+}
+
