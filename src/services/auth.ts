@@ -59,6 +59,15 @@ export const updateUser = (id: string, user: updateUserType) => {
     );
 };
 
+export const deleteUserById = (id: string) => {
+    const url = `${usersUrl}/${id}`;
+    return axios.delete(url, {
+        headers: {
+            "x-auth-token": localStorage.getItem("token"),
+        },
+    });
+};
+
 
 
 export const auth = {
@@ -67,7 +76,8 @@ export const auth = {
     userDetails,
     getAllUsers,
     getUserById,
-    businessUser
+    businessUser,
+    deleteUserById
 };
 
 export default auth;

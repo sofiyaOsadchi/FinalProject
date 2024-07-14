@@ -22,13 +22,13 @@ const Nav = () => {
 
             <div className="flex md:order-2 items-center">
                 {isLoggedIn && user?.isAdmin && (
-                    <Link to="/create-product" className="mr-4">
+                    <Link to="/admin/products" className="mr-4">
                         <FiBox size={24} className="text-gray hover:text-gray-300" />
                     </Link>
                 )}
                 
                 {isLoggedIn && user?.isAdmin && (
-                    <Link to="/users" className="mr-4">
+                    <Link to="/admin/users" className="mr-4">
                         <FiUsers size={24} className="text-gray hover:text-gray-300" />
                     </Link>
                 )}

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { getAllUsers } from '../services/auth';
+import { deleteUserById, getAllUsers } from '../services/auth';
 import { IUser } from '../@Types/types';
-import { Card, TabItem, Table } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Table } from 'flowbite-react';
+import dialogs from '../ui/dialogs';
+import { FiTrash2 } from 'react-icons/fi';
 
 const Users = () => {
     const [users, setUsers] = useState<IUser[]>([]);
@@ -13,6 +14,23 @@ const Users = () => {
             .then(res => setUsers(res.data))
             .catch(err => setError(err));
     }, []);
+
+    const handleDelete = (id: string) => {
+        dialogs.confirm( "Do you want to delete this user?")
+            .then((result) => {
+                if (result.isConfirmed) {
+                    deleteUserById(id)
+                        .then(() => {
+                            setUsers(users.filter(user => user._id !== id));
+                            dialogs.success("Success", "User deleted successfully");
+                        })
+                        .catch(err => setError(err));
+                }
+            });
+    };
+
+    if (error) return <div>Error: {error.message}</div>;
+
 
     return (
         <div className="overflow-x-auto">
@@ -36,9 +54,10 @@ const Users = () => {
                             <Table.Cell>{user.phone}</Table.Cell>
                             <Table.Cell>{user.address.city}, {user.address.street}</Table.Cell>
                             <Table.Cell>
-                                <Link to={`/users/${user._id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                                    Edit
-                                </Link>
+                                
+                                <button onClick={() => handleDelete(user._id)} className="text-red-600 hover:text-red-800">
+                                    <FiTrash2 size={20} />
+                                </button>
                             </Table.Cell>
                         </Table.Row>
                     ))}

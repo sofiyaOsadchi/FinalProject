@@ -112,7 +112,6 @@ export type updateUserType = {
         middle: string;
         last: string;
     };
-    email: string;
     phone: string;
     image: {
         url: string;

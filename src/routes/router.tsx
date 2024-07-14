@@ -12,6 +12,8 @@ import CreateProduct from "./CreateProduct";
 import ProtectedRouteAdmin from "./ProtectedRouteAdmin";
 import Users from "./Users";
 import UpdateUser from "./UpdateUser";
+import AdminProducts from "./AdminProducts";
+import EditProduct from "./UpdateProduct";
 
 export const router = createBrowserRouter([
     {
@@ -32,12 +34,25 @@ export const router = createBrowserRouter([
             },
             { path: "/products/:id", element: <Product /> },
             {
-                path: "/create-product", element:
+                path: "/admin/create-product", element:
                     <ProtectedRouteAdmin>
                         <CreateProduct />
                     </ProtectedRouteAdmin>
             },
-            { path: "/users", element: <Users />},
+            {
+                path: "/admin/products/:id", element:
+                    <ProtectedRouteAdmin>
+                        <EditProduct />
+                    </ProtectedRouteAdmin>
+            },
+            {
+                path: "/admin/products", element:
+                    <ProtectedRouteAdmin>
+                        <AdminProducts />
+                    </ProtectedRouteAdmin>
+            },
+
+            { path: "/admin/users", element: <Users />},
             { path: "/users/:id", element: <UpdateUser /> },
 
 
