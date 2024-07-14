@@ -4,9 +4,8 @@
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import { LuPackagePlus } from "react-icons/lu";
-import { AiOutlineProject } from "react-icons/ai";
-import { FiBox, FiUsers, FiTrendingUp } from "react-icons/fi";
+import { FiBox, FiUsers, FiTrendingUp, FiUser } from "react-icons/fi";
+import Search from "./Search";
 
 
 const Nav = () => {
@@ -20,6 +19,11 @@ const Nav = () => {
             </Navbar.Brand>
 
             <div className="flex md:order-2 items-center">
+
+                <div className="mr-12">
+                    <Search />
+                </div>
+
                 {isLoggedIn && user?.isAdmin && (
                     <Link to="/admin/products" className="mr-4">
                         <Tooltip
@@ -44,8 +48,9 @@ const Nav = () => {
                     </Link>
                 )}
 
+
                 {isLoggedIn && user?.isAdmin && (
-                    <Link to="/admin/products" className="mr-4">
+                    <Link to="/admin/products" className="mr-12">
                         <Tooltip
                             content="Analitycs"
                             placement="top"
@@ -55,6 +60,15 @@ const Nav = () => {
                         </Tooltip>
                     </Link>
                 )}
+
+                {!isLoggedIn && (
+                    <Tooltip content="Login" placement="bottom" className="text-xs bg-gray-800 text-white rounded px-1 py-1">
+                        <Link to="/login" className="mr-4 flex items-center">
+                            <FiUser size={24} className="text-gray hover:text-gray-300" />
+                        </Link>
+                    </Tooltip>
+                )}
+
 
 
                 {isLoggedIn && user && (
@@ -69,15 +83,15 @@ const Nav = () => {
                             <span className="block text-sm">{user.name.first} {user.name.last}</span>
                             <span className="block truncate text-sm font-medium">{user.email}</span>
                         </Dropdown.Header>
-                       <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Edit Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Edit Profile</Dropdown.Item>
                         <Dropdown.Item>Settings</Dropdown.Item>
                         <Dropdown.Item>Earnings</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
                     </Dropdown>
-                    
+
                 )}
-               
+
                 <Navbar.Toggle />
                 <DarkThemeToggle className="ml-2" />
             </div>
@@ -86,8 +100,8 @@ const Nav = () => {
                     Home
                 </Navbar.Link>
                 <Navbar.Link href="#">About</Navbar.Link>
-                {!isLoggedIn && <Navbar.Link href="/register">Register</Navbar.Link>}
-                {!isLoggedIn && <Navbar.Link href="/login">Login</Navbar.Link>}
+                {/*  {!isLoggedIn && <Navbar.Link href="/register">Register</Navbar.Link>} */}
+
                 {isLoggedIn && <Navbar.Link href="/profile">Profile</Navbar.Link>}
                 <Navbar.Link href="#">Contact</Navbar.Link>
             </Navbar.Collapse>

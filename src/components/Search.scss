@@ -1,31 +1,12 @@
 .search-container {
-    margin: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    width: 30%;
-    height: 1.5em;
-
+    margin-top: 0; // Ensure no extra margin
 }
 
 .search-input {
-    margin-bottom: 10px;
     color: #fff;
 }
 
 .search-input.dark {
     color: #fff;
     border: 1px solid #fff;
-}
-
-@media (max-width: 768px) {
-    .search-container {
-
-        right: 0;
-        width: calc(70% - 20px);
-        align-items: end;
-
-        .search-input {
-            width: 100%;
-        }
-    }
 }

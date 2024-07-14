@@ -1,32 +1,31 @@
-
-import { Stack, TextField } from "@mui/material";
-import { useSearch } from "../hooks/useSearch";
-import "./Search.scss";
+import { useState } from 'react';
+import { FiSearch } from 'react-icons/fi';
+import { useSearch } from '../hooks/useSearch';
 
 const Search = () => {
     const { setSearchTerm } = useSearch();
-    return (
-        <Stack className="search-container">
-            <TextField
-                className="search-input dark:bg-gray-700 dark:text-white"
-                onChange={(e) => {
-                    setSearchTerm(e.currentTarget.value);
-                }}
-                variant="outlined"
-                label="Search"
-                required
+    const [isOpen, setIsOpen] = useState(false);
 
-                InputProps={{
-                    style: {
-                        color: 'white',
-                        borderColor: 'white'
-                    }
-                }}
-                InputLabelProps={{
-                    style: { color: 'white' }
-                }}
+    const handleButtonClick = () => {
+        setIsOpen(prevState => !prevState);
+    };
+
+    return (
+        <div className="relative flex items-center">
+            <button
+                onClick={handleButtonClick}
+                className="absolute right-0 h-6 w-6 rounded-lg flex items-center justify-center"
+            >
+                <FiSearch className="text-white" />
+            </button>
+            <input
+                onChange={(e) => setSearchTerm(e.currentTarget.value)}
+                type="search"
+                className={`text-xs h-8 ${isOpen ? 'w-32 pr-6' : 'w-0 pr-0'} rounded-lg border bg-transparent outline-none focus:w-48 transition-all duration-300 ease-in-out`}
+                placeholder="Search"
+                style={{ marginRight: isOpen ? '2rem' : '0', visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0 }}
             />
-        </Stack>
+        </div>
     );
 };
 
