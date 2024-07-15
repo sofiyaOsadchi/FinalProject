@@ -85,7 +85,7 @@ export interface AuthContextType {
     login: (email: string, password: string) => Promise<void>
     register: (form: IUser) => Promise<void>
     logout: () => void;
-    updateUserContext: (user: IUser) => void;
+    onUpdateUser: (user: IUser) => void;
 }
 
 export type ErrorType = {

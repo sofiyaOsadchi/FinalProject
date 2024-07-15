@@ -16,7 +16,7 @@ const Search = () => {
                 onClick={handleButtonClick}
                 className="absolute right-0 h-6 w-6 rounded-lg flex items-center justify-center"
             >
-                <FiSearch className="text-white" />
+                <FiSearch className="dark:text-white" />
             </button>
             <input
                 onChange={(e) => setSearchTerm(e.currentTarget.value)}
