@@ -9,15 +9,18 @@ export const getAllProducts = () => axios.get(baseUrl);
 //get product by id
 export const getProductById = (id: string) => axios.get(`${baseUrl}/${id}`);
 
-//create product
-export const createNewProduct = (data: IProductInput) => {
+//create new product
+
+export const createNewProduct = (data: FormData, token: string) => {
     const url = `${baseUrl}/`;
     return axios.post(url, data, {
         headers: {
-            "x-auth-token": localStorage.getItem("token"),
+            "x-auth-token": token,
+            "Content-Type": "multipart/form-data",
         },
     });
 };
+
 //delete product
 export const deleteProductById = (id: string) => {
     const url = `${baseUrl}/${id}`;

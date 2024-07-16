@@ -16,7 +16,7 @@ export type IAddress = {
 
 export type IImage = {
     alt: string;
-    url: string;
+    url?: string;
 };
 
 export type RegisterUser = {
