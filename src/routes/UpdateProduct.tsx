@@ -5,13 +5,14 @@ import { getProductById, updateProduct } from '../services/product';
 import { IProduct } from '../@Types/productType';
 import './CreateProduct.scss';
 import dialogs from '../ui/dialogs';
-import patterns from '../validations/patterns';
 
 const EditProduct = () => {
     const { id } = useParams<{ id: string }>();
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<IProduct>();
     const [error, setError] = useState<Error | null>(null);
     const navigate = useNavigate();
+    const [image, setImage] = useState<File | null>(null);
+    const [imageName, setImageName] = useState<string>("");
 
     useEffect(() => {
         if (id) {
@@ -22,19 +23,51 @@ const EditProduct = () => {
                     setValue('subtitle', product.subtitle);
                     setValue('description', product.description);
                     setValue('price', product.price);
-                    setValue('image.url', product.image.url);
+                /*     setValue('image.url', product.image.url); */
                     setValue('alt', product.alt);
                     setValue('size', product.size);
                     setValue('quantity', product.quantity);
+                    
                 })
                 .catch(err => setError(err));
         }
     }, [id, setValue]);
 
-    const onSubmit = async (data: IProduct) => {
+  /*   const onSubmit = async (data: IProduct) => {
         try {
             if (id) {
                 await updateProduct(id, data);
+                dialogs.success("Success", "Product updated successfully").then(() => {
+                    navigate("/admin/products");
+                });
+            }
+        } catch (error: any) {
+            console.log(data);
+            dialogs.error("Error", error.response.data.message);
+            console.log(error);
+        }
+    };
+
+    if (error) return <div>Error: {error.message}</div>; */
+
+    const onSubmit = async (data: IProduct) => {
+        try {
+            if (id) {
+                const formData = new FormData();
+                formData.append("title", data.title);
+                formData.append("subtitle", data.subtitle);
+                formData.append("description", data.description);
+                formData.append("price", data.price.toString());
+                formData.append("size", data.size);
+                formData.append("quantity", data.quantity.toString());
+                formData.append("alt", data.alt);
+                if (image) {
+                    formData.append("image", image);
+                } else {
+                    formData.append("imageUrl", data.image.url); // לשמור על התמונה הקיימת אם לא נבחרה תמונה חדשה
+                }
+
+                await updateProduct(id, formData);
                 dialogs.success("Success", "Product updated successfully").then(() => {
                     navigate("/admin/products");
                 });
@@ -76,38 +109,31 @@ const EditProduct = () => {
                     <span className="error-message">{errors.price && errors.price.message}</span>
                 </section>
 
-                {/* image.url */}
+              
+                {/* <section className='text-gray-50'>
+                    <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] || null)} />
+                    
+                </section> */}
+
                 <section>
                     <input
-                        placeholder="Image URL"
-                        type="url"
-                        {...register("image.url", {
-                            required: "This field is mandatory",
-                            pattern: {
-                                value: patterns.url,
-                                message: "Invalid image URL",
-                            },
-                        })}
+                        type="file"
+                        accept="image/*"
+                        className="custom-file-upload"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0] || null;
+                            setImage(file);
+                            setImageName(file ? file.name : "");
+                        }}
                     />
-                    {errors.image?.url && (
-                        <p className="text-red-500">{errors.image?.url?.message}</p>
-                    )}
+                    {imageName && <p className="file-name">{imageName}</p>}
                 </section>
 
-                {/* alt */}
                 <section>
-                    <input
-                        placeholder="Image Description"
-                        type="text"
-                        {...register("alt", {
-                            minLength: { value: 2, message: "Too short" },
-                            maxLength: { value: 255, message: "Too long" },
-                        })}
-                    />
-                    {errors.image?.alt && (
-                        <p className="text-red-500">{errors.image?.alt?.message}</p>
-                    )}
+                    <input placeholder="Image Description" {...register("alt", { required: "Image description is required" })} />
+                    {errors.alt && <p className="text-red-500">{errors.alt.message}</p>}
                 </section>
+              
 
                 <section>
                     <input placeholder="Size" {...register('size', { required: 'Size is required' })} />

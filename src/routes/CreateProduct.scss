@@ -22,6 +22,10 @@
         section {
             margin-bottom: 15px;
 
+            .img {
+                background-color: aliceblue;
+            }
+
             input {
                 width: 100%;
                 padding: 10px;
@@ -40,6 +44,7 @@
                 font-size: 14px;
                 margin-top: 5px;
             }
+            
         }
 
         button {
@@ -55,5 +60,25 @@
                 background-color: #0056b3;
             }
         }
+
+                .custom-file-upload::file-selector-button {
+                    background-color: darkblue;
+                    /* התאימי את הרקע לפי הצורך */
+                    color: white;
+                    /* הצבע של הטקסט בכפתור */
+                    border: none;
+                    padding: 8px 16px;
+                    cursor: pointer;
+                }
+        
+                .custom-file-upload::file-selector-button:hover {
+                    background-color: navy;
+                    /* צבע הכפתור בעת ריחוף */
+                }
     }
 }
+
+.custom-file-upload {
+    color: white;
+}
+
