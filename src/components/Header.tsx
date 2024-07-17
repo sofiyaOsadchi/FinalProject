@@ -1,6 +1,5 @@
 import "./Header.scss";
 import Nav from "./NavBar";
-import Search from "./Search";
 
 
 function Header() {

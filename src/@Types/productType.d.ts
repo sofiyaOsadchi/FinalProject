@@ -1,3 +1,7 @@
+export type IImage = {
+    url?: string;
+};
+
 export type IProductInput = {
     title: string;
     subtitle: string;

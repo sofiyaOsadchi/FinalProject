@@ -30,8 +30,8 @@ const UpdateUser = () => {
                     setValue('address.houseNumber', user.address.houseNumber);
                     setValue('address.country', user.address.country);
                     setValue('address.zip', user.address.zip);
-                    setValue('image.url', user.image?.url || '');
-                    setValue('alt', user.image?.alt || '');
+                  /*   setValue('image.url', user.image?.url || '');
+                    setValue('alt', user.image?.alt || ''); */
                     setValue('address.state', user.address.state || '');
                     setLoading(false);
                 })
@@ -210,8 +210,8 @@ const UpdateUser = () => {
                     )}
                 </section>
 
-                {/* image.url */}
-                <section>
+               
+              {/*   <section>
                     <input
                         placeholder="Image URL"
                         type="url"
@@ -227,7 +227,7 @@ const UpdateUser = () => {
                     )}
                 </section>
 
-                {/* alt */}
+               
                 <section>
                     <input
                         placeholder="Image Description"
@@ -240,9 +240,9 @@ const UpdateUser = () => {
                     {errors.alt && (
                         <p className="text-red-500">{errors.alt?.message}</p>
                     )}
-                </section>
+                </section> */}
 
-                {/* address.state */}
+              
                 <section>
                     <input
                         placeholder="State"
