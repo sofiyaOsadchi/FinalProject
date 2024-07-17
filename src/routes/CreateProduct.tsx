@@ -26,7 +26,7 @@ const CreateProduct = () => {
         formData.append("price", data.price.toString());
         formData.append("size", data.size);
         formData.append("quantity", data.quantity.toString());
-        formData.append("alt", data.image.alt);
+        formData.append("alt", data.alt);
         if (image) {
             formData.append("image", image);
         }
@@ -67,8 +67,8 @@ const CreateProduct = () => {
                     <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] || null)} />
                 </section>
                 <section>
-                    <input placeholder="Image Description" {...register("image.alt", { required: "Image description is required" })} />
-                    {errors.image?.alt && <p className="text-red-500">{errors.image.alt.message}</p>}
+                    <input placeholder="Image Description" {...register("alt", { required: "Image description is required" })} />
+                    {errors.alt && <p className="text-red-500">{errors.alt.message}</p>}
                 </section>
                 <section>
                     <input placeholder="Size" {...register('size', { required: 'Size is required' })} />

@@ -36,6 +36,7 @@ export const updateProduct = (id: string, product: IProductInput) => {
     return axios.put(url, product, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
         },
     });
 };

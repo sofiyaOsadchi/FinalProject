@@ -15,7 +15,6 @@ export type IAddress = {
 };
 
 export type IImage = {
-    alt: string;
     url?: string;
 };
 
@@ -30,8 +29,8 @@ export type RegisterUser = {
     password: string;
     image?: {
         url: string;
-        alt?: string;
     };
+    alt: string;
     address: {
         state?: string;
         country: string;
@@ -54,6 +53,7 @@ export type IUserInput = {
     address: IAddress;
     name: IName;
     image?: IImage;
+    alt: string;
 };
 
 export type IUser = IUserInput & {
@@ -116,8 +116,8 @@ export type updateUserType = {
     phone: string;
     image: {
         url: string;
-        alt: string;
     };
+    alt: string;
     address: {
         state: string;
         country: string;

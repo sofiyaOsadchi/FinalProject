@@ -13,7 +13,7 @@ const UpdateUser = () => {
     const { id } = useParams<{ id: string }>();
     const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<updateUserType>();
     const navigate = useNavigate();
-    const { updateUserContext } = useAuth();
+    const { onUpdateUser } = useAuth();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const UpdateUser = () => {
                     setValue('address.country', user.address.country);
                     setValue('address.zip', user.address.zip);
                     setValue('image.url', user.image?.url || '');
-                    setValue('image.alt', user.image?.alt || '');
+                    setValue('alt', user.image?.alt || '');
                     setValue('address.state', user.address.state || '');
                     setLoading(false);
                 })
@@ -45,7 +45,7 @@ const UpdateUser = () => {
             if (id) {
                 const res = await updateUser(id, data);
                 const updatedUser = res.data;
-                updateUserContext(updatedUser); // Update user context
+                onUpdateUser(updatedUser); // Update user context
                 dialogs.success("Success", "User updated successfully").then(() => {
                     reset(data);
                     navigate("/profile");
@@ -227,18 +227,18 @@ const UpdateUser = () => {
                     )}
                 </section>
 
-                {/* image.alt */}
+                {/* alt */}
                 <section>
                     <input
                         placeholder="Image Description"
                         type="text"
-                        {...register("image.alt", {
+                        {...register("alt", {
                             minLength: { value: 2, message: "Too short" },
                             maxLength: { value: 255, message: "Too long" },
                         })}
                     />
-                    {errors.image?.alt && (
-                        <p className="text-red-500">{errors.image?.alt?.message}</p>
+                    {errors.alt && (
+                        <p className="text-red-500">{errors.alt?.message}</p>
                     )}
                 </section>
 

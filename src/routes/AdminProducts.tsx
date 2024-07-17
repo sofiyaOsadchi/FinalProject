@@ -59,7 +59,7 @@ const AdminProducts = () => {
                     {products.map((product) => (
                         <Table.Row key={product._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white flex items-center">
-                                <img src={product.image.url} alt={product.image.alt} className="h-12 w-12 object-cover rounded-full mr-4" />
+                                <img src={product.image.url} alt={product.alt} className="h-12 w-12 object-cover rounded-full mr-4" />
                             </Table.Cell>
                             <Table.Cell>{product.title}</Table.Cell>
                             <Table.Cell>{product.subtitle}</Table.Cell>

@@ -1,11 +1,10 @@
-
-
 export type IProductInput = {
     title: string;
     subtitle: string;
     description: string;
     price: number;
     image: IImage;
+    alt: string;
     size: string;
     quantity: number;
     barcode: number;

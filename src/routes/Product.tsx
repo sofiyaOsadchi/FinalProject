@@ -25,7 +25,7 @@ import './Product.scss';
         <div className="product-page">
             <h1 className="product-title">{product.title}</h1>
             <h2 className="product-subtitle">{product.subtitle}</h2>
-            <img className="product-image" src={product.image.url} alt={product.image.alt} />
+            <img className="product-image" src={product.image.url} alt={product.alt} />
             <p className="product-description">{product.description}</p>
             <p className="product-price">${product.price.toFixed(2)}</p>
             <p className="product-size">Size: {product.size}</p>
