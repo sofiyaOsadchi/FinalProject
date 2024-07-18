@@ -1,0 +1,7 @@
+@media (max-width: 768px) {
+    .navbar-collapse {
+        max-height: 50vh;
+        /* Adjust the max height as needed */
+        overflow-y: auto;
+    }
+}
