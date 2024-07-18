@@ -109,6 +109,7 @@ const Nav = () => {
 };
 
 export default Nav; */
+
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
@@ -208,11 +209,12 @@ const Nav = () => {
                 <Navbar.Toggle />
                 <DarkThemeToggle className="ml-2" />
             </div>
-            <Navbar.Collapse className="md:hidden">
+            <Navbar.Collapse>
                 <Navbar.Link href="/" active>
                     Home
                 </Navbar.Link>
                 <Navbar.Link href="#">About</Navbar.Link>
+
                 {isLoggedIn && <Navbar.Link href="/profile">Profile</Navbar.Link>}
                 <Navbar.Link href="#">Contact</Navbar.Link>
             </Navbar.Collapse>
