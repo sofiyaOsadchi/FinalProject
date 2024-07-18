@@ -13,6 +13,7 @@ const EditProduct = () => {
     const navigate = useNavigate();
     const [image, setImage] = useState<File | null>(null);
     const [imageName, setImageName] = useState<string>("");
+    const [imageUrl, setImageUrl] = useState<string>("");
 
     useEffect(() => {
         if (id) {
@@ -23,7 +24,7 @@ const EditProduct = () => {
                     setValue('subtitle', product.subtitle);
                     setValue('description', product.description);
                     setValue('price', product.price);
-                /*     setValue('image.url', product.image.url); */
+                    setImageUrl(product.image.url);
                     setValue('alt', product.alt);
                     setValue('size', product.size);
                     setValue('quantity', product.quantity);
@@ -33,22 +34,6 @@ const EditProduct = () => {
         }
     }, [id, setValue]);
 
-  /*   const onSubmit = async (data: IProduct) => {
-        try {
-            if (id) {
-                await updateProduct(id, data);
-                dialogs.success("Success", "Product updated successfully").then(() => {
-                    navigate("/admin/products");
-                });
-            }
-        } catch (error: any) {
-            console.log(data);
-            dialogs.error("Error", error.response.data.message);
-            console.log(error);
-        }
-    };
-
-    if (error) return <div>Error: {error.message}</div>; */
 
     const onSubmit = async (data: IProduct) => {
         try {
@@ -64,7 +49,7 @@ const EditProduct = () => {
                 if (image) {
                     formData.append("image", image);
                 } else {
-                    formData.append("imageUrl", data.image.url); // לשמור על התמונה הקיימת אם לא נבחרה תמונה חדשה
+                    formData.append("imageUrl", imageUrl); // שימוש בתמונה הקיימת אם לא נבחרה תמונה חדשה
                 }
 
                 await updateProduct(id, formData);
@@ -109,11 +94,6 @@ const EditProduct = () => {
                     <span className="error-message">{errors.price && errors.price.message}</span>
                 </section>
 
-              
-                {/* <section className='text-gray-50'>
-                    <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] || null)} />
-                    
-                </section> */}
 
                 <section>
                     <input
@@ -137,13 +117,15 @@ const EditProduct = () => {
 
                 <section>
                     <input placeholder="Size" {...register('size', { required: 'Size is required' })} />
+                    {errors.size && <p className="text-red-500">{errors.size.message}</p>}
                 </section>
                 <section>
                     <input placeholder="Quantity" type="number" {...register('quantity', { required: 'Quantity is required' })} />
+                    {errors.quantity && <p className="text-red-500">{errors.quantity.message}</p>}
                 </section>
 
                 <button type="submit">Save</button>
-            </form>
+            </form> 
         </div>
     );
 };
