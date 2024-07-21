@@ -51,6 +51,12 @@ export interface ICartWithTotals extends ICart {
     totalPrice: number;
 };
 
+export interface CartContextProps {
+    cart: ICartWithTotals | null;
+    setCart: Dispatch<SetStateAction<ICartWithTotals | null>>;
+    fetchCart: () => void;
+}
+
 
 export type IOrderProduct = {
     productId: string;

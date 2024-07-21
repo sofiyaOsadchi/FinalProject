@@ -1,13 +1,13 @@
 import { jwtDecode } from "jwt-decode";
 import { createContext, FC, useEffect, useMemo, useState } from "react";
 import * as auth from "../services/auth";
-import { AuthContextProviderProps, AuthContextType, IUser, DecodedToken, updateUserType } from "../@Types/types";
+import { ContextProviderProps, AuthContextType, IUser, DecodedToken, updateUserType } from "../@Types/types";
 import dialogs from "../ui/dialogs";
 
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) => {
+export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
     const [user, setUser] = useState<IUser | undefined>()

@@ -9,7 +9,7 @@ export const register = (data: IUser) => axios.post(usersUrl, data);
 export const login = (data: ILogin) => axios.post(loginUrl, data);
 
 
-export const userDetails = (id: string, token:string) => {
+export const userDetails = (id: string) => {
     const url = `${usersUrl}/${id}`;
     return axios.get(url,
         {

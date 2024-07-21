@@ -61,7 +61,7 @@ export type IUser = IUserInput & {
     cart: ICartProduct[];
 };
 
-export interface AuthContextProviderProps {
+export interface ContextProviderProps {
     children: ReactNode;
 }
 

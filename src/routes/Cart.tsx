@@ -1,37 +1,16 @@
-import React, { useEffect, useState } from 'react';
 import cartService from '../services/cart';
-import { ICartItem, ICartWithTotals } from '../@Types/productType'; // עדכון לפי הטיפוסים המוגדרים
+import { ICartItem } from '../@Types/productType'; // עדכון לפי הטיפוסים המוגדרים
 import './Cart.scss';
+import { useCart } from '../hooks/useCart';
 
 const Cart = () => {
-    const [cart, setCart] = useState<ICartWithTotals | null>(null);
-    const [loading, setLoading] = useState(true);
+    const { cart, fetchCart } = useCart();
 
-    useEffect(() => {
-        fetchCart();
-    }, []);
-
-    const fetchCart = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            if (token) {
-                const response = await cartService.getCart(token);
-                setCart(response.data);
-            }
-        } catch (error) {
-            console.error('Failed to fetch cart.', error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleRemoveItem = async (productId: string) => {
         try {
-            const token = localStorage.getItem('token');
-            if (token) {
-                await cartService.removeProductFromCart(productId, 1, token);
-                fetchCart(); // רענון העגלה לאחר הסרת מוצר
-            }
+            await cartService.removeProductFromCart(productId, 1);
+            fetchCart(); // רענון העגלה לאחר הסרת מוצר
         } catch (error) {
             console.error('Failed to remove product from cart.', error);
         }
@@ -39,19 +18,12 @@ const Cart = () => {
 
     const handleClearCart = async () => {
         try {
-            const token = localStorage.getItem('token');
-            if (token) {
-                await cartService.clearCart(token);
-                fetchCart(); // רענון העגלה לאחר ניקוי
-            }
+            await cartService.clearCart();
+            fetchCart(); // רענון העגלה לאחר ניקוי
         } catch (error) {
             console.error('Failed to clear cart.', error);
         }
     };
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
 
     if (!cart || cart.items.length === 0) {
         return <div>Your cart is empty</div>;
