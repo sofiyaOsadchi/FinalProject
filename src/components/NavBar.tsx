@@ -5,8 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart } from "react-icons/fi";
 import Search from "./Search";
-import './NavBar.scss'
-import { useEffect, useState } from "react";
+import './NavBar.scss';
 import { useCart } from "../hooks/useCart";
 
 const Nav = () => {
@@ -25,15 +24,6 @@ const Nav = () => {
                 <div className="mr-8">
                     <Search />
                 </div>
-
-               {/*  <Tooltip content="Cart" placement="bottom" className="text-xs bg-gray-800 text-white rounded px-1 py-1">
-                    <FiShoppingCart
-                        size={24}
-                        className="text-gray hover:text-gray-300 cursor-pointer mr-4"
-                        onClick={() => navigate('/cart')}
-                    />
-                </Tooltip>
- */}
 
                 <Link to="/cart" className="mr-4">
                     <Tooltip

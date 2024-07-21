@@ -8,13 +8,10 @@ const AddToCartButton: React.FC<{ productId: string, onAdd: () => void }> = ({ p
     const { fetchCart } = useCart();
     const handleAddToCart = async () => {
         try {
-            const token = localStorage.getItem('token');
-            if (token) {
                 await cart.addProductToCart(productId, 1, 'S'); // לדוגמה, ניתן לשנות בהתאם לצורך
              fetchCart();
                 onAdd();
-            }
-
+          
         } catch (error) {
             console.error('Failed to add product to cart.', error);
         }
