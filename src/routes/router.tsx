@@ -14,6 +14,7 @@ import Users from "./Users";
 import UpdateUser from "./UpdateUser";
 import AdminProducts from "./AdminProducts";
 import EditProduct from "./UpdateProduct";
+import Cart from "./Cart";
 
 export const router = createBrowserRouter([
     {
@@ -60,6 +61,9 @@ export const router = createBrowserRouter([
                         <UpdateUser />
                     </ProtectedRouteUser>
             },
+    {
+        path: "/cart", element: <Cart />,
+    }
 
 
         ],

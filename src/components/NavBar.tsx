@@ -113,13 +113,32 @@ export default Nav; */
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import { FiBox, FiUsers, FiTrendingUp, FiUser } from "react-icons/fi";
+import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart } from "react-icons/fi";
 import Search from "./Search";
 import './NavBar.scss'
+import { useEffect, useState } from "react";
+import cart from "../services/cart";
 
 const Nav = () => {
     const { isLoggedIn, user, logout } = useAuth();
     const navigate = useNavigate();
+    const [cartItemCount, setCartItemCount] = useState(0);
+
+    useEffect(() => {
+        fetchCartItemCount();
+    }, []);
+
+    const fetchCartItemCount = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (token) {
+                const response = await cart.getCart(token);
+                setCartItemCount(response.data.items.length);
+            }
+        } catch (error) {
+            console.error('Failed to fetch cart item count.', error);
+        }
+    };
 
     return (
         <Navbar fluid rounded>
@@ -132,6 +151,32 @@ const Nav = () => {
                     <Search />
                 </div>
 
+               {/*  <Tooltip content="Cart" placement="bottom" className="text-xs bg-gray-800 text-white rounded px-1 py-1">
+                    <FiShoppingCart
+                        size={24}
+                        className="text-gray hover:text-gray-300 cursor-pointer mr-4"
+                        onClick={() => navigate('/cart')}
+                    />
+                </Tooltip>
+ */}
+
+                <Link to="/cart" className="mr-4">
+                    <Tooltip
+                        content="View Cart"
+                        placement="top"
+                        className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                    >
+                        <div className="relative">
+                            <FiShoppingCart size={24} className={cartItemCount > 0 ? "text-red-500" : "text-gray-300"} />
+                            {cartItemCount > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full px-2 text-xs">
+                                    {cartItemCount}
+                                </span>
+                            )}
+                        </div>
+                    </Tooltip>
+                </Link>
+                
                 {isLoggedIn && user?.isAdmin && (
                     <>
                         <Link to="/admin/products" className="mr-4 hidden md:block">

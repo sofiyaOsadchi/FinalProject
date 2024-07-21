@@ -33,6 +33,25 @@ export type ICartProduct = {
 };
 
 
+export interface ICartItem {
+    productId: string;
+    quantity: number;
+    title: string;
+    price: number;
+    size: string;
+};
+
+export interface ICart extends Document {
+    userId: string;
+    items: ICartItem[];
+};
+
+export interface ICartWithTotals extends ICart {
+    totalQuantity: number;
+    totalPrice: number;
+};
+
+
 export type IOrderProduct = {
     productId: string;
     quantity: number;
