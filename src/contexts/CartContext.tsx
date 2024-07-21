@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, FC } from 'react';
+import { createContext, useState, useEffect, FC } from 'react';
 import cartService from '../services/cart';
 import { CartContextProps, ICartWithTotals } from '../@Types/productType';
 import { ContextProviderProps } from '../@Types/types';
@@ -11,11 +11,9 @@ export const CartProvider: FC<ContextProviderProps> = ({ children }) => {
 
     const fetchCart = async () => {
         try {
-            const token = localStorage.getItem('token');
-            if (token) {
-                const response = await cartService.getCart(token);
+                const response = await cartService.getCart();
                 setCart(response.data);
-            }
+           
         } catch (error) {
             console.error('Failed to fetch cart.', error);
         }

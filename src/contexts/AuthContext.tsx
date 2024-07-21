@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { createContext, FC, useEffect, useMemo, useState } from "react";
 import * as auth from "../services/auth";
-import { ContextProviderProps, AuthContextType, IUser, DecodedToken, updateUserType } from "../@Types/types";
+import { ContextProviderProps, AuthContextType, IUser, DecodedToken } from "../@Types/types";
 import dialogs from "../ui/dialogs";
 
 
@@ -20,7 +20,7 @@ export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
         setLoading(true)
         if (token) {
             const { _id } = jwtDecode(token) as any
-            auth.userDetails(_id, token).then((res) => {
+            auth.userDetails(_id).then((res) => {
                 setUser(res.data)
             }).finally(() => setLoading(false))
         }
@@ -41,7 +41,7 @@ export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
                 const decodedToken = jwtDecode<DecodedToken>(token);
                 const userId = decodedToken._id;
 
-                auth.userDetails(userId, token)
+                auth.userDetails(userId)
                     .then((res) => {
                         setUser(res.data);
                     })
