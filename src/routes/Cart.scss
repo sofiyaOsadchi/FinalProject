@@ -82,17 +82,25 @@
 }
 
 .clear-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 16px;
-    width: 120px;
-    size: 16px;
+    width: 150px;
+    font-size: 16px;
     padding: 8px 16px;
-    background-color: #670359;
+    background-color: #4b484ac9;
     color: #ffffff;
     border-radius: 0.5rem;
     cursor: pointer;
 
     &:hover {
-        background-color: #770368;
+        background-color: #666465c9;
+    }
+
+    svg {
+        margin-left: 8px;
+        /* רווח בין האייקון לטקסט */
     }
 }
 

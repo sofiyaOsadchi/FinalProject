@@ -2,12 +2,17 @@ import cartService from '../services/cart';
 import { ICartItem } from '../@Types/productType'; // עדכון לפי הטיפוסים המוגדרים
 import './Cart.scss';
 import { useCart } from '../hooks/useCart';
+import { FiTrash } from 'react-icons/fi';
+import dialogs from '../ui/dialogs';
+
 
 const Cart = () => {
     const { cart, fetchCart } = useCart();
+  
 
 
     const handleRemoveItem = async (productId: string) => {
+        
         try {
             await cartService.removeProductFromCart(productId, 1);
             fetchCart(); // רענון העגלה לאחר הסרת מוצר
@@ -17,11 +22,16 @@ const Cart = () => {
     };
 
     const handleClearCart = async () => {
-        try {
-            await cartService.clearCart();
-            fetchCart(); // רענון העגלה לאחר ניקוי
-        } catch (error) {
-            console.error('Failed to clear cart.', error);
+        const result = await dialogs.confirm("Clear Cart", "Are you sure you want to clear the cart?");
+        if (result.isConfirmed) {
+            try {
+                await cartService.clearCart();
+                fetchCart(); // רענון העגלה לאחר ניקוי
+                dialogs.success("Cart Cleared", "Your cart has been cleared successfully.");
+            } catch (error) {
+                console.error('Failed to clear cart.', error);
+                dialogs.error("Error", "Failed to clear the cart.");
+            }
         }
     };
 
@@ -47,7 +57,10 @@ const Cart = () => {
                             <button onClick={() => handleRemoveItem(item.productId)} className="remove-button">Remove</button>
                         </div>
                     ))}
-                    <button onClick={handleClearCart} className="clear-cart-button">Clear Cart</button> 
+                    <button onClick={handleClearCart} className="clear-cart-button">
+                        Clear Cart
+                        <FiTrash />
+                    </button>
                 </div>
             </div>
             <div className="cart-summary w-full md:w-1/4 p-4 rounded-lg shadow-lg">

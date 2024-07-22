@@ -43,5 +43,20 @@ export const showConfirmDialog = async (title: string, text: string) => {
     });
 }
 
-const dialogs = { success: showSuccessDialog, error: showErrorDialog, confirm: showConfirmDialog };
+export const showPopup = (title: string, html: string) => {
+    return Swal.fire({
+        title,
+        html,
+        icon: "success",
+        position: "top-end",
+        showConfirmButton: false,
+        width: 300,
+        timer: 6000,
+        customClass: {
+            popup: 'custom-font-size'
+        }
+    });
+};
+
+const dialogs = { success: showSuccessDialog, error: showErrorDialog, confirm: showConfirmDialog, showPopup };
 export default dialogs;
