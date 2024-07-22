@@ -1,45 +1,9 @@
-/* 
-.cart-page {
-    @apply flex flex-col md:flex-row gap-4 p-4;
-}
-
-.cart-items-container {
-    @apply w-full md:w-3/4 p-4;
-}
-
-.cart-title {
-    @apply text-2xl font-semibold mb-4;
-}
-
-.cart-items {
-    @apply space-y-4;
-}
-
-.cart-item {
-    @apply flex justify-between items-center p-4 border rounded-lg shadow-sm;
-}
-
-.cart-summary {
-    @apply w-full md:w-1/4 p-4 bg-gray-100 rounded-lg shadow-lg;
-}
-
-.cart-summary h2 {
-    @apply text-xl font-semibold mb-4;
-}
-
-.cart-summary div {
-    @apply flex justify-between;
-}
-
-.clear-cart-button {
-    @apply mt-4 w-full py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-700;
-} */
-
 .cart-page {
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 16px;
+    color: #4b5563;
 
     @media (min-width: 768px) {
         flex-direction: row;
@@ -87,10 +51,11 @@
 .cart-summary {
     width: 100%;
     padding: 16px;
-    background-color: #f3f4f6;
+    background-color: #f9f9fd;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-   
+    max-height: 200px;
+    /* קביעת גובה מקסימלי */
 
     @media (min-width: 768px) {
         width: 25%;
@@ -115,7 +80,8 @@
 
 .clear-cart-button {
     margin-top: 16px;
-    width: 100%;
+    width: 120px;
+    size: 16px;
     padding: 8px 16px;
     background-color: #670359;
     color: #ffffff;
@@ -132,5 +98,46 @@
 
     &:hover {
         background-color: #850474;
+    }
+}
+
+/* סגנונות נוספים לכפתור ה-Checkout */
+.checkout-button {
+    margin-top: 16px;
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #190a63;
+    color: #ffffff;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #093188;
+    }
+}
+
+.dark .checkout-button {
+    background-color: #1d4ed8;
+
+    &:hover {
+        background-color: #2563eb;
+    }
+}
+
+/* סגנונות נוספים לכפתור ה-Remove */
+.remove-button {
+    color: #ef4444;
+    cursor: pointer;
+
+    &:hover {
+        color: #dc2626;
+    }
+}
+
+.dark .remove-button {
+    color: #ef4444;
+
+    &:hover {
+        color: #dc2626;
     }
 }

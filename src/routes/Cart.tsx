@@ -44,24 +44,25 @@ const Cart = () => {
                                     <p className="item-price text-sm text-gray-500">Price: ${item.price.toFixed(2)}</p>
                                 </div>
                             </div>
-                            <button onClick={() => handleRemoveItem(item.productId)} className="text-red-500 hover:text-red-700">Remove</button>
+                            <button onClick={() => handleRemoveItem(item.productId)} className="remove-button">Remove</button>
                         </div>
                     ))}
+                    <button onClick={handleClearCart} className="clear-cart-button">Clear Cart</button> 
                 </div>
             </div>
-            <div className="cart-summary w-full md:w-1/4 p-4 bg-gray-100 rounded-lg shadow-lg">
+            <div className="cart-summary w-full md:w-1/4 p-4 rounded-lg shadow-lg">
                 <h2 className="text-xl font-semibold mb-4">Summary</h2>
                 <div className="space-y-2">
-                    <div className="flex justify-between">
+                    <div>
                         <span>Subtotal</span>
                         <span>${cart.totalPrice.toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div>
                         <span>Total Items</span>
                         <span>{cart.totalQuantity}</span>
                     </div>
                 </div>
-                <button onClick={handleClearCart} className="clear-cart-button">Clear Cart</button>
+                <button className="checkout-button">Checkout</button> {/* הוספת הכפתור של Checkout */}
             </div>
         </div>
     );
