@@ -39,6 +39,7 @@ export interface ICartItem {
     title: string;
     price: number;
     size: string;
+    image: IImage;
 };
 
 export interface ICart extends Document {

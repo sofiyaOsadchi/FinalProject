@@ -30,23 +30,39 @@ const Cart = () => {
     }
 
     return (
-        <div className="cart-page">
-            <h1 className="cart-title">Your Shopping Cart</h1>
-            <div className="cart-items">
-                {cart.items.map((item: ICartItem) => (
-                    <div className="cart-item" key={item.productId}>
-                        <h2 className="item-title">{item.title}</h2>
-                        <p className="item-quantity">Quantity: {item.quantity}</p>
-                        <p className="item-price">Price: ${item.price.toFixed(2)}</p>
-                        <button onClick={() => handleRemoveItem(item.productId)}>Remove</button>
+        <div className="cart-page flex flex-col md:flex-row">
+            <div className="cart-items-container w-full md:w-3/4 p-4">
+                <h1 className="cart-title text-2xl font-semibold mb-4">Your Shopping Cart</h1>
+                <div className="cart-items space-y-4">
+                    {cart.items.map((item: ICartItem) => (
+                        <div className="cart-item flex justify-between items-center p-4 border rounded-lg shadow-sm" key={item.productId}>
+                            <div className="flex items-center">
+                                <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />
+                                <div>
+                                    <h2 className="item-title text-lg font-medium">{item.title}</h2>
+                                    <p className="item-quantity text-sm text-gray-500">Quantity: {item.quantity}</p>
+                                    <p className="item-price text-sm text-gray-500">Price: ${item.price.toFixed(2)}</p>
+                                </div>
+                            </div>
+                            <button onClick={() => handleRemoveItem(item.productId)} className="text-red-500 hover:text-red-700">Remove</button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="cart-summary w-full md:w-1/4 p-4 bg-gray-100 rounded-lg shadow-lg">
+                <h2 className="text-xl font-semibold mb-4">Summary</h2>
+                <div className="space-y-2">
+                    <div className="flex justify-between">
+                        <span>Subtotal</span>
+                        <span>${cart.totalPrice.toFixed(2)}</span>
                     </div>
-                ))}
+                    <div className="flex justify-between">
+                        <span>Total Items</span>
+                        <span>{cart.totalQuantity}</span>
+                    </div>
+                </div>
+                <button onClick={handleClearCart} className="mt-4 w-full py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-700">Clear Cart</button>
             </div>
-            <div className="cart-totals">
-                <p>Total Items: {cart.totalQuantity}</p>
-                <p>Total Price: ${cart.totalPrice.toFixed(2)}</p>
-            </div>
-            <button onClick={handleClearCart} className="clear-cart-button">Clear Cart</button>
         </div>
     );
 };
