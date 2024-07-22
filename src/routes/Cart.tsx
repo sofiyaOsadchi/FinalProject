@@ -61,7 +61,7 @@ const Cart = () => {
                         <span>{cart.totalQuantity}</span>
                     </div>
                 </div>
-                <button onClick={handleClearCart} className="mt-4 w-full py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-700">Clear Cart</button>
+                <button onClick={handleClearCart} className="clear-cart-button">Clear Cart</button>
             </div>
         </div>
     );
