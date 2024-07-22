@@ -52,14 +52,14 @@ const Cart = () => {
             </div>
             <div className="cart-summary w-full md:w-1/4 p-4 rounded-lg shadow-lg">
                 <h2 className="text-xl font-semibold mb-4">Summary</h2>
-                <div className="space-y-2">
-                    <div>
-                        <span>Subtotal</span>
-                        <span>${cart.totalPrice.toFixed(2)}</span>
-                    </div>
-                    <div>
+                <div className="space-y-2 flex flex-col">
+                    <div className='flex flex-row'>
                         <span>Total Items</span>
                         <span>{cart.totalQuantity}</span>
+                    </div>
+                    <div className='flex flex-row'>
+                        <span>Total Price</span>
+                        <span>${cart.totalPrice.toFixed(2)}</span>
                     </div>
                 </div>
                 <button className="checkout-button">Checkout</button> {/* הוספת הכפתור של Checkout */}
