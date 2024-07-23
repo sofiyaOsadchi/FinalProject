@@ -5,13 +5,22 @@ import { useCart } from '../hooks/useCart';
 import {  FiArrowLeft, FiTrash } from 'react-icons/fi'; // Importing FiArrowLeft from react-icons/fi
 import dialogs from '../ui/dialogs';
 import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Tooltip } from 'flowbite-react';
+import { useAuth } from '../hooks/useAuth';
 
 const Cart = () => {
 
     const { cart, fetchCart } = useCart();
+    const { token } = useAuth();
     const [quantities, setQuantities] = useState<{ [productId: string]: number }>({});
+
+    useEffect(() => {
+        if (token) {
+            fetchCart();
+        }
+    }, [token, fetchCart]);
+
     const handleRemoveItem = async (productId: string) => {
         try {
             await cartService.removeProductFromCart(productId);

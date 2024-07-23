@@ -20,6 +20,7 @@ const Login = () => {
                 });
             })
             .catch((e) => {
+                console.error("Login error:", e);
                 dialogs.error("Login Error", e.response.data.message);
             });
     };

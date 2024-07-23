@@ -31,7 +31,7 @@ export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
 
 
 
-    const login = async (email: string, password: string) => {
+    /* const login = async (email: string, password: string) => {
         await auth
             .login({ email, password })
             .then((res) => {
@@ -53,8 +53,25 @@ export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
                 console.error("Login error:", error);
             });
     };
+ */
 
+    const login = async (email: string, password: string) => {
+        try {
+            const res = await auth.login({ email, password });
+            const token = res.data;
+            setToken(token);
+            localStorage.setItem("token", token);
+            const decodedToken = jwtDecode<DecodedToken>(token);
+            const userId = decodedToken._id;
 
+            const userRes = await auth.userDetails(userId);
+            setUser(userRes.data);
+            /* return res; */ // החזרת תשובת ההתחברות
+        } catch (error) {
+            console.error("Login error:", error);
+            throw error; // זריקת השגיאה החוצה
+        }
+    };
     
 
     const register = async (form: IUser) => {
@@ -65,6 +82,7 @@ export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
     const logout = () => {
         setToken(null);
         setUser(undefined)
+
         localStorage.removeItem("token");
         dialogs.success("Logout Successful", "You have been logged out successfully.");
         

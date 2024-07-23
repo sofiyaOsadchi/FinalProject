@@ -10,13 +10,14 @@ import cart from '../services/cart';
 const Product = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<IProduct>();
-    const [selectedSize, setSelectedSize] = useState<string>('M'); // מידה ברירת מחדל
+    const [selectedSize, setSelectedSize] = useState<string>(''); 
     const navigate = useNavigate();
 
     useEffect(() => {
         getProductById(id || "")
             .then(res => {
                 setProduct(res.data);
+                setSelectedSize(res.data.sizes[0]);
             })
             .catch(err => console.log(err));
     }, [id]);
@@ -78,6 +79,7 @@ const Product = () => {
                         title={product.title}
                         price={product.price}
                         image={product.image.url}
+                        size={selectedSize}
                         onAdd={() => console.log("Product added to cart")}
                     />
                     <button className="consult-expert-button" onClick={handleAddToCartAndRedirect}>Buy Now</button>
