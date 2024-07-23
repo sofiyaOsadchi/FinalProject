@@ -23,10 +23,20 @@ export const addProductToCart = (productId: string, quantity: number, size: stri
     });
 };
 
-export const removeProductFromCart = (productId: string, quantity: number) => {
-    return axios.post(`${cartUrl}/remove`, {
+export const updateProductQuantity = (productId: string, quantity: number) => {
+    return axios.patch(`${ cartUrl }/update`, {
         productId,
         quantity
+    }, {
+        headers: {
+            "x-auth-token": localStorage.getItem("token"),
+        }
+    });
+};
+
+export const removeProductFromCart = (productId: string) => {
+    return axios.post(`${cartUrl}/remove`, {
+        productId
     }, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
@@ -45,6 +55,7 @@ export const clearCart = (/* token: string */) => {
 export const cart = {
     getCart,
     addProductToCart,
+    updateProductQuantity,
     removeProductFromCart,
     clearCart
 };

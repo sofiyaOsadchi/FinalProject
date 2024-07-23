@@ -5,13 +5,15 @@ import { useCart } from '../hooks/useCart';
 import {  FiArrowLeft } from 'react-icons/fi'; // Importing FiArrowLeft from react-icons/fi
 import dialogs from '../ui/dialogs';
 import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
+import { useState } from 'react';
 
 const Cart = () => {
-    const { cart, fetchCart } = useCart();
 
+    const { cart, fetchCart } = useCart();
+    const [quantities, setQuantities] = useState<{ [productId: string]: number }>({});
     const handleRemoveItem = async (productId: string) => {
         try {
-            await cartService.removeProductFromCart(productId, 1);
+            await cartService.removeProductFromCart(productId);
             fetchCart(); // רענון העגלה לאחר הסרת מוצר
         } catch (error) {
             console.error('Failed to remove product from cart.', error);
@@ -29,6 +31,19 @@ const Cart = () => {
                 console.error('Failed to clear cart.', error);
                 dialogs.error("Error", "Failed to clear the cart.");
             }
+        }
+    };
+
+    const handleQuantityChange = async (productId: string, newQuantity: number) => {
+        try {
+            setQuantities(prevQuantities => ({
+                ...prevQuantities,
+                [productId]: newQuantity,
+            }));
+            await cartService.updateProductQuantity(productId, newQuantity);
+            fetchCart();
+        } catch (error) {
+            console.error('Failed to update product quantity.', error);
         }
     };
 
@@ -63,9 +78,24 @@ const Cart = () => {
                                 <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />
                                 <div>
                                     <Link to={`/products/${item.productId}`} className="item-title text-lg font-medium text-blue-500 hover:underline">{item.title}</Link> {/* Product Title Link */}
-                                    <p className="item-quantity text-sm text-gray-500">Quantity: {item.quantity}</p>
+                                    <p className="item-size text-sm text-gray-500">Size: {item.size}</p>
                                     <p className="item-price text-sm text-gray-500">Price: ${item.price.toFixed(2)}</p>
                                 </div>
+                            </div>
+                            <div className="flex items-center">
+                                <label htmlFor={`quantity-${item.productId}`} className="item-quantity text-sm text-gray-500 mr-2">Quantity:</label>
+                                <select
+                                    id={`quantity-${item.productId}`}
+                                    value={quantities[item.productId] || item.quantity}
+                                    onChange={(e) => handleQuantityChange(item.productId, parseInt(e.target.value))}
+                                    className="ml-2 border border-gray-300 rounded-md p-1"
+                                >
+                                    {[...Array(10).keys()].map((n) => (
+                                        <option key={n + 1} value={n + 1}>
+                                            {n + 1}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <button onClick={() => handleRemoveItem(item.productId)} className="remove-button">Remove</button>
                         </div>
@@ -75,11 +105,11 @@ const Cart = () => {
             <div className="cart-summary w-full md:w-1/4 p-4 rounded-lg shadow-lg">
                 <h2 className="text-xl font-semibold mb-4">Summary</h2>
                 <div className="space-y-2 flex flex-col">
-                    <div className='flex flex-row'>
+                    <div className='flex justify-between'>
                         <span>Total Items</span>
                         <span>{cart.totalQuantity}</span>
                     </div>
-                    <div className='flex flex-row'>
+                    <div className='flex justify-between'>
                         <span>Total Price</span>
                         <span>${cart.totalPrice.toFixed(2)}</span>
                     </div>
