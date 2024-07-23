@@ -1,49 +1,106 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getProductById } from '../services/product';
 import { IProduct } from '../@Types/productType';
 import './Product.scss';
 import AddToCartButton from '../components/AddToCartButton';
+import { Accordion } from 'flowbite-react';
+import cart from '../services/cart';
 
-    const Product = () => {
-        const { id } = useParams();
-        const [product, setProduct] = useState<IProduct>();
+const Product = () => {
+    const { id } = useParams();
+    const [product, setProduct] = useState<IProduct>();
+    const [selectedSize, setSelectedSize] = useState<string>('M'); // מידה ברירת מחדל
+    const navigate = useNavigate();
 
-        useEffect(() => {
-            getProductById(id || "")
-                .then(res => {
-                    setProduct(res.data);
-                })
-                .catch(err => console.log(err));
-        }, [id]);
+    useEffect(() => {
+        getProductById(id || "")
+            .then(res => {
+                setProduct(res.data);
+            })
+            .catch(err => console.log(err));
+    }, [id]);
 
-        if (!product) {
-            return <div>Loading...</div>;
+    if (!product) {
+        return <div>Loading...</div>;
+    }
+
+    const originalPrice = Math.ceil(product.price * 1.2 / 10) * 10;
+
+    const handleAddToCartAndRedirect = async () => {
+        try {
+            await cart.addProductToCart(product._id, 1, selectedSize);
+            navigate('/cart');
+        } catch (error) {
+            console.error('Failed to add product to cart.', error);
         }
-
+    };
 
     return (
         <div className="product-page">
-            <h1 className="product-title">{product.title}</h1>
-            <h2 className="product-subtitle">{product.subtitle}</h2>
-            <img className="product-image" src={product.image.url} alt={product.alt} />
-            <p className="product-description">{product.description}</p>
-            <p className="product-price">${product.price.toFixed(2)}</p>
-            <p className="product-size">Size: {product.size}</p>
-            <p className="product-quantity">
-                {product.quantity > 0 ? 'In Stock' : 'Out of Stock'}
-            </p>
-            <p className="product-barcode">Barcode: {product.barcode}</p>
-            <AddToCartButton
-                productId={product._id}
-                title={product.title}
-                price={product.price}
-                image={product.image.url}
-                onAdd={() => console.log("Product added to cart")}
-            />
-            
+            <div className="product-image-container">
+                <img className="product-image" src={product.image.url} alt={product.alt} />
+                <div className="additional-images">
+                    <img src={product.image.url} alt={product.alt} className="additional-image" />
+                    <img src={product.image.url} alt={product.alt} className="additional-image" />
+                    <img src={product.image.url} alt={product.alt} className="additional-image" />
+                </div>
+            </div>
+            <div className="product-details">
+                <h1 className="product-title">{product.title}</h1>
+                <h2 className="product-subtitle">{product.subtitle}</h2>
+                <h3 className="product-description">{product.description}</h3>
+
+                <div className="product-price-container">
+                    <span className="price-label">Original Price:</span>
+                    <span className="original-price">${originalPrice.toFixed(2)}</span>
+                </div>
+                <div className="product-price-container">
+                    <span className="price-label">Discounted Price:</span>
+                    <span className="discounted-price">${product.price.toFixed(2)}</span>
+                </div>
+
+                <div className="size-buttons-container">
+                    {product.sizes.map((size) => (
+                        <button
+                            key={size}
+                            className={`size-button ${selectedSize === size ? 'selected' : ''}`}
+                            onClick={() => setSelectedSize(size)}
+                        >
+                            {size}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="buttons-container">
+                    <AddToCartButton
+                        productId={product._id}
+                        title={product.title}
+                        price={product.price}
+                        image={product.image.url}
+                        onAdd={() => console.log("Product added to cart")}
+                    />
+                    <button className="consult-expert-button" onClick={handleAddToCartAndRedirect}>Buy Now</button>
+                </div>
+                <Accordion>
+                    <Accordion.Panel>
+                        <Accordion.Title>Description</Accordion.Title>
+                        <Accordion.Content>
+                            <p>{product.description}</p>
+                        </Accordion.Content>
+                    </Accordion.Panel>
+                    <Accordion.Panel>
+                        <Accordion.Title>Shipping Info</Accordion.Title>
+                        <Accordion.Content>
+                            <p>Ships by: <strong>Wednesday, July 24</strong></p>
+                            <p>Free Fast Shipping</p>
+                            <p>Free Overnight Shipping, Hassle-Free Returns</p>
+                        </Accordion.Content>
+                    </Accordion.Panel>
+                </Accordion>
+            </div>
         </div>
     );
 };
 
-export default Product
+export default Product;

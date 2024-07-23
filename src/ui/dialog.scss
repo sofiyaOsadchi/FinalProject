@@ -1,0 +1,40 @@
+/* הנפשה מותאמת אישית */
+@keyframes customFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes customFadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+.swal2-popup {
+    animation: customFadeIn 0.3s ease-out, customFadeOut 0.2s ease-in forwards;
+}
+
+.swal2-icon {
+    animation: customFadeIn 0.3s ease-out;
+}
+
+.swal2-title {
+    animation: customFadeIn 0.3s ease-out;
+}
+
+.swal2-html-container {
+    animation: customFadeIn 0.3s ease-out;
+}

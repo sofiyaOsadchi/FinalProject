@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
+import './dialog.scss';
 
-
- export const showSuccessDialog = (title: string, text: string) => {
+export const showSuccessDialog = (title: string, text: string) => {
     return Swal.fire({
         title,
         text,
@@ -14,8 +14,8 @@ import Swal from "sweetalert2";
             popup: 'custom-font-size'
         }
     });
-
 };
+
 export const showErrorDialog = (title: string, text: string) => {
     return Swal.fire({
         title,
@@ -30,6 +30,7 @@ export const showErrorDialog = (title: string, text: string) => {
         }
     });
 };
+
 export const showConfirmDialog = async (title: string, text: string) => {
     return await Swal.fire({
         title,
@@ -51,7 +52,7 @@ export const showPopup = (title: string, html: string) => {
         position: "top-end",
         showConfirmButton: false,
         width: 300,
-        timer: 6000,
+        timer: 2000,
         customClass: {
             popup: 'custom-font-size'
         }

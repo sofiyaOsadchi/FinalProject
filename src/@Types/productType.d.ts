@@ -9,7 +9,7 @@ export type IProductInput = {
     price: number;
     image: IImage;
     alt: string;
-    size: string;
+    sizes: string[];
     quantity: number;
     barcode: number;
 };

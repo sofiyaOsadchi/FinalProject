@@ -19,16 +19,44 @@
     }
 }
 
+.back-to-shopping {
+    color: #1b1b1b;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    svg {
+        margin-right: 8px;
+    }
+}
+
 .cart-title {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 16px;
+}
+
+.clear-cart-link {
+    font-size: 16px;
+    color: #ef4444;
+    cursor: pointer;
+
+    &:hover {
+        color: #dc2626;
+    }
 }
 
 .cart-items {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-top: 16px;
+    /* Adjusted margin-top */
 }
 
 .cart-item {

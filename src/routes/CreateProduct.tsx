@@ -19,12 +19,24 @@ const CreateProduct = () => {
             return;
         }
 
+        if (!image) {
+            dialogs.error("Error", "Please select an image.");
+            return;
+        }
+
+        const sizesArray = data.sizes.split(',').map(size => size.trim());
+
         const formData = new FormData();
         formData.append("title", data.title);
         formData.append("subtitle", data.subtitle);
         formData.append("description", data.description);
         formData.append("price", data.price.toString());
-        formData.append("size", data.size);
+
+        // הוספת sizes כמספר פריטים ב-FormData
+        sizesArray.forEach((size, index) => {
+            formData.append(`sizes[${index}]`, size);
+        });
+
         formData.append("quantity", data.quantity.toString());
         formData.append("alt", data.alt);
         if (image) {
@@ -32,12 +44,14 @@ const CreateProduct = () => {
         }
 
         try {
+            console.log("Form Data:", Object.fromEntries(formData.entries())); // לוג לפני שליחה
             await createNewProduct(formData, token);
-            dialogs.success("Success", "Product Created Successfully").then(() => {
-                navigate("/");
-            });
+            dialogs.success("Success", "Product Created Successfully")
+                .then(() => {
+                    navigate("/");
+                });
         } catch (error: any) {
-            console.log(data);
+            console.log("Form Data Error:", Object.fromEntries(formData.entries())); // לוג בשגיאה
             dialogs.error("Error", error.response);
             console.log(error);
         }
@@ -71,10 +85,12 @@ const CreateProduct = () => {
                     {errors.alt && <p className="text-red-500">{errors.alt.message}</p>}
                 </section>
                 <section>
-                    <input placeholder="Size" {...register('size', { required: 'Size is required' })} />
+                    <input placeholder="Sizes (comma separated, e.g., S,M,L)" {...register('sizes', { required: 'Sizes are required' })} />
+                    {errors.sizes && <p className="text-red-500">{errors.sizes.message}</p>}
                 </section>
                 <section>
                     <input placeholder="Quantity" type="number" {...register('quantity', { required: 'Quantity is required' })} />
+                    {errors.quantity && <p className="text-red-500">{errors.quantity.message}</p>}
                 </section>
                 <button type="submit">Create Product</button>
             </form>
