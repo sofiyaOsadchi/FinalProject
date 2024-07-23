@@ -45,7 +45,7 @@ const CreateProduct = () => {
 
         try {
             console.log("Form Data:", Object.fromEntries(formData.entries())); // לוג לפני שליחה
-            await createNewProduct(formData, token);
+            await createNewProduct(formData);
             dialogs.success("Success", "Product Created Successfully")
                 .then(() => {
                     navigate("/");

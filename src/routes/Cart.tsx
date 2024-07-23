@@ -2,10 +2,11 @@ import cartService from '../services/cart';
 import { ICartItem } from '../@Types/productType'; // עדכון לפי הטיפוסים המוגדרים
 import './Cart.scss';
 import { useCart } from '../hooks/useCart';
-import {  FiArrowLeft } from 'react-icons/fi'; // Importing FiArrowLeft from react-icons/fi
+import {  FiArrowLeft, FiTrash } from 'react-icons/fi'; // Importing FiArrowLeft from react-icons/fi
 import dialogs from '../ui/dialogs';
 import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
 import { useState } from 'react';
+import { Tooltip } from 'flowbite-react';
 
 const Cart = () => {
 
@@ -97,7 +98,18 @@ const Cart = () => {
                                     ))}
                                 </select>
                             </div>
-                            <button onClick={() => handleRemoveItem(item.productId)} className="remove-button">Remove</button>
+                            <button
+                                onClick={() => handleRemoveItem(item.productId)}
+                                className="remove-button"
+                            >
+                                <Tooltip
+                                    content="Remove product"
+                                    placement="top"
+                                    className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                                >
+                                    <FiTrash />
+                                </Tooltip>
+                            </button>
                         </div>
                     ))}
                 </div>

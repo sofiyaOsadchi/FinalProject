@@ -10,11 +10,11 @@ export const getProductById = (id: string) => axios.get(`${baseUrl}/${id}`);
 
 //create new product
 
-export const createNewProduct = (data: FormData, token: string) => {
+export const createNewProduct = (data: FormData) => {
     const url = `${baseUrl}/`;
     return axios.post(url, data, {
         headers: {
-            "x-auth-token": token,
+            "x-auth-token": localStorage.getItem("token"),
             "Content-Type": "multipart/form-data",
         },
     });
