@@ -19,7 +19,7 @@ const Cart = () => {
         if (token) {
             fetchCart();
         }
-    }, [token, fetchCart]);
+    }, [token]);
 
     const handleRemoveItem = async (productId: string) => {
         try {
