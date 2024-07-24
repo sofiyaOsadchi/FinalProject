@@ -63,9 +63,13 @@ export type IOrderProduct = {
     productId: string;
     quantity: number;
     size: string;
+    title: string; // הוספת title
+    price: number; // הוספת price
+
 };
 
 export type IOrder = {
+    _id: string;
     userId: string;
     products: IOrderProduct[];
     totalAmount: number;

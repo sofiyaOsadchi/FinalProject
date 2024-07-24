@@ -4,15 +4,17 @@ import './Cart.scss';
 import { useCart } from '../hooks/useCart';
 import {  FiArrowLeft, FiTrash } from 'react-icons/fi'; // Importing FiArrowLeft from react-icons/fi
 import dialogs from '../ui/dialogs';
-import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom'; // Importing Link from react-router-dom
 import { useEffect, useState } from 'react';
 import { Tooltip } from 'flowbite-react';
 import { useAuth } from '../hooks/useAuth';
+import orderService, { createOrder } from '../services/order'; 
 
 const Cart = () => {
 
     const { cart, fetchCart } = useCart();
     const { token } = useAuth();
+    const navigate = useNavigate();
     const [quantities, setQuantities] = useState<{ [productId: string]: number }>({});
 
     useEffect(() => {
@@ -56,6 +58,34 @@ const Cart = () => {
             console.error('Failed to update product quantity.', error);
         }
     };
+
+    const handleCheckout = async () => {
+        try {
+            if (!token) {
+                dialogs.error("Error", "You must be logged in to checkout.");
+                return;
+            }
+
+            const orderProducts = cart.items.map((item: ICartItem) => ({
+                productId: item.productId,
+                quantity: item.quantity,
+                size: item.size,
+                title: item.title, // הוספת title
+                price: item.price, // הוספת price
+            }));
+
+            await createOrder(orderProducts);
+            dialogs.success("Order Successful", "Your order has been placed successfully.").then(async () => {
+                await cartService.clearCart(); // ניקוי העגלה לאחר ביצוע ההזמנה
+                fetchCart(); // רענון העגלה לאחר ניקוי
+                navigate('/order-confirmation'); // מעבר לעמוד אישור הזמנה
+            });
+        } catch (error) {
+            console.error('Failed to place order.', error);
+            dialogs.error("Error", "Failed to place the order.");
+        }
+    };
+
 
     if (!cart || cart.items.length === 0) {
         return (
@@ -135,7 +165,8 @@ const Cart = () => {
                         <span>${cart.totalPrice.toFixed(2)}</span>
                     </div>
                 </div>
-                <button className="checkout-button">Checkout</button> {/* הוספת הכפתור של Checkout */}
+                <button className="checkout-button" onClick={handleCheckout}>Checkout</button> {/* Button for Checkout */}
+           
             </div>
         </div>
     );

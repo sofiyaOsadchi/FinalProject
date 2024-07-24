@@ -49,7 +49,7 @@ const Nav = () => {
                                 content="Manage Products"
                                 placement="top"
                                 className="text-sm bg-gray-800 text-white rounded px-2 py-1"
-                            >
+                            > 
                                 <FiBox size={24} className="text-gray hover:text-gray-300" />
                             </Tooltip>
                         </Link>

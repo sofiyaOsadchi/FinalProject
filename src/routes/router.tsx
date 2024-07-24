@@ -15,6 +15,7 @@ import UpdateUser from "./UpdateUser";
 import AdminProducts from "./AdminProducts";
 import EditProduct from "./UpdateProduct";
 import Cart from "./Cart";
+import OrderConfirmation from "./OrderConfirmation";
 
 export const router = createBrowserRouter([
     {
@@ -61,9 +62,14 @@ export const router = createBrowserRouter([
                         <UpdateUser />
                     </ProtectedRouteUser>
             },
-    {
-        path: "/cart", element: <Cart />,
-    }
+            {
+                path: "/cart", element: <Cart />,
+            },
+
+            {
+                path: "/order-confirmation", element: < OrderConfirmation />
+            }
+
 
 
         ],

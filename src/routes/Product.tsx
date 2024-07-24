@@ -52,13 +52,13 @@ const Product = () => {
                 <h2 className="product-subtitle">{product.subtitle}</h2>
                 <h3 className="product-description">{product.description}</h3>
 
-                <div className="product-price-container">
-                    <span className="price-label">Original Price:</span>
-                    <span className="original-price">${originalPrice.toFixed(2)}</span>
-                </div>
-                <div className="product-price-container">
-                    <span className="price-label">Discounted Price:</span>
-                    <span className="discounted-price">${product.price.toFixed(2)}</span>
+                <div className="price-container">
+                    <span className="original-price" style={{ marginRight: '15px' }}>
+                        ${(product.price * 1.2).toFixed(2)}
+                    </span>
+                    <span className="discounted-price">
+                        ${product.price.toFixed(2)}
+                    </span>
                 </div>
 
                 <div className="size-buttons-container">
