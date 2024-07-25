@@ -20,7 +20,27 @@ export const getOrdersByUser = (userId: string) => {
     });
 };
 
-export default {
+export const getOrderByOrderId = (orderId: string) => {
+    return axios.get(`${orderUrl}/${orderId}`, {
+        headers: {
+            "x-auth-token": localStorage.getItem("token"),
+        }
+    });
+};
+
+export const cancelOrder = (orderId: string) => {
+    return axios.patch(`${orderUrl}/cancel/${orderId}`, {}, {
+        headers: {
+            "x-auth-token": localStorage.getItem("token"),
+        }
+    });
+};
+
+export const orderService = {
     createOrder,
     getOrdersByUser,
+    getOrderByOrderId,
+    cancelOrder,
 };
+
+export default orderService;

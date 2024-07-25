@@ -74,11 +74,14 @@ const Cart = () => {
                 price: item.price, // הוספת price
             }));
 
+            const response = await createOrder(orderProducts);
+            const orderId = response.data._id; 
+
             await createOrder(orderProducts);
             dialogs.success("Order Successful", "Your order has been placed successfully.").then(async () => {
                 await cartService.clearCart(); // ניקוי העגלה לאחר ביצוע ההזמנה
                 fetchCart(); // רענון העגלה לאחר ניקוי
-                navigate('/order-confirmation'); // מעבר לעמוד אישור הזמנה
+                navigate(`/order-confirmation/${orderId}`);
             });
         } catch (error) {
             console.error('Failed to place order.', error);
@@ -113,7 +116,7 @@ const Cart = () => {
                 </div>
                 <div className="cart-items space-y-4">
                     {cart.items.map((item: ICartItem) => (
-                        <div className="cart-item flex justify-between items-center p-4 border rounded-lg shadow-sm" key={item.productId}>
+                        <div className="cart-item flex justify-between items-center p-4 border rounded-lg shadow-sm" key={item._id}>
                             <div className="flex items-center">
                                 <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />
                                 <div>

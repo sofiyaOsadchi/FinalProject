@@ -51,8 +51,8 @@ const Product = () => {
                 <h1 className="product-title">{product.title}</h1>
                 <h2 className="product-subtitle">{product.subtitle}</h2>
                 <h3 className="product-description">{product.description}</h3>
-
-                <div className="price-container">
+                <p>{product.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
+                <div className="price-container mt-4">
                     <span className="original-price" style={{ marginRight: '15px' }}>
                         ${(product.price * 1.2).toFixed(2)}
                     </span>
@@ -60,7 +60,7 @@ const Product = () => {
                         ${product.price.toFixed(2)}
                     </span>
                 </div>
-
+                
                 <div className="size-buttons-container">
                     {product.sizes.map((size) => (
                         <button

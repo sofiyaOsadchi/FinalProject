@@ -21,6 +21,12 @@ const Products: FC = () => {
             .then(response => {
                 setProducts(response.data);
                 setLoading(false);
+
+                const initialSizes = response.data.reduce((acc: { [key: string]: string }, product: IProduct) => {
+                    acc[product._id] = product.sizes[0]; // Use the first size as default
+                    return acc;
+                }, {});
+                setSelectedSizes(initialSizes);
             })
             .catch(error => {
                 setError(error);
