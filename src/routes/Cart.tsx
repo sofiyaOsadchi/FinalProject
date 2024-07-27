@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'; // Importing Link from rea
 import { useEffect, useState } from 'react';
 import { Tooltip } from 'flowbite-react';
 import { useAuth } from '../hooks/useAuth';
-import orderService, { createOrder } from '../services/order'; 
+import { createOrder } from '../services/order'; 
 
 const Cart = () => {
 

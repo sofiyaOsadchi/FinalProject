@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiShoppingCart } from 'react-icons/fi';
 import cart from '../services/cart';
-import './AddToCartButton.scss';    
+import './AddToCartButton.scss';
 import { useCart } from '../hooks/useCart';
 import dialogs from '../ui/dialogs';
 
@@ -9,7 +9,7 @@ const AddToCartButton: React.FC<{ productId: string, title: string, price: numbe
     const { fetchCart } = useCart();
     const handleAddToCart = async () => {
         try {
-                await cart.addProductToCart(productId, 1, size); // לדוגמה, ניתן לשנות בהתאם לצורך
+            await cart.addProductToCart(productId, 1, size); // לדוגמה, ניתן לשנות בהתאם לצורך
             dialogs.showPopup(
                 'Product Added',
                 `<div style="display: flex; align-items: center;">
@@ -20,9 +20,9 @@ const AddToCartButton: React.FC<{ productId: string, title: string, price: numbe
                     </div>
                 </div>`
             );
-             fetchCart();
-                onAdd();
-          
+            fetchCart();
+            onAdd();
+
         } catch (error) {
             console.error('Failed to add product to cart.', error);
         }
@@ -31,7 +31,7 @@ const AddToCartButton: React.FC<{ productId: string, title: string, price: numbe
     return (
         <button onClick={handleAddToCart} className="add-to-cart-button">
             <FiShoppingCart size={24} />
-           Add to cart
+            Add to cart
         </button>
     );
 };

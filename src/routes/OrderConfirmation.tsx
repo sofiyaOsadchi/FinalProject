@@ -1,5 +1,5 @@
 /* import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+/* import { useNavigate } from 'react-router-dom';
 import orderService from '../services/order';
 import { IOrder } from '../@Types/productType';
 import './OrderConfirmation.scss'
