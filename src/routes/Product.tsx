@@ -53,8 +53,6 @@ const Product = () => {
                 <h1 className="product-title">{product.title}</h1>
                 <h2 className="product-subtitle">{product.subtitle}</h2>
                 <h3 className="product-description">{product.description}</h3>
-                <p className="stock">{product.variants.find(v => v._id === selectedVariant)?.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
-
                 <div className="buttons-container">
                     <AddToCartButton
                         productId={product._id}
@@ -68,15 +66,15 @@ const Product = () => {
                     <Accordion.Panel>
                         <Accordion.Title>Description</Accordion.Title>
                         <Accordion.Content>
-                            <p>{product.description}</p>
+                            <p className='dark:text-white'>{product.description}</p>
                         </Accordion.Content>
                     </Accordion.Panel>
                     <Accordion.Panel>
                         <Accordion.Title>Shipping Info</Accordion.Title>
                         <Accordion.Content>
                             <p>Ships by: <strong>Wednesday, July 24</strong></p>
-                            <p>Free Fast Shipping</p>
-                            <p>Free Overnight Shipping, Hassle-Free Returns</p>
+                            <p className='dark:text-white'>Free Fast Shipping</p>
+                            <p className='dark:text-white'>Free Overnight Shipping, Hassle-Free Returns</p>
                         </Accordion.Content>
                     </Accordion.Panel>
                 </Accordion>

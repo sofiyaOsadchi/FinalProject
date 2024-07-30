@@ -41,8 +41,6 @@ const Products: FC = () => {
         )
     );
 
-
-
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
@@ -62,8 +60,6 @@ const Products: FC = () => {
                             </div>
                         </Link>
 
-
-                        <p>{selectedSizes[product._id] && product.variants.find(v => v.size === selectedSizes[product._id])?.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
                         <AddToCartButton
                             productId={product._id}
                             variants={product.variants}
