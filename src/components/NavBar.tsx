@@ -62,7 +62,7 @@ const Nav = () => {
                                 <FiUsers size={24} className="text-gray hover:text-gray-300" />
                             </Tooltip>
                         </Link>
-                        <Link to="/admin/analytics" className="mr-8 hidden md:block">
+                        <Link to="/admin/sales-by-date" className="mr-8 hidden md:block">
                             <Tooltip
                                 content="Analytics"
                                 placement="top"

@@ -17,6 +17,7 @@ import EditProduct from "./UpdateProduct";
 import Cart from "./Cart";
 import OrderConfirmation from "./OrderConfirmation";
 import UserOrders from "./UserOrders";
+import SalesPage from "./SalesByDate";
 
 export const router = createBrowserRouter([
     {
@@ -72,6 +73,9 @@ export const router = createBrowserRouter([
 
             {
                 path: "/orders", element: < UserOrders />
+            },
+            {
+                path: "/admin/sales-by-date", element: < SalesPage />
             },
 
 

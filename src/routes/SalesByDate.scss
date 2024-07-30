@@ -1,0 +1,27 @@
+// SalesPage.scss
+.sales-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.date-picker-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+}
+
+@media (min-width: 768px) {
+    .chart-container {
+        height: 500px;
+    }
+}
