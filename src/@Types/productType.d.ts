@@ -72,26 +72,26 @@ export type IOrderProduct = {
     productId: string;
     quantity: number;
     size: string;
-    title: string; // הוספת title
-    price: number; // הוספת price
-
+    title: string;
+    price: number;
 };
 
 export type IOrder = {
     _id: string;
+    orderId: string;
     userId: string;
     products: IOrderProduct[];
     totalAmount: number;
     status: string;
-    createdAt: Date;
+    createdAt: string; // Assuming it's a string, convert it if necessary
     orderNumber: string;
+
 };
 
-export interface SalesByDateQuery {
-    startDate: string;
-    endDate: string;
+export type OrderResponse = {
+    count: number;
+    orders: IOrder[];
 };
-
 
 export interface CartContextProps {
     cart: ICartWithTotals | null;

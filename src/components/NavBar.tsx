@@ -1,12 +1,11 @@
-
-
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart } from "react-icons/fi";
+import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart, FiClipboard } from "react-icons/fi";
 import Search from "./Search";
 import './NavBar.scss';
 import { useCart } from "../hooks/useCart";
+import UserAvatar from "./UseAvatar";
 
 const Nav = () => {
     const { isLoggedIn, user, logout } = useAuth();
@@ -62,7 +61,16 @@ const Nav = () => {
                                 <FiUsers size={24} className="text-gray hover:text-gray-300" />
                             </Tooltip>
                         </Link>
-                        <Link to="/admin/sales-by-date" className="mr-8 hidden md:block">
+                        <Link to="/admin/orders" className="mr-4 hidden md:block">
+                            <Tooltip
+                                content="Manage Orders"
+                                placement="top"
+                                className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                            >
+                                <FiClipboard size={24} className="text-gray hover:text-gray-300" />
+                            </Tooltip>
+                        </Link>
+                        <Link to="/admin/analytics" className="mr-8 hidden md:block">
                             <Tooltip
                                 content="Analytics"
                                 placement="top"
@@ -79,7 +87,7 @@ const Nav = () => {
                         arrowIcon={false}
                         inline
                         label={
-                            <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                            <UserAvatar firstName={user.name.first} lastName={user.name.last} />
                         }
                     >
                         <Dropdown.Header>
