@@ -1,6 +1,10 @@
 .add-to-cart-button {
     display: flex;
     align-items: center;
+    justify-content: center;
+    /* מרכז את התוכן */
+    width: 100%;
+    /* הכפתור יתפוס את כל הרוחב */
     border: 2px solid #1b1b1b;
     background-color: transparent;
     color: #1b1b1b;

@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 16px;
     padding: 16px;
-    color: #4b5563;
+    color: #1b1b1b;
 
     @media (min-width: 768px) {
         flex-direction: row;
@@ -56,36 +56,102 @@
     flex-direction: column;
     gap: 16px;
     margin-top: 16px;
-    /* Adjusted margin-top */
 }
 
 .cart-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     padding: 16px;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     background-color: #ffffff;
+    
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 .dark .cart-item {
-    border-color: #4b5563;
+    border-color: #374151;
     background-color: #1f2937;
     color: #f9fafb;
+}
+
+.variant {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    /* Center align the variant details */
+    gap: 16px;
+    width: 100%;
+    
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        width: auto;
+        margin-left: 16px;
+    }
+}
+
+.select-quantity {
+    width: 100%;
+    margin-top: 16px;
+
+    @media (min-width: 768px) {
+        width: 70%;
+        margin-top: 0;
+    }
+}
+
+.select-quantity select {
+    border: 1px solid #4b5563;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+.select-quantity select option {
+    background-color: #ffffff;
+    color: #151617;
+}
+
+.dark .select-quantity select {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+.remove-button {
+    color: #ef4444;
+    cursor: pointer;
+
+    &:hover {
+        color: #dc2626;
+    }
+}
+
+.dark .remove-button {
+    color: #ef4444;
+
+    &:hover {
+        color: #dc2626;
+    }
 }
 
 .cart-summary {
     width: 100%;
     padding: 16px;
-    background-color: #f9f9fd;
+    background-color: #f3f4f6;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     max-height: 230px;
     margin-top: 60px;
     flex-direction: column;
-    /* קביעת גובה מקסימלי */
 
     @media (min-width: 768px) {
         width: 25%;
@@ -101,7 +167,11 @@
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 16px;
-    color: #32353a;
+    color: #111827;
+}
+
+.dark .cart-summary h2 {
+    color: #f9fafb;
 }
 
 .cart-summary div {
@@ -128,7 +198,6 @@
 
     svg {
         margin-left: 8px;
-        /* רווח בין האייקון לטקסט */
     }
 }
 
@@ -140,18 +209,17 @@
     }
 }
 
-/* סגנונות נוספים לכפתור ה-Checkout */
 .checkout-button {
     margin-top: 28px;
     width: 100%;
     padding: 8px 16px;
-    background-color: #190a63;
+    background-color: #1d4ed8;
     color: #ffffff;
     border-radius: 0.5rem;
     cursor: pointer;
 
     &:hover {
-        background-color: #093188;
+        background-color: #2563eb;
     }
 }
 
@@ -160,23 +228,5 @@
 
     &:hover {
         background-color: #2563eb;
-    }
-}
-
-/* סגנונות נוספים לכפתור ה-Remove */
-.remove-button {
-    color: #ef4444;
-    cursor: pointer;
-
-    &:hover {
-        color: #dc2626;
-    }
-}
-
-.dark .remove-button {
-    color: #ef4444;
-
-    &:hover {
-        color: #dc2626;
     }
 }

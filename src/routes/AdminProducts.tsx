@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { deleteProductById, getAllProducts } from '../services/product'; // ודא שהפונקציה הזו קיימת בשירות המוצרים
 import { IProduct } from '../@Types/productType';
 import { Table, Tooltip } from 'flowbite-react';
@@ -42,15 +42,15 @@ const AdminProducts = () => {
                     </Link>
                 </Tooltip>
             </div>
+            {error && <div className="text-red-500 text-center mb-4">{error.message}</div>}
             <Table hoverable>
                 <Table.Head>
                     <Table.HeadCell>Image</Table.HeadCell>
                     <Table.HeadCell>Title</Table.HeadCell>
                     <Table.HeadCell>Subtitle</Table.HeadCell>
                     <Table.HeadCell>Description</Table.HeadCell>
-                    <Table.HeadCell>Price</Table.HeadCell>
-                    <Table.HeadCell>Size</Table.HeadCell>
-                    <Table.HeadCell>Quantity</Table.HeadCell>
+                    <Table.HeadCell>Variants</Table.HeadCell>
+                    <Table.HeadCell>Total Quantity</Table.HeadCell>
                     <Table.HeadCell>
                         <span className="sr-only">Edit</span>
                     </Table.HeadCell>
@@ -64,9 +64,19 @@ const AdminProducts = () => {
                             <Table.Cell>{product.title}</Table.Cell>
                             <Table.Cell>{product.subtitle}</Table.Cell>
                             <Table.Cell>{product.description}</Table.Cell>
-                            <Table.Cell>{product.price}</Table.Cell>
-                            <Table.Cell>{product.size}</Table.Cell>
-                            <Table.Cell>{product.quantity}</Table.Cell>
+                            <Table.Cell>
+                                {product.variants.map((variant, index) => (
+                                    <div key={index}>
+                                        <p>Size: {variant.size}</p>
+                                        <p>Price: ${variant.price}</p>
+                                        <p>Quantity: {variant.quantity}</p>
+                                        {index < product.variants.length - 1 && <hr className="my-2" />}
+                                    </div>
+                                ))}
+                            </Table.Cell>
+                            <Table.Cell>
+                                {product.variants.reduce((total, variant) => total + variant.quantity, 0)}
+                            </Table.Cell>
                             <Table.Cell>
                                 <Link to={`/admin/products/${product._id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
                                     Edit
@@ -76,7 +86,6 @@ const AdminProducts = () => {
                                 <button onClick={() => onDelete(product._id)} className="text-red-600 hover:text-red-800">
                                     <FiTrash2 size={20} />
                                 </button>
-
                             </Table.Cell>
                         </Table.Row>
                     ))}

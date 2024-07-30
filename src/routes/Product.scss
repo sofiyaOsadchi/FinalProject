@@ -6,9 +6,8 @@
     margin: 0 auto;
     margin-top: 30px;
     font-family: Arial, sans-serif;
-    color: #555;
+    color: #1b1b1b;
     flex-direction: column;
-    /* Default to column for mobile */
 }
 
 .product-image-container {
@@ -16,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f8f9fa;
+    background-color: #f3f4f6;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
@@ -49,7 +48,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #fff;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -57,7 +56,7 @@
 
 .product-title {
     font-size: 1.75rem;
-    color: #333;
+    color: #1b1b1b;
     margin-bottom: -10px;
 }
 
@@ -69,7 +68,7 @@
 
 .product-description {
     font-size: 1rem;
-    color: #555;
+    color: #1b1b1b;
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -84,7 +83,7 @@
 .price-label {
     font-size: 1rem;
     font-weight: bold;
-    color: #333;
+    color: #1b1b1b;
 }
 
 .original-price {
@@ -100,7 +99,7 @@
 
 .buttons-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -116,21 +115,24 @@
     align-items: center;
     gap: 5px;
     height: 50px;
+    margin-top: 40px;
 }
 
 .consult-expert-button {
-    background-color: #1b1b1b;
+    background-color: #1d4ed8;
     color: white;
+    margin-top: 125px;
 }
 
 .consult-expert-button:hover {
-    background-color: #333;
+    background-color: #2563eb;
 }
 
 .add-to-cart-button {
     border: 2px solid #1b1b1b;
     background-color: transparent;
     color: #1b1b1b;
+    width: 100%;
 }
 
 .add-to-cart-button:hover {
@@ -153,18 +155,16 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 30px;
-    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .size-button {
     padding: 10px 20px;
-    border: 1px solid hsl(0, 4%, 73%);
+    border: 1px solid #4b5563;
     background-color: #fff;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
-    /* Center text in buttons */
 }
 
 .size-button.selected {
@@ -176,7 +176,6 @@
     background-color: #ddd;
 }
 
-/* Media Queries for Desktop */
 @media (min-width: 768px) {
     .product-page {
         flex-direction: row;
@@ -195,75 +194,80 @@
     }
 }
 
-/* Dark mode styles */
-.dark body{
-    background-color: #535151;
-    color: #fff;
+.dark body {
+    background-color: #1f2937;
+    color: #f9fafb;
 }
 
-
 .dark .product-image-container {
-    background-color: #333;
+    background-color: #1f2937;
 }
 
 .dark .product-details {
-    background-color: #535151;
+    background-color: #111827;
 }
 
 .dark .product-title {
-    color: #eee;
+    color: #f9fafb;
 }
 
 .dark .product-subtitle {
-    color: #aaa;
+    color: #d1d5db;
 }
 
 .dark .product-description {
-    color: #ccc;
+    color: #d1d5db;
 }
 
 .dark .original-price {
-    color: #b3b1b1;
+    color: #6b7280;
 }
 
 .dark .discounted-price {
-    color: #d41055;
+    color: #f87171;
 }
 
 .dark .stock {
-    color: #fff;
+    color: #f9fafb;
 }
 
 .dark .consult-expert-button {
-    background-color: #171717;
+    background-color: #2563eb;
     color: white;
 }
 
 .dark .consult-expert-button:hover {
-    background-color: #777;
+    background-color: #1d4ed8;
 }
 
 .dark .add-to-cart-button {
-    border: 2px solid #f2ebeb;
-    color: #f8f6f6;
+    border: 2px solid #bbb;
+    background-color: transparent;
+    color: #f9fafb;
+}
+
+.dark .add-to-cart-button {
+    border: 2px solid #e5e7eb;
+    color: #f9fafb;
 }
 
 .dark .add-to-cart-button:hover {
-    background-color: #555;
-    color: white;
+    background-color: #374151;
+    color: #f9fafb;
 }
 
 .dark .size-button {
-    border: 1px solid hsl(0, 0%, 50%);
-    background-color: #3d3b3b;
-    color: #fff;
+    border: 1px solid #4b5563;
+    background-color: #1f2937;
+    color: #f9fafb;
 }
 
 .dark .size-button:hover {
-    background-color: #b2adad;
+    background-color: #374151;
 }
 
 .dark .size-button.selected {
-    background-color: #ada2a2;
-    color: #fff;
+    background-color: #4b5563;
+    color: #f9fafb;
 }
+    

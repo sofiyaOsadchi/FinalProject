@@ -11,11 +11,13 @@ export const getCart = () => {
     });
 };
 
-export const addProductToCart = (productId: string, quantity: number, size: string) => {
+export const addProductToCart = (productId: string, variantId: string, quantity: number, size: string, price: number) => {
     return axios.post(`${cartUrl}/add`, {
         productId,
+        variantId,
         quantity,
-        size
+        size,
+        price
     }, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
@@ -23,9 +25,11 @@ export const addProductToCart = (productId: string, quantity: number, size: stri
     });
 };
 
-export const updateProductQuantity = (productId: string, quantity: number) => {
-    return axios.patch(`${ cartUrl }/update`, {
-        productId,
+// Update product quantityconst 
+export const updateProductQuantity = async (variantId: string, quantity: number) => {
+    console.log('שולח ל-API:', { variantId, quantity });
+    return axios.patch(`${cartUrl}/update`, {
+        variantId,
         quantity
     }, {
         headers: {
@@ -34,9 +38,9 @@ export const updateProductQuantity = (productId: string, quantity: number) => {
     });
 };
 
-export const removeProductFromCart = (productId: string) => {
+export const removeProductFromCart = (variantId: string) => {
     return axios.post(`${cartUrl}/remove`, {
-        productId
+        variantId
     }, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),

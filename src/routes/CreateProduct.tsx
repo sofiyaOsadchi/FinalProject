@@ -1,16 +1,20 @@
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "./CreateProduct.scss";
 import dialogs from "../ui/dialogs";
-import { createNewProduct } from "../services/product";
 import { useAuth } from "../hooks/useAuth";
 import { IProductInput } from "../@Types/productType";
 import { useState } from "react";
+import { createNewProduct } from "../services/product";
 
 const CreateProduct = () => {
     const { token } = useAuth();
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors } } = useForm<IProductInput>();
+    const { register, handleSubmit, formState: { errors }, control } = useForm<IProductInput>();
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: "variants"
+    });
     const [image, setImage] = useState<File | null>(null);
 
     const onSubmit = async (data: IProductInput) => {
@@ -24,20 +28,17 @@ const CreateProduct = () => {
             return;
         }
 
-        const sizesArray = data.sizes.split(',').map(size => size.trim());
-
         const formData = new FormData();
         formData.append("title", data.title);
         formData.append("subtitle", data.subtitle);
         formData.append("description", data.description);
-        formData.append("price", data.price.toString());
 
-        // הוספת sizes כמספר פריטים ב-FormData
-        sizesArray.forEach((size, index) => {
-            formData.append(`sizes[${index}]`, size);
+        data.variants.forEach((variant, index) => {
+            formData.append(`variants[${index}][size]`, variant.size);
+            formData.append(`variants[${index}][price]`, variant.price.toString());
+            formData.append(`variants[${index}][quantity]`, variant.quantity.toString());
         });
 
-        formData.append("quantity", data.quantity.toString());
         formData.append("alt", data.alt);
         if (image) {
             formData.append("image", image);
@@ -52,7 +53,7 @@ const CreateProduct = () => {
                 });
         } catch (error: any) {
             console.log("Form Data Error:", Object.fromEntries(formData.entries())); // לוג בשגיאה
-            dialogs.error("Error", error.response);
+            dialogs.error("Error", error.response?.data?.message || "Failed to create product");
             console.log(error);
         }
     };
@@ -74,24 +75,26 @@ const CreateProduct = () => {
                     {errors.description && <p className="text-red-500">{errors.description.message}</p>}
                 </section>
                 <section>
-                    <input placeholder="Price" type="number" step="0.01" {...register('price', { required: 'Price is required' })} />
-                    <span className="error-message">{errors.price && errors.price.message}</span>
-                </section>
-                <section>
                     <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] || null)} />
                 </section>
                 <section>
                     <input placeholder="Image Description" {...register("alt", { required: "Image description is required" })} />
                     {errors.alt && <p className="text-red-500">{errors.alt.message}</p>}
                 </section>
+
                 <section>
-                    <input placeholder="Sizes (comma separated, e.g., S,M,L)" {...register('sizes', { required: 'Sizes are required' })} />
-                    {errors.sizes && <p className="text-red-500">{errors.sizes.message}</p>}
+                    <h3>Variants</h3>
+                    {fields.map((variant, index) => (
+                        <div key={variant.id} className="variant">
+                            <input placeholder="Size" {...register(`variants.${index}.size` as const, { required: "Size is required" })} />
+                            <input placeholder="Price" type="number" step="0.01" {...register(`variants.${index}.price` as const, { required: "Price is required" })} />
+                            <input placeholder="Quantity" type="number" {...register(`variants.${index}.quantity` as const, { required: "Quantity is required" })} />
+                            <button type="button" onClick={() => remove(index)}>Remove</button>
+                        </div>
+                    ))}
+                    <button type="button" onClick={() => append({ _id: "", size: "", price: 0, quantity: 0 })}>Add Variant</button>
                 </section>
-                <section>
-                    <input placeholder="Quantity" type="number" {...register('quantity', { required: 'Quantity is required' })} />
-                    {errors.quantity && <p className="text-red-500">{errors.quantity.message}</p>}
-                </section>
+
                 <button type="submit">Create Product</button>
             </form>
         </div>

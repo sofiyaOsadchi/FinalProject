@@ -1,11 +1,10 @@
 import Swal from "sweetalert2";
 import './dialogs.scss';
 
-export const showSuccessDialog = (title: string, text: string) => {
+export const showSuccessDialog = (title: string, html: string) => {
     return Swal.fire({
         title,
-        text,
-        icon: "success",
+        html,
         position: "center",
         showConfirmButton: false,
         width: 400,
@@ -47,13 +46,13 @@ export const showConfirmDialog = async (title: string, text: string) => {
 export const showPopup = (title: string, html: string) => {
     return Swal.fire({
         title,
-        html,
+        html: `<button class="close-button" onclick="Swal.close()">×</button>
+               ${html}`,
         position: "top-end",
         showConfirmButton: false,
-        width: 'auto',
-        timer: 3000,
+        width: 300,
         customClass: {
-            popup: 'custom-font-size drawer-popup'
+            popup: 'custom-font-size swal2-drawer'
         },
         backdrop: false,
         showClass: {

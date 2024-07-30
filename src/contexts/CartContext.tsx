@@ -15,11 +15,10 @@ export const CartProvider: FC<ContextProviderProps> = ({ children }) => {
     const fetchCart = async () => {
         if (!token) return setCart(null);
         try {
-                const response = await cartService.getCart();
-                setCart(response.data);
-           
+            const response = await cartService.getCart();
+            setCart(response.data);
         } catch (error) {
-            console.error('Failed to fetch cart.', error);
+            console.error('Error fetching cart', error);
         }
     };
 
@@ -27,8 +26,18 @@ export const CartProvider: FC<ContextProviderProps> = ({ children }) => {
         fetchCart();
     }, [token]);
 
+    const addToCart = async (productId: string, variantId: string, quantity: number, size: string, price: number) => {
+        try {
+            console.log('Sending request to add to cart:', { productId, variantId, quantity, size, price });
+            await cartService.addProductToCart(productId, variantId, quantity, size, price);
+            fetchCart(); // עדכן את מצב העגלה לאחר הוספה
+        } catch (error) {
+            console.error('Error adding to cart', error);
+        }
+    };
+
     return (
-        <CartContext.Provider value={{ cart, setCart, fetchCart }}>
+        <CartContext.Provider value={{ cart, setCart, fetchCart, addToCart }}>
             {children}
         </CartContext.Provider>
     );

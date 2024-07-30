@@ -16,6 +16,7 @@ import AdminProducts from "./AdminProducts";
 import EditProduct from "./UpdateProduct";
 import Cart from "./Cart";
 import OrderConfirmation from "./OrderConfirmation";
+import UserOrders from "./UserOrders";
 
 export const router = createBrowserRouter([
     {
@@ -70,8 +71,8 @@ export const router = createBrowserRouter([
             },
 
             {
-                path: "/order-confirmation", element: < OrderConfirmation />
-            }
+                path: "/orders", element: < UserOrders />
+            },
 
 
 

@@ -1,38 +1,62 @@
-import React from 'react';
+import { FC, useState } from 'react';
 import { FiShoppingCart } from 'react-icons/fi';
-import cart from '../services/cart';
 import './AddToCartButton.scss';
-import { useCart } from '../hooks/useCart';
+import { AddToCartButtonProps, IVariant } from '../@Types/productType';
+import useCart from '../hooks/useCart';
 import dialogs from '../ui/dialogs';
 
-const AddToCartButton: React.FC<{ productId: string, title: string, price: number, image: string, size: string, onAdd: () => void }> = ({ productId, title, price, image, size, onAdd }) => {
-    const { fetchCart } = useCart();
-    const handleAddToCart = async () => {
-        try {
-            await cart.addProductToCart(productId, 1, size); // לדוגמה, ניתן לשנות בהתאם לצורך
-            dialogs.showPopup(
-                'Product Added',
-                `<div style="display: flex; align-items: center;">
-                    <img src="${image}" alt="${title}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;" />
-                    <div>
-                        <p>${title} has been added to your cart.</p>
-                        <p>Price: $${price.toFixed(2)}</p>
-                    </div>
-                </div>`
-            );
-            fetchCart();
-            onAdd();
+const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, title, image }) => {
+    const [selectedVariant, setSelectedVariant] = useState<IVariant | null>(variants[0] || null);
+    const { addToCart } = useCart();
 
-        } catch (error) {
-            console.error('Failed to add product to cart.', error);
+    const handleAddToCart = async () => {
+        if (selectedVariant) {
+            console.log("Adding product to cart:", selectedVariant);
+            try {
+                await addToCart(productId, selectedVariant._id, 1, selectedVariant.size, selectedVariant.price);
+                dialogs.success(
+                    "Product Added",
+                    `<div style="display: flex; align-items: center;">
+                        <img src="${image.url}" alt="${title}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;" />
+                        <div>
+                            <p>${title} has been added to your cart.</p>
+                        </div>
+                    </div>`
+                );
+            } catch (error) {
+                console.error("Failed to add product to cart:", error);
+            }
+        } else {
+            console.error("No variant selected");
         }
     };
 
     return (
-        <button onClick={handleAddToCart} className="add-to-cart-button">
-            <FiShoppingCart size={24} />
-            Add to cart
-        </button>
+        <div className="add-to-cart-container">
+            <div className="price-container" style={{ marginBottom: '15px' }}>
+                <span className="original-price" style={{ marginRight: '10px' }}>
+                    ${(selectedVariant?.price * 1.2).toFixed(2)}
+                </span>
+                <span className="discounted-price">
+                    ${selectedVariant?.price.toFixed(2)}
+                </span>
+            </div>
+            <div className="size-buttons-container">
+                {variants.map(variant => (
+                    <button
+                        key={variant._id}
+                        className={`size-button ${selectedVariant && selectedVariant._id === variant._id ? 'selected' : ''}`}
+                        onClick={() => setSelectedVariant(variant)}
+                    >
+                        {variant.size}
+                    </button>
+                ))}
+            </div>
+            <button className="add-to-cart-button" onClick={handleAddToCart} disabled={!selectedVariant}>
+                <FiShoppingCart />
+                Add to Cart
+            </button>
+        </div>
     );
 };
 
