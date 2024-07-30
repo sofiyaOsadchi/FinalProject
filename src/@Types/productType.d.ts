@@ -91,3 +91,17 @@ export interface SalesByDateQuery {
     startDate: string;
     endDate: string;
 };
+
+
+export interface CartContextProps {
+    cart: ICartWithTotals | null;
+    setCart: Dispatch<SetStateAction<ICartWithTotals | null>>;
+    fetchCart: () => void;
+    addToCart: (productId: string, variant: IVariant) => void; // Removed price
+}
+export interface DateRangePickerProps {
+    startDate: Date | null;
+    endDate: Date | null;
+    onStartDateChange: (date: Date | null) => void;
+    onEndDateChange: (date: Date | null) => void;
+}

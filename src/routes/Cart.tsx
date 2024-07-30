@@ -9,10 +9,12 @@ import { useEffect, useState } from 'react';
 import { Tooltip } from 'flowbite-react';
 import { useAuth } from '../hooks/useAuth';
 import { createOrder } from '../services/order';
+import { useSearch } from '../hooks/useSearch';
 
 
 const Cart = () => {
     const { cart, fetchCart } = useCart();
+    const { searchTerm } = useSearch();
     const { token } = useAuth();
     const navigate = useNavigate();
     const [quantities, setQuantities] = useState<{ [variantId: string]: number }>({});
@@ -115,7 +117,9 @@ const Cart = () => {
                     <Link to="#" onClick={handleClearCart} className="clear-cart-link text-red-500 hover:underline">Clear Cart</Link>
                 </div>
                 <div className="cart-items space-y-4">
-                    {cart.items.map((item: ICartItem) => (
+                    {cart.items
+                        .filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())) // Filter items based on search term
+                        .map((item: ICartItem) => (
                         <div className="cart-item flex flex-col p-4 border rounded-lg shadow-sm" key={item.productId + item.variantId}>
                             <div className="flex items-center mb-4">
                                 <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />

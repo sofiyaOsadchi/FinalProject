@@ -1,17 +1,17 @@
-// salesService.ts
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/api/v1';
+const baseUrl = 'http://localhost:8080/api/v1/analytics';
 
-const getSalesByDate = (startDate: Date, endDate: Date) => {
+const getSalesByDate = (startDate: string, endDate: string) => {
     return axios.get(`${baseUrl}/sales-by-date`, {
-        params: { startDate: startDate.toISOString(), endDate: endDate.toISOString() },
+        params: { startDate, endDate },
         headers: {
             "x-auth-token": localStorage.getItem("token"),
         }
     });
 };
 
-const salesService = { getSalesByDate };
 
-export default salesService;
+const analyticsService = { getSalesByDate };
+
+export default analyticsService;
