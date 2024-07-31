@@ -32,13 +32,12 @@ export const router = createBrowserRouter([
             { index: true, element: <><CarouselComponent /><Products /></> },
             { path: "/register", element: <Register /> },
             { path: "/login", element: <Login /> },
-            { path: "/carousel", element: <CarouselComponent /> },
-            {
+            /* {
                 path: "/profile", element:
                     <ProtectedRouteUser>
                         <Profile />
                     </ProtectedRouteUser>
-            },
+            }, */
             { path: "/products/:id", element: <Product /> },
             {
                 path: "/admin/create-product", element:
@@ -52,21 +51,21 @@ export const router = createBrowserRouter([
                         <EditProduct />
                     </ProtectedRouteAdmin>
             },
-            {
+           /*  {
                 path: "/admin/products", element:
                     <ProtectedRouteAdmin>
                         <AdminProducts />
                     </ProtectedRouteAdmin>
             },
 
-            { path: "/admin/users", element: <Users /> },
+            { path: "/admin/users", element: <Users /> },*/
 
             {
                 path: "/users/:id", element:
                     <ProtectedRouteUser>
                         <UpdateUser />
                     </ProtectedRouteUser>
-            },
+            }, 
             {
                 path: "/cart", element: <Cart />,
             },
@@ -77,12 +76,12 @@ export const router = createBrowserRouter([
             {
                 path: "/orders", element: < UserOrders />
             },
-            {
+            /* {
                 path: "/admin/analytics", element: < SalesPage />
-            },
-            {
+            }, */
+          /*   {
                 path: "/admin/orders", element: < AdminOrders />
-            },
+            }, */
             {
                 path: "/admin/dashboard", element: <AdminDashboard />
             },

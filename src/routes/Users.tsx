@@ -4,16 +4,23 @@ import { IUser } from '../@Types/types';
 import { Table } from 'flowbite-react';
 import dialogs from '../ui/dialogs';
 import { FiTrash2 } from 'react-icons/fi';
+import { useSearch } from '../hooks/useSearch';
 
 const Users = () => {
     const [users, setUsers] = useState<IUser[]>([]);
     const [error, setError] = useState<Error | null>(null);
+    const { searchTerm } = useSearch();
 
     useEffect(() => {
         getAllUsers()
             .then(res => setUsers(res.data))
             .catch(err => setError(err));
     }, []);
+
+    const filteredUsers = users.filter(user =>
+        user.name.first.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.name.last.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const handleDelete = (id: string) => {
         dialogs.confirm("Are you sure?", "Do you want to delete this user?")
@@ -46,7 +53,7 @@ const Users = () => {
                     </Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                    {users.map((user) => (
+                    {filteredUsers.map((user) => (
                         <Table.Row key={user._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                 {user.name.first} {user.name.last}

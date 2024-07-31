@@ -5,16 +5,23 @@ import { Table, Tooltip } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import dialogs from '../ui/dialogs';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
+import { useSearch } from '../hooks/useSearch';
 
 const AdminProducts = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [error, setError] = useState<Error | null>(null);
+    const { searchTerm } = useSearch();
+
 
     useEffect(() => {
         getAllProducts()
             .then(res => setProducts(res.data))
             .catch(err => setError(err));
     }, []);
+    const filteredProducts = products.filter(product =>
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
 
     const onDelete = (id: string) => {
         dialogs.confirm("Are you sure?", "Do you want to delete this product?")
@@ -55,7 +62,7 @@ const AdminProducts = () => {
                     </Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                    {products.map((product) => (
+                    {filteredProducts   .map((product) => (
                         <Table.Row key={product._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white flex items-center">
                                 <img src={product.image.url} alt={product.alt} className="h-12 w-12 object-cover rounded-full mr-4" />
