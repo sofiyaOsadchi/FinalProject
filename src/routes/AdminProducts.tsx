@@ -32,7 +32,7 @@ const AdminProducts = () => {
     };
 
     return (
-        <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800">
+        <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className='text-5xl font-extralight text-center mb-6'>Products</h2>
             <div className="flex justify-end mb-4">
                 <Tooltip content="Add Product" placement="top" className="text-sm bg-gray-800 text-white rounded px-2 py-1">
@@ -46,13 +46,13 @@ const AdminProducts = () => {
             <Table hoverable>
                 <Table.Head>
                     <Table.HeadCell>Image</Table.HeadCell>
-                    <Table.HeadCell>Title</Table.HeadCell>
-                    <Table.HeadCell>Subtitle</Table.HeadCell>
-                    <Table.HeadCell>Description</Table.HeadCell>
-                    <Table.HeadCell>Variants</Table.HeadCell>
-                    <Table.HeadCell>Total Quantity</Table.HeadCell>
+                    <Table.HeadCell className="w-1/6">Title</Table.HeadCell>
+                    <Table.HeadCell className="w-1/6">Subtitle</Table.HeadCell>
+                    <Table.HeadCell className="w-1/6">Description</Table.HeadCell>
+                    <Table.HeadCell className="w-1/3">Variants</Table.HeadCell>
+                    <Table.HeadCell className="w-1/10">Total Quantity</Table.HeadCell>
                     <Table.HeadCell>
-                        <span className="sr-only">Edit</span>
+                        <span className="sr-only w-1/8">Edit</span>
                     </Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
@@ -64,15 +64,16 @@ const AdminProducts = () => {
                             <Table.Cell>{product.title}</Table.Cell>
                             <Table.Cell>{product.subtitle}</Table.Cell>
                             <Table.Cell>{product.description}</Table.Cell>
-                            <Table.Cell>
-                                {product.variants.map((variant, index) => (
-                                    <div key={index}>
-                                        <p>Size: {variant.size}</p>
-                                        <p>Price: ${variant.price}</p>
-                                        <p>Quantity: {variant.quantity}</p>
-                                        {index < product.variants.length - 1 && <hr className="my-2" />}
-                                    </div>
-                                ))}
+                            <Table.Cell className="whitespace-nowrap">
+                                <div className="flex flex-wrap gap-2">
+                                    {product.variants.map((variant, index) => (
+                                        <div key={index} className="bg-gray-100 dark:bg-gray-700 p-2 rounded">
+                                            <p className="text-sm">Size: {variant.size}</p>
+                                            <p className="text-sm">Price: ${variant.price}</p>
+                                            <p className="text-sm">Quantity: {variant.quantity}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </Table.Cell>
                             <Table.Cell>
                                 {product.variants.reduce((total, variant) => total + variant.quantity, 0)}

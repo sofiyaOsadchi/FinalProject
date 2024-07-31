@@ -20,7 +20,7 @@ const Nav = () => {
             </Navbar.Brand>
 
             <div className="flex md:order-2 items-center">
-                <div className="mr-8">
+                <div className="mr-5">
                     <Search />
                 </div>
 
@@ -28,10 +28,10 @@ const Nav = () => {
                     <Tooltip
                         content="View Cart"
                         placement="top"
-                        className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                        className="text-sm bg-gray-700 text-white rounded px-2 py-1"
                     >
                         <div className="relative">
-                            <FiShoppingCart size={24} className={cart && cart.totalQuantity > 0 ? "text-red-500" : "text-gray-300"} />
+                            <FiShoppingCart size={20} className={cart && cart.totalQuantity > 0 ? "text-red-500" : "text-gray-300"} />
                             {cart && cart.totalQuantity > 0 && (
                                 <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full px-2 text-xs">
                                     {cart.totalQuantity}
@@ -43,40 +43,40 @@ const Nav = () => {
                 
                 {isLoggedIn && user?.isAdmin && (
                     <>
-                        <Link to="/admin/products" className="mr-4 hidden md:block">
+                        <Link to="/admin/products" className="mr-5 hidden md:block">
                             <Tooltip
                                 content="Manage Products"
                                 placement="top"
-                                className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                                className="text-sm bg-gray-700 text-white rounded px-2 py-1"
                             > 
-                                <FiBox size={24} className="text-gray hover:text-gray-300" />
+                                <FiBox size={20} className="text-gray hover:text-gray-300" />
                             </Tooltip>
                         </Link>
-                        <Link to="/admin/users" className="mr-4 hidden md:block">
+                        <Link to="/admin/users" className="mr-5 hidden md:block">
                             <Tooltip
                                 content="Manage Users"
                                 placement="top"
-                                className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                                className="text-sm bg-gray-700 text-white rounded px-2 py-1"
                             >
-                                <FiUsers size={24} className="text-gray hover:text-gray-300" />
+                                <FiUsers size={20} className="text-gray hover:text-gray-300" />
                             </Tooltip>
                         </Link>
-                        <Link to="/admin/orders" className="mr-4 hidden md:block">
+                        <Link to="/admin/orders" className="mr-5 hidden md:block">
                             <Tooltip
                                 content="Manage Orders"
                                 placement="top"
-                                className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                                className="text-sm bg-gray-700 text-white rounded px-2 py-1"
                             >
-                                <FiClipboard size={24} className="text-gray hover:text-gray-300" />
+                                <FiClipboard size={20} className="text-gray hover:text-gray-300" />
                             </Tooltip>
                         </Link>
                         <Link to="/admin/analytics" className="mr-8 hidden md:block">
                             <Tooltip
                                 content="Analytics"
                                 placement="top"
-                                className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                                className="text-sm bg-gray-700 text-white rounded px-2 py-1"
                             >
-                                <FiTrendingUp size={24} className="text-gray hover:text-gray-300" />
+                                <FiTrendingUp size={20} className="text-gray hover:text-gray-300" />
                             </Tooltip>
                         </Link>
                     </>
@@ -116,9 +116,9 @@ const Nav = () => {
                 )}
 
                 {!isLoggedIn && (
-                    <Tooltip content="Login" placement="bottom" className="text-xs bg-gray-800 text-white rounded px-1 py-1">
+                    <Tooltip content="Login" placement="bottom" className="text-xs bg-gray-700 text-white rounded px-1 py-1">
                         <Link to="/login" className="mr-4 flex items-center">
-                            <FiUser size={24} className="text-gray hover:text-gray-300" />
+                            <FiUser size={20} className="text-gray hover:text-gray-300" />
                         </Link>
                     </Tooltip>
                 )}

@@ -6,7 +6,7 @@ import { useAuth } from "../hooks/useAuth";
 import { IProductInput } from "../@Types/productType";
 import { useState } from "react";
 import { createNewProduct } from "../services/product";
-
+    
 const CreateProduct = () => {
     const { token } = useAuth();
     const navigate = useNavigate();
@@ -16,6 +16,7 @@ const CreateProduct = () => {
         name: "variants"
     });
     const [image, setImage] = useState<File | null>(null);
+    const [imageName, setImageName] = useState<string>("");
 
     const onSubmit = async (data: IProductInput) => {
         if (!token) {
@@ -74,8 +75,18 @@ const CreateProduct = () => {
                     <input placeholder="Description" {...register("description", { required: "Description is required" })} />
                     {errors.description && <p className="text-red-500">{errors.description.message}</p>}
                 </section>
+        
                 <section>
-                    <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] || null)} />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0] || null;
+                            setImage(file);
+                            setImageName(file ? file.name : "");
+                        }}
+                    />
+                    {imageName && <p className="file-name">{imageName}</p>}
                 </section>
                 <section>
                     <input placeholder="Image Description" {...register("alt", { required: "Image description is required" })} />
@@ -83,18 +94,17 @@ const CreateProduct = () => {
                 </section>
 
                 <section>
-                    <h3>Variants</h3>
+                    <h3 className="mb-2">Variants:</h3>
                     {fields.map((variant, index) => (
                         <div key={variant.id} className="variant">
                             <input placeholder="Size" {...register(`variants.${index}.size` as const, { required: "Size is required" })} />
                             <input placeholder="Price" type="number" step="0.01" {...register(`variants.${index}.price` as const, { required: "Price is required" })} />
                             <input placeholder="Quantity" type="number" {...register(`variants.${index}.quantity` as const, { required: "Quantity is required" })} />
-                            <button type="button" onClick={() => remove(index)}>Remove</button>
+                            <button type="button" className="removeButton" onClick={() => remove(index)}>Remove</button>
                         </div>
                     ))}
-                    <button type="button" onClick={() => append({ _id: "", size: "", price: 0, quantity: 0 })}>Add Variant</button>
+                    <button type="button" className="add-variant-button" onClick={() => append({ _id: "", size: "", price: null, quantity: null })}>Add Variant</button>
                 </section>
-
                 <button type="submit">Create Product</button>
             </form>
         </div>

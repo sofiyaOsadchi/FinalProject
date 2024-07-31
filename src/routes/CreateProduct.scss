@@ -44,7 +44,7 @@
                 font-size: 14px;
                 margin-top: 5px;
             }
-            
+
         }
 
         button {
@@ -61,24 +61,70 @@
             }
         }
 
-                .custom-file-upload::file-selector-button {
-                    background-color: darkblue;
-                    /* התאימי את הרקע לפי הצורך */
-                    color: white;
-                    /* הצבע של הטקסט בכפתור */
-                    border: none;
-                    padding: 8px 16px;
-                    cursor: pointer;
-                }
-        
-                .custom-file-upload::file-selector-button:hover {
-                    background-color: navy;
-                    /* צבע הכפתור בעת ריחוף */
-                }
+        .custom-file-upload::file-selector-button {
+            background-color: darkblue;
+            /* התאימי את הרקע לפי הצורך */
+            color: white;
+            /* הצבע של הטקסט בכפתור */
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .custom-file-upload::file-selector-button:hover {
+            background-color: navy;
+            /* צבע הכפתור בעת ריחוף */
+        }
     }
 }
+
+;
 
 .custom-file-upload {
     color: white;
 }
 
+;
+
+.variant {
+    margin-bottom: 12px;
+}
+
+;
+
+.removeButton {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+;
+
+.removeButton:hover {
+    background-color: #007bff;
+}
+
+;
+
+.add-variant-button {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+;
+
+.add-variant-button:hover {
+    background-color: #374151;
+}
+
+;
