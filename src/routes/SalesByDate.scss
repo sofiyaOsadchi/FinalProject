@@ -1,4 +1,3 @@
-// SalesPage.scss
 .sales-page {
     display: flex;
     flex-direction: column;
@@ -6,30 +5,50 @@
     padding: 20px;
     font-family: Arial, sans-serif;
     color: #333;
-    align-content: center;
     margin: 0 auto;
+    max-width: 1000px;
 }
 
-.sales-chart-container{
-
+.sales-chart-container {
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .date-picker-container {
     display: flex;
+    justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.chart-container {
+.date-picker {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    color: #333;
+}
+
+.chart-wrapper {
     width: 100%;
-    max-width: 800px;
-    height: 400px;
+    max-width: 1000px;
+    height: 500px;
+    margin: 0 auto;
 }
 
 @media (min-width: 768px) {
-    .chart-container {
-        height: 500px;
+    .chart-wrapper {
+        height: 600px;
     }
 }

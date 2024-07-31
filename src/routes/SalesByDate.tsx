@@ -1,4 +1,3 @@
-// src/components/SalesChart.tsx
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import DatePicker from 'react-datepicker';
@@ -86,7 +85,10 @@ const SalesChart = () => {
                 title: {
                     display: true,
                     text: 'Date'
-                }
+                },
+                grid: {
+                    drawOnChartArea: false, // removes the vertical grid lines
+                },
             },
             y1: {
                 type: 'linear' as const,
@@ -123,8 +125,8 @@ const SalesChart = () => {
 
     return (
         <div className="sales-chart-container">
-            <h2 className='ml-8'>Sales by Date</h2>
-            <div className="date-picker-container ml-8 mt-4">
+            <h2 className="chart-title">Sales by Date</h2>
+            <div className="date-picker-container">
                 <DatePicker
                     selected={startDate}
                     onChange={(date: Date) => setStartDate(date)}
@@ -133,6 +135,7 @@ const SalesChart = () => {
                     endDate={endDate}
                     placeholderText="Select start date"
                     dateFormat="yyyy-MM-dd"
+                    className="date-picker"
                 />
                 <DatePicker
                     selected={endDate}
@@ -143,6 +146,7 @@ const SalesChart = () => {
                     minDate={startDate}
                     placeholderText="Select end date"
                     dateFormat="yyyy-MM-dd"
+                    className="date-picker"
                 />
             </div>
             {loading ? (
