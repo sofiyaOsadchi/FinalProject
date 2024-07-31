@@ -112,10 +112,6 @@ export type updateUserType = {
         last: string;
     };
     phone: string;
-   /*  image: {
-        url: string;
-    };
-    alt: string; */
     address: {
         state: string;
         country: string;
@@ -125,3 +121,11 @@ export type updateUserType = {
         zip: number;
     };
 };
+
+export type IMessage = {
+    _id?: string;
+    fullName: string;
+    email: string;
+    message: string;
+    createdAt?: Date;
+}

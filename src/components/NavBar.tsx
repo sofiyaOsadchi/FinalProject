@@ -1,7 +1,7 @@
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart, FiClipboard } from "react-icons/fi";
+import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart, FiClipboard, FiSettings } from "react-icons/fi";
 import Search from "./Search";
 import './NavBar.scss';
 import { useCart } from "../hooks/useCart";
@@ -43,16 +43,16 @@ const Nav = () => {
                 
                 {isLoggedIn && user?.isAdmin && (
                     <>
-                        <Link to="/admin/products" className="mr-5 hidden md:block">
+                        <Link to="/admin/dashboard" className="mr-5 hidden md:block">
                             <Tooltip
-                                content="Manage Products"
+                                content="Manage Shop"
                                 placement="top"
                                 className="text-sm bg-gray-700 text-white rounded px-2 py-1"
                             > 
-                                <FiBox size={20} className="text-gray hover:text-gray-300" />
+                                <FiSettings size={20} className="text-gray hover:text-gray-300" />
                             </Tooltip>
                         </Link>
-                        <Link to="/admin/users" className="mr-5 hidden md:block">
+                        {/* <Link to="/admin/users" className="mr-5 hidden md:block">
                             <Tooltip
                                 content="Manage Users"
                                 placement="top"
@@ -78,7 +78,7 @@ const Nav = () => {
                             >
                                 <FiTrendingUp size={20} className="text-gray hover:text-gray-300" />
                             </Tooltip>
-                        </Link>
+                        </Link> */}
                     </>
                 )}
 
@@ -98,7 +98,7 @@ const Nav = () => {
                         <Dropdown.Item onClick={() => navigate("/orders")}>My Orders</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
-                        {user.isAdmin && (
+                       {/*  {user.isAdmin && (
                             <>
                                 <Dropdown.Divider className="block md:hidden" />
                                 <Dropdown.Item onClick={() => navigate("/admin/products")} className="block md:hidden">
@@ -111,7 +111,7 @@ const Nav = () => {
                                     <FiTrendingUp size={20} className="mr-2" /> Analytics
                                 </Dropdown.Item>
                             </>
-                        )}
+                        )} */}
                     </Dropdown>
                 )}
 
@@ -131,7 +131,7 @@ const Nav = () => {
                     Home
                 </Navbar.Link>
                 <Navbar.Link href="#">About</Navbar.Link>
-                <Navbar.Link href="#">Contact</Navbar.Link>
+                <Navbar.Link href="/contact">Contact</Navbar.Link>
             </Navbar.Collapse>
         </Navbar>
     );

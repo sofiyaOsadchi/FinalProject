@@ -20,6 +20,7 @@ import UserOrders from "./UserOrders";
 import SalesPage from "./SalesByDate";
 import AdminOrders from "./AdminOrders";
 import AdminDashboard from "./AdminDashboard";
+import Contact from "./Contact";
 
 export const router = createBrowserRouter([
     {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
             {
                 path: "/admin/dashboard", element: <AdminDashboard />
             },
+            {
+                path: "/contact", element: <Contact />
+            },
+            
             
 
 

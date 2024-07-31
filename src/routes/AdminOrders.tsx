@@ -50,8 +50,8 @@ const AdminOrders = () => {
     };
 
       return (
-        <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-              <h2 className='text-4xl text-gray-800 mb-5 text-center'>Orders</h2>
+          <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+              <h2 className='text-4xl text-gray-800 mb-7 text-center mt-2'>Orders</h2>
             {error && <div className="text-red-500 text-center mb-4">{error.message}
                 </div>}
                 

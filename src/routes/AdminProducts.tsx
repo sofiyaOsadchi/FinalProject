@@ -33,8 +33,7 @@ const AdminProducts = () => {
 
     return (
         <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className='text-5xl font-extralight text-center mb-6'>Products</h2>
-            <div className="flex justify-end mb-4">
+            <h2 className='text-4xl text-gray-800 mb-0 text-center mt-6'>Products</h2>            <div className="flex justify-end mb-4">
                 <Tooltip content="Add Product" placement="top" className="text-sm bg-gray-800 text-white rounded px-2 py-1">
                     <Link to="/admin/create-product" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-3 text-center inline-flex items-center me-8 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <FiPlus size={20} />
