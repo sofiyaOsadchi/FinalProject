@@ -21,6 +21,7 @@ import SalesPage from "./SalesByDate";
 import AdminOrders from "./AdminOrders";
 import AdminDashboard from "./AdminDashboard";
 import Contact from "./Contact";
+import About from "./About";
 
 export const router = createBrowserRouter([
     {
@@ -87,6 +88,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/contact", element: <Contact />
+            },
+            {
+                path: "/about", element: <About />
             },
             
             

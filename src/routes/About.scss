@@ -1,0 +1,38 @@
+.about-container {
+    padding: 2rem 4rem;
+    /* הגדל את הרווחים בצדדים */
+    max-width: 1200px;
+    margin: 0 auto;
+    /* מרכז את הקונטיינר */
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.section-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.dashboard-tabs {
+    list-style: none;
+    padding-left: 0;
+}
+
+.dashboard-tabs li {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.dashboard-tabs li strong {
+    color: #333;
+}

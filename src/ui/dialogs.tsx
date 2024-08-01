@@ -6,6 +6,7 @@ export const showSuccessDialog = (title: string, html: string) => {
         title,
         html,
         position: "center",
+        icon: "success",
         showConfirmButton: false,
         width: 400,
         timer: 1500,

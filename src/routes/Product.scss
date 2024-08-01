@@ -153,7 +153,7 @@
     }
 }
 
-.size-buttons-container {
+/* .size-buttons-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -167,8 +167,58 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
+} */
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
+.consult-expert-button,
+.add-to-cart-button {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 50px;
+    width: 100%; // ensure buttons take full width
+    margin-top: 20px; // adjust margin to ensure proper spacing
+}
+
+.size-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.size-button {
+    flex: 1; // ensure buttons take available space
+    padding: 10px 20px;
+    border: 1px solid #4b5563;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .buttons-container {
+        flex-direction: row;
+    }
+
+    .consult-expert-button,
+    .add-to-cart-button {
+        flex: 1;
+    }
+    
+}
 .size-button.selected {
     background-color: #9f9b9b;
     color: #fff;
@@ -277,3 +327,4 @@
     color: #f9fafb;
 }
     
+
