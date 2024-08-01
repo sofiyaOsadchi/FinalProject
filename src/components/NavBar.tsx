@@ -181,7 +181,6 @@ const Nav = () => {
                         <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Edit Profile</Dropdown.Item>
                         <Dropdown.Item onClick={() => navigate("/orders")}>My Orders</Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item onClick={() => { logout(); navigate("/"); }}>Sign out</Dropdown.Item>
                         {user.isAdmin && (
                             <>
                                 <Dropdown.Item onClick={() => navigate("/admin/dashboard")}>
@@ -196,6 +195,8 @@ const Nav = () => {
                                 <span className="ml-2">Mode</span>
                             </div>
                         </Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item onClick={() => { logout(); navigate("/"); }}>Sign out</Dropdown.Item>
                     </Dropdown>
                 )}
 
