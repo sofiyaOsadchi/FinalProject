@@ -189,8 +189,8 @@ const Nav = () => {
                                 <Dropdown.Divider />
                             </>
                         )}
-                        <Dropdown.Item>
-                            <div className="flex items-center">
+                        <Dropdown.Item as="button">
+                            <div className="flex items-center" onClick={() => document.documentElement.classList.toggle('dark')}>
                                 <DarkThemeToggle />
                                 <span className="ml-2">Mode</span>
                             </div>
