@@ -64,7 +64,7 @@ const EditProduct = () => {
 
                 await updateProduct(id, formData);
                 dialogs.success("Success", "Product updated successfully").then(() => {
-                    navigate("/admin/products");
+                    navigate("/admin/dashboard");
                 });
             }
         } catch (error: any) {

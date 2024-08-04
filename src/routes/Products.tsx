@@ -45,30 +45,32 @@ const Products: FC = () => {
     if (error) return <div>Error: {error.message}</div>;
 
     return (
-        <div className="product-list-container">
-            {filteredProducts.length === 0 ? (
-                <p>No products found</p>
-            ) : (
-                filteredProducts.map(product => (
-                    <Card key={product._id} className="product-card">
-                        <Link to={`/products/${product._id}`} className="product-link">
-                            <img src={product.image.url} alt={product.alt} className="w-full h-48 object-cover rounded-t-lg" />
-                            <div className="product-info">
-                                <h5 className="text-xl font-bold">{product.title}</h5>
-                                <h6 className="text-md font-semibold">{product.subtitle}</h6>
-                                <p>{product.description}</p>
-                            </div>
-                        </Link>
-
-                        <AddToCartButton
-                            productId={product._id}
-                            variants={product.variants}
-                            title={product.title}
-                            image={product.image}
-                        />
-                    </Card>
-                ))
-            )}
+        <div className="product-list-wrapper">
+            <h1 className="product-list-title">Our Products</h1>
+            <div className="product-list-container">
+                {filteredProducts.length === 0 ? (
+                    <p>No products found</p>
+                ) : (
+                    filteredProducts.map(product => (
+                        <Card key={product._id} className="product-card">
+                            <Link to={`/products/${product._id}`} className="product-link">
+                                <img src={product.image.url} alt={product.alt} className="w-full h-48 object-cover rounded-t-lg" />
+                                <div className="product-info">
+                                    <h5 className="text-xl font-bold">{product.title}</h5>
+                                    <h6 className="text-md font-semibold">{product.subtitle}</h6>
+                                    <p>{product.description}</p>
+                                </div>
+                            </Link>
+                            <AddToCartButton
+                                productId={product._id}
+                                variants={product.variants}
+                                title={product.title}
+                                image={product.image}
+                            />
+                        </Card>
+                    ))
+                )}
+            </div>
         </div>
     );
 };

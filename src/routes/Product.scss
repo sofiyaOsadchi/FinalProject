@@ -17,7 +17,6 @@
     background-color: #eff1f5;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
 }
 
 .product-image {
@@ -124,6 +123,7 @@
     background-color: #0a0b0d;
     color: white;
     margin-top: 168px;
+    width: 60%;
 }
 
 .consult-expert-button:hover {
@@ -142,55 +142,6 @@
     color: white;
 }
 
-@media (min-width: 768px) {
-    .buttons-container {
-        flex-direction: row;
-    }
-
-    .consult-expert-button,
-    .add-to-cart-button {
-        flex: 1;
-    }
-}
-
-/* .size-buttons-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.size-button {
-    padding: 10px 20px;
-    border: 1px solid #4b5563;
-    background-color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    text-align: center;
-} */
-
-.buttons-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.consult-expert-button,
-.add-to-cart-button {
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    height: 50px;
-    width: 100%; // ensure buttons take full width
-    margin-top: 20px; // adjust margin to ensure proper spacing
-}
-
 .size-buttons-container {
     display: flex;
     flex-wrap: wrap;
@@ -199,33 +150,21 @@
 }
 
 .size-button {
-    flex: 1; // ensure buttons take available space
     padding: 10px 20px;
-    border: 1px solid #4b5563;
+    border: 1px solid #c37d69;
     background-color: #fff;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
 }
 
-@media (min-width: 768px) {
-    .buttons-container {
-        flex-direction: row;
-    }
-
-    .consult-expert-button,
-    .add-to-cart-button {
-        flex: 1;
-    }
-    
-}
 .size-button.selected {
-    background-color: #9f9b9b;
+    background-color: #c37d69;
     color: #fff;
 }
 
 .size-button:hover {
-    background-color: #ddd;
+    background-color: #cd9f93;
 }
 
 @media (min-width: 768px) {
@@ -243,6 +182,30 @@
 
     .size-button {
         flex: initial;
+    }
+}
+
+@media (max-width: 767px) {
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .consult-expert-button,
+    .add-to-cart-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .size-buttons-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .size-button {
+        flex: initial;
+        width: 80px;
+        /* Adjusted width to fit in a single row */
     }
 }
 
@@ -326,5 +289,3 @@
     background-color: #4b5563;
     color: #f9fafb;
 }
-    
-
