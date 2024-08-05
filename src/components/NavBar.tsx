@@ -83,12 +83,7 @@ const Nav = () => {
                                 <Dropdown.Divider />
                             </>
                         )}
-                        <Dropdown.Item as="button">
-                            <div className="flex items-center" onClick={() => document.documentElement.classList.toggle('dark')}>
-                                <DarkThemeToggle />
-                                <span className="ml-2">Mode</span>
-                            </div>
-                        </Dropdown.Item>
+              
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}>Sign out</Dropdown.Item>
                     </Dropdown>
@@ -103,6 +98,7 @@ const Nav = () => {
                 )}
 
                 <Navbar.Toggle />
+                <DarkThemeToggle />
             
             </div>
             <Navbar.Collapse>

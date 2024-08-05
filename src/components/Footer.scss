@@ -1,0 +1,136 @@
+body {
+    display: flex;
+    /* flex-direction: column; */
+   /*  min-height: 100vh;
+    margin: 0; */
+
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.footer {
+    background-color: #ebe6e4;
+    border-radius: 0.375rem;
+    color: #1c1717;
+    padding: 1rem;
+    width: 100%;
+   margin-top: auto;
+
+    &.dark {
+        background-color: #374151;
+    }
+
+    .mobile-footer {
+        word-spacing: 2px;
+        
+
+        &.dark {
+            color: #f0e6f6;
+        }
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            margin: 0 0.5rem;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+          /*   &.dark {
+                color: #f0e6f6;
+            } */
+        }
+    }
+
+    .full-footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .mobile-footer-content {
+        display: none;
+
+        .dark & {
+
+            span,
+            ul,
+            a {
+                color: #f0e6f6;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .full-footer-content {
+            display: none;
+        }
+
+        .mobile-footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            text-align: center;
+            width: 100%;
+            padding: 0.8rem;
+
+            .mobile-footer {
+                margin: 0;
+                flex: 1;
+                text-align: left;
+                word-spacing: 0;
+                font-size: 0.80rem;
+
+                &.dark {
+                    color: #f0e6f6;
+                }
+            }
+
+            ul {
+                display: flex;
+                justify-content: flex-end;
+                margin: 0;
+                font-size: 0.70rem;
+                padding: 0;
+                list-style: none;
+
+                li {
+                    margin: 0 0.25rem;
+                }
+
+                a {
+                    color: #ffffff;
+
+                    &.dark {
+                        color: #f0e6f6;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: 769px) {
+        .mobile-footer-content {
+            display: none;
+        }
+    }
+}

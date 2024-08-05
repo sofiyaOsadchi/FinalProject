@@ -95,9 +95,9 @@ const Cart = () => {
     if (!cart || !cart.items || cart.items.length === 0) {
         return (
             <div className="empty-cart flex flex-col items-center justify-center">
-                <h2 className="text-2xl font-semibold mb-4">Your cart is empty</h2>
-                <p className="text-lg mb-4">Should we start shopping?</p>
-                <Link to="/" className="back-to-shopping text-blue-800 hover:underline flex items-center">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-800">Your cart is empty</h2>
+                <p className="text-lg mb-4 text-gray-800">Should we start shopping?</p>
+                <Link to="/" className="back-to-shopping text-gray-800 hover:underline flex items-center">
                     <FiArrowLeft className="mr-2" />
                     Back to Shopping
                 </Link>
@@ -108,7 +108,7 @@ const Cart = () => {
     return (
         <div className="cart-page flex flex-col md:flex-row">
             <div className="cart-items-container w-full md:w-3/4 p-4">
-                <Link to="/" className="back-to-shopping text-blue-800 hover:underline mb-4 flex items-center">
+                <Link to="/" className="back-to-shopping text-gray-800 hover:underline mb-4 flex items-center">
                     <FiArrowLeft className="mr-2" />
                     Back to Shopping
                 </Link>
@@ -124,7 +124,7 @@ const Cart = () => {
                             <div className="flex items-center mb-4">
                                 <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />
                                 <div>
-                                    <Link to={`/products/${item.productId}`} className="item-title text-lg font-medium text-blue-500 hover:underline">{item.title}</Link>
+                                    <Link to={`/products/${item.productId}`} className="item-title text-lg font-medium text-gray-500 hover:underline">{item.title}</Link>
                                 </div>
                             </div>
                             <div className="variant flex justify-between items-center mb-4">

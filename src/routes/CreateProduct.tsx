@@ -60,7 +60,7 @@ const CreateProduct = () => {
     };
 
     return (
-        <div className="create-card-container bg-blue-950 text-white dark:bg-slate-600">
+        <div className="create-card-container bg-[#ffffff] text-gray-800 dark:bg-slate-600">
             <h2>Create New Product</h2>
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <section>
@@ -105,7 +105,7 @@ const CreateProduct = () => {
                     ))}
                     <button type="button" className="add-variant-button" onClick={() => append({ _id: "", size: "", price: null, quantity: null })}>Add Variant</button>
                 </section>
-                <button type="submit">Create Product</button>
+                <button type="submit" className="submit-button">Create Product</button>
             </form>
         </div>
     );
