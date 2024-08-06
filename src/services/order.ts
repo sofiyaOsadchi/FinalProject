@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IOrderProduct } from "../@Types/productType";
 
-export const orderUrl = "http://localhost:8080/api/v1/orders";
+export const orderUrl = "https://nodeapiproject-shop-1.onrender.com/api/v1/orders";
 
 // פונקציה ליצירת הזמנה חדשה
 export const createOrder = (products: IOrderProduct[]) => {

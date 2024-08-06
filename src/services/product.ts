@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseUrl = "http://localhost:8080/api/v1/products";
+export const baseUrl = "https://nodeapiproject-shop-1.onrender.com/api/v1/products";
 
 // get all products
 export const getAllProducts = () => axios.get(baseUrl);
