@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const analyticsUrl = 'https://nodeapiproject-shop-1.onrender.com/api/v1/analytics';
+const analyticsUrl = 'https://nodeapiproject-shop.onrender.com/api/v1/analytics';
 
 const getSalesByDate = (startDate: string, endDate: string) => {
     const url = `${analyticsUrl}/sales-by-date`;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = "https://nodeapiproject-shop-1.onrender.com/api/v1";
+const baseUrl = "https://nodeapiproject-shop.onrender.com/api/v1";
 const cartUrl = `${baseUrl}/cart`;
 
 export const getCart = () => {
