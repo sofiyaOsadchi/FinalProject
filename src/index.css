@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@400;500;700&family=The+Seasons&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +9,6 @@ body {
     font-family: 'Montserrat', sans-serif;
 } */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@400;500;700&family=The+Seasons&display=swap');
 
 body {
     font-family: 'Montserrat', sans-serif;
