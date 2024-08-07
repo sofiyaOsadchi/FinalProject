@@ -44,9 +44,9 @@ const Product = () => {
             <div className="product-image-container">
                 <img className="product-image" src={product.image.url} alt={product.alt} />
                 <div className="additional-images">
+                    {/* <img src={product.image.url} alt={product.alt} className="additional-image" />
                     <img src={product.image.url} alt={product.alt} className="additional-image" />
-                    <img src={product.image.url} alt={product.alt} className="additional-image" />
-                    <img src={product.image.url} alt={product.alt} className="additional-image" />
+                    <img src={product.image.url} alt={product.alt} className="additional-image" /> */}
                 </div>
             </div>
             <div className="product-details">

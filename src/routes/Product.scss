@@ -156,6 +156,12 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
+    display: flex;
+    /* הוספת תכונה זו */
+    justify-content: center;
+    /* מרכז את התוכן אופקית */
+    align-items: center;
+    /* מרכז את התוכן אנכית */
 }
 
 .size-button.selected {
@@ -200,12 +206,14 @@
     .size-buttons-container {
         flex-direction: row;
         justify-content: center;
+        text-align: center;
     }
 
     .size-button {
         flex: initial;
-        width: 80px;
-        /* Adjusted width to fit in a single row */
+        width: 25%;
+        text-align: center;
+        margin: 0 auto;
     }
 }
 
