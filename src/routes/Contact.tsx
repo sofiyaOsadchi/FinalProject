@@ -83,7 +83,7 @@ const Contact = () => {
                     )}
                 </section>
 
-                <button disabled={!isValid} type="submit" className=" bg-slate-600 text-white dark:bg-slate-900">Send</button>
+                <button disabled={!isValid} type="submit" className="bg-slate-600 text-white dark:bg-slate-900">Send</button>
 
             </form>
         </div>
