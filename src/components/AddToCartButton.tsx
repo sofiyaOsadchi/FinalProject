@@ -4,12 +4,19 @@ import './AddToCartButton.scss';
 import { AddToCartButtonProps, IVariant } from '../@Types/productType';
 import useCart from '../hooks/useCart';
 import dialogs from '../ui/dialogs';
+import { useAuth } from '../hooks/useAuth';
 
 const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, title, image }) => {
     const [selectedVariant, setSelectedVariant] = useState<IVariant | null>(variants[0] || null);
     const { addToCart } = useCart();
+    const { isLoggedIn } = useAuth();
+        
 
     const handleAddToCart = async () => {
+        if (!isLoggedIn) { // שינוי: בדיקה אם המשתמש מחובר
+            dialogs.error("Not Logged In", "You must be logged in to add items to the cart.");
+            return;
+        }
         if (selectedVariant) {
             console.log("Adding product to cart:", selectedVariant);
             try {
