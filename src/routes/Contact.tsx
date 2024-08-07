@@ -32,7 +32,7 @@ const Contact = () => {
 
 
     return (
-        <div className="create-card-container bg-blue-950 text-white dark:bg-slate-600">
+        <div className="create-card-container dark:bg-slate-600">
             <form noValidate onSubmit={handleSubmit(onSend)}>
                 {/* Full Name */}
                 <section>
@@ -83,7 +83,7 @@ const Contact = () => {
                     )}
                 </section>
 
-                <button disabled={!isValid} type="submit">Send</button>
+                <button disabled={!isValid} type="submit" className="bg-slate-600">Send</button>
 
             </form>
         </div>

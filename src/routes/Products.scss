@@ -1,3 +1,4 @@
+/* סגנונות כלליים של הדף */
 .product-list-wrapper {
     max-width: 90%;
     margin: 0 auto;
@@ -8,7 +9,6 @@
     font-size: 2.5rem;
     color: #1b1b1b;
     text-align: center;
-    
 }
 
 .product-list-container {
@@ -18,7 +18,6 @@
     padding: 20px;
     max-width: 100%;
     margin: 0 auto;
-   
 
     @media (min-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
@@ -44,7 +43,7 @@
 
     h5 {
         margin-bottom: 0.3rem;
-        margin-top: .7rem;
+        margin-top: 0.7rem;
     }
 
     p {
@@ -55,6 +54,8 @@
         display: flex;
         gap: 0.5rem;
         margin-bottom: 1rem;
+        flex-wrap: wrap;
+        /* This will allow the buttons to wrap to a new line if they don't fit */
     }
 
     .size-button {
@@ -87,10 +88,22 @@
             color: #fff;
         }
     }
+
+    @media (max-width: 600px) {
+        .size-button {
+            width: 30%;
+            padding: 0.25rem 0.5rem;
+            /* Smaller padding for mobile */
+            font-size: 0.875rem;
+            /* Smaller font size for mobile */
+        }
+    }
 }
 
 /* Dark mode styles */
-
+.dark h1{ 
+    color: #f0f3f6;
+}
 .dark .product-card {
     border: 1px solid #2d3748;
     background-color: #2d3748;
@@ -109,12 +122,12 @@
 
     .size-button {
         background-color: transparent;
-        border: 1px solid #a80c50;
-        color: #a80c50;
+        border: 1px solid #c37d69;
+        color: #c37d69;
 
         &.selected,
         &:hover {
-            background-color: #a80c50;
+            background-color: #c37d69;
             color: #fff;
         }
     }

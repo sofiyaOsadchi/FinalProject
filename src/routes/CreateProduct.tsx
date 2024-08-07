@@ -61,7 +61,7 @@ const CreateProduct = () => {
 
     return (
         <div className="create-card-container bg-[#ffffff] text-gray-800 dark:bg-slate-600">
-            <h2>Create New Product</h2>
+            <h2 className="dark:text-white">Create New Product</h2>
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <section>
                     <input placeholder="Title" {...register("title", { required: "Title is required" })} />
@@ -105,10 +105,11 @@ const CreateProduct = () => {
                     ))}
                     <button type="button" className="add-variant-button" onClick={() => append({ _id: "", size: "", price: null, quantity: null })}>Add Variant</button>
                 </section>
-                <button type="submit" className="submit-button">Create Product</button>
+                <button type="submit" className="submit-button bg-slate-600 text-white dark:bg-slate-900 ">Create Product</button>
             </form>
         </div>
     );
 };
 
 export default CreateProduct;
+ 

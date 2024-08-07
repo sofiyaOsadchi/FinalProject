@@ -122,7 +122,7 @@ const EditProduct = () => {
                     <button type="button" className="add-variant-button" onClick={() => append({ size: "", price: 0, quantity: 0 })}>Add Variant</button>
                 </section>
 
-                <button type="submit">Save</button>
+                <button type="submit" className=" bg-slate-600 text-white dark:bg-slate-900">Save</button>
             </form>
         </div>
     );

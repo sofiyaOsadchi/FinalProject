@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { IUser } from "../@Types/types";
-import "./Register.scss";
 import { BsEye, BsEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import dialogs from "../ui/dialogs";
 import patterns from "../validations/patterns";
+import './Login.scss';  
 
 const Register = () => {
     const navigate = useNavigate();
@@ -32,13 +32,11 @@ const Register = () => {
             })
     };
 
-  /*   const handleBusinessCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIsBusiness(e.target.checked);
-    }; */
+ 
 
     return (
-        <div className="register-container">
-            <h2>Register</h2>
+        <div className="create-card-container">
+            <h2 className="text-slate-600">Register</h2>
             <form noValidate onSubmit={handleSubmit(onRegister)}>
                 {/* firstName */}
                 <section>
@@ -149,54 +147,7 @@ const Register = () => {
                         <p className="text-red-500">{errors.password?.message}</p>
                     )}
                 </section>
-
-    {/*          
-                <section>
-                    <input
-                        placeholder="Image URL"
-                        type="url"
-                        {...register("image.url", {
-                            pattern: {
-                                value: patterns.url,
-                                message: "Invalid image URL",
-                            },
-                        })}
-                    />
-                    {errors.image?.url && (
-                        <p className="text-red-500">{errors.image?.url?.message}</p>
-                    )}
-                </section>
-
-                
-                <section>
-                    <input
-                        placeholder="Image Description"
-                        type="text"
-                        {...register("alt", {
-                            minLength: { value: 2, message: "Too short" },
-                            maxLength: { value: 255, message: "Too long" },
-                        })}
-                    />
-                    {errors.alt && (
-                        <p className="text-red-500">{errors.image?.message}</p>
-                    )}
-                </section> */}
-                
-
-              
-                <section>
-                    <input
-                        placeholder="State"
-                        type="text"
-                        {...register("address.state", {
-                            minLength: { value: 2, message: "Too short" },
-                            maxLength: { value: 255, message: "Too long" },
-                        })}
-                    />
-                    {errors.address?.state && (
-                        <p className="text-red-500">{errors.address?.state?.message}</p>
-                    )}
-                </section>
+  
 
                 {/* address.country */}
                 <section>
@@ -280,7 +231,7 @@ const Register = () => {
                     )}
                 </section>
 
-                <button type="submit">Register</button>
+                <button type="submit" className=" bg-slate-600 text-white dark:bg-slate-900">Register</button>
             </form>
         </div>
     );
