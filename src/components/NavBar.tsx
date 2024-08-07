@@ -18,13 +18,13 @@ const Nav = () => {
     const isActive = (path: string) => location.pathname === path;
 
     return (
-        <Navbar fluid rounded>
+        <Navbar fluid rounded style={{ width: '100%' }}>
             <Navbar.Brand href="/">
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Tsofiya Osadchi</span>
             </Navbar.Brand>
 
             <div className="flex md:order-2 items-center">
-                <div className="mr-5">
+                <div className="mr-4">
                     <Search />
                 </div>
 
