@@ -1,3 +1,5 @@
+
+import './AdminOrders.scss';
 import { Table } from 'flowbite-react';
 import { useEffect, useState, MouseEvent } from 'react';
 import { IOrder } from '../@Types/productType';
@@ -12,7 +14,7 @@ const statusOptions = [
 ];
 
 const AdminOrders = () => {
-    const { searchTerm, setSearchTerm } = useSearch();
+    const { searchTerm } = useSearch();
     const [orders, setOrders] = useState<IOrder[]>([]);
     const [filteredOrders, setFilteredOrders] = useState<IOrder[]>([]);
     const [error, setError] = useState<Error | null>(null);
@@ -70,10 +72,10 @@ const AdminOrders = () => {
     };
 
     return (
-        <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+        <div className="admin-orders-container">
             <h2 className='text-4xl text-gray-800 mb-7 text-center mt-2'>Orders</h2>
             {error && <div className="text-red-500 text-center mb-4">{error.message}</div>}
-            <Table hoverable className='"overflow-x-auto'>
+            <Table hoverable className="hidden md:table">
                 <Table.Head>
                     <Table.HeadCell>Order Number</Table.HeadCell>
                     <Table.HeadCell>User ID</Table.HeadCell>
@@ -81,7 +83,7 @@ const AdminOrders = () => {
                     <Table.HeadCell>Status</Table.HeadCell>
                     <Table.HeadCell>Date</Table.HeadCell>
                     <Table.HeadCell>Products</Table.HeadCell>
-                    <Table.HeadCell>Action</Table.HeadCell> {/* הוספתי את עמודת הפעולה */}
+                    <Table.HeadCell>Action</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
                     {filteredOrders.map((order) => (
@@ -101,7 +103,7 @@ const AdminOrders = () => {
                                 </select>
                             </Table.Cell>
                             <Table.Cell>{new Date(order.createdAt).toLocaleDateString()}</Table.Cell>
-                            <Table.Cell className="whitespace-nowrap w-1/3"> {/* הוספתי מחלקת w-1/3 להרחבת העמודה */}
+                            <Table.Cell className="whitespace-nowrap w-1/3">
                                 <div className="flex flex-wrap space-x-2">
                                     {order.products.map((product, index) => (
                                         <div key={index} className="bg-gray-100 dark:bg-gray-700 p-2 rounded mb-2">
@@ -122,6 +124,46 @@ const AdminOrders = () => {
                     ))}
                 </Table.Body>
             </Table>
+
+            {/* Mobile View */}
+            <div className="grid md:hidden gap-4">
+                {filteredOrders.map((order) => (
+                    <div key={order.orderId} className="bg-white dark:border-gray-700 dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                        <div className="flex flex-col mb-4">
+                            <p className="font-medium text-gray-900 dark:text-white">Order Number: {order.orderNumber}</p>
+                            <p className="font-medium text-gray-900 dark:text-white">User ID: {order.userId}</p>
+                            <p className="font-medium text-gray-900 dark:text-white">Total Amount: ${order.totalAmount.toFixed(2)}</p>
+                            <p className="font-medium text-gray-900 dark:text-white">Date: {new Date(order.createdAt).toLocaleDateString()}</p>
+                            <div className="mt-2">
+                                <select
+                                    value={order.status}
+                                    onChange={(e) => handleStatusChange(order.orderId, e.target.value)}
+                                    className="border rounded px-2 py-1 w-full"
+                                >
+                                    {statusOptions.map(status => (
+                                        <option key={status} value={status}>{status.charAt(0).toUpperCase() + status.slice(1)}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            {order.products.map((product, index) => (
+                                <div key={index} className="bg-gray-100 dark:bg-gray-700 p-2 rounded mb-2">
+                                    <p className="text-sm text-gray-900 dark:text-white">Title: {product.title}</p>
+                                    <p className="text-sm text-gray-900 dark:text-white">Size: {product.size}</p>
+                                    <p className="text-sm text-gray-900 dark:text-white">Quantity: {product.quantity}</p>
+                                    <p className="text-sm text-gray-900 dark:text-white">Price: ${product.price}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <button onClick={(event) => handleCancelOrder(event, order.orderId)} className="text-red-600 hover:text-red-800">
+                                <FiTrash2 size={20} />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
