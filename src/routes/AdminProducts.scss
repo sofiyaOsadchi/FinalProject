@@ -1,0 +1,57 @@
+.admin-products-container {
+    overflow-x: auto;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .admin-products-container {
+        padding: 1rem;
+    }
+
+    .admin-products-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .admin-products-container .flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-products-container .flex .tooltip-content {
+        margin-bottom: 0.5rem;
+    }
+
+    .admin-products-container .table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .admin-products-container .table th,
+    .admin-products-container .table td {
+        white-space: nowrap;
+        padding: 0.5rem;
+    }
+
+    .admin-products-container .table th {
+        font-size: 0.875rem;
+    }
+
+    .admin-products-container .table td {
+        font-size: 0.875rem;
+    }
+
+    .admin-products-container .table img {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .admin-products-container .table .button {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+}

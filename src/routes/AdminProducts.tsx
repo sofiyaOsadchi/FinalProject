@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 import dialogs from '../ui/dialogs';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
 import { useSearch } from '../hooks/useSearch';
+import './AdminProducts.scss';
 
 const AdminProducts = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [error, setError] = useState<Error | null>(null);
     const { searchTerm } = useSearch();
-
 
     useEffect(() => {
         getAllProducts()
@@ -21,7 +21,6 @@ const AdminProducts = () => {
     const filteredProducts = products.filter(product =>
         product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
 
     const onDelete = (id: string) => {
         dialogs.confirm("Are you sure?", "Do you want to delete this product?")
@@ -39,8 +38,9 @@ const AdminProducts = () => {
     };
 
     return (
-        <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className='text-4xl text-gray-800 mb-0 text-center mt-6'>Products</h2>            <div className="flex justify-end mb-4">
+        <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg admin-products-container">
+            <h2 className='text-4xl text-gray-800 mb-0 text-center mt-6'>Products</h2>
+            <div className="flex justify-end mb-4">
                 <Tooltip content="Add Product" placement="top" className="text-sm bg-gray-800 text-white rounded px-2 py-1">
                     <Link to="/admin/create-product" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-3 text-center inline-flex items-center me-8 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <FiPlus size={20} />
@@ -53,8 +53,8 @@ const AdminProducts = () => {
                 <Table.Head>
                     <Table.HeadCell>Image</Table.HeadCell>
                     <Table.HeadCell className="w-1/6">Title</Table.HeadCell>
-                    <Table.HeadCell className="w-1/6">Subtitle</Table.HeadCell>
-                    <Table.HeadCell className="w-1/6">Description</Table.HeadCell>
+                    {/* <Table.HeadCell className="w-1/6">Subtitle</Table.HeadCell>
+                    <Table.HeadCell className="w-1/6">Description</Table.HeadCell> */}
                     <Table.HeadCell className="w-1/3">Variants</Table.HeadCell>
                     <Table.HeadCell className="w-1/10">Total Quantity</Table.HeadCell>
                     <Table.HeadCell>
@@ -62,14 +62,14 @@ const AdminProducts = () => {
                     </Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                    {filteredProducts   .map((product) => (
+                    {filteredProducts.map((product) => (
                         <Table.Row key={product._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white flex items-center">
                                 <img src={product.image.url} alt={product.alt} className="h-12 w-12 object-cover rounded-full mr-4" />
                             </Table.Cell>
                             <Table.Cell>{product.title}</Table.Cell>
-                            <Table.Cell>{product.subtitle}</Table.Cell>
-                            <Table.Cell>{product.description}</Table.Cell>
+                            {/* <Table.Cell>{product.subtitle}</Table.Cell>
+                            <Table.Cell>{product.description}</Table.Cell> */}
                             <Table.Cell className="whitespace-nowrap">
                                 <div className="flex flex-wrap gap-2">
                                     {product.variants.map((variant, index) => (

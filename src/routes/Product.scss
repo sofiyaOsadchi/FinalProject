@@ -193,8 +193,9 @@
 
 @media (max-width: 767px) {
     .buttons-container {
+        width: 100%;
         flex-direction: column;
-        align-items: center;
+        
     }
 
     .consult-expert-button,
@@ -205,8 +206,7 @@
 
     .size-buttons-container {
         flex-direction: row;
-        justify-content: center;
-        text-align: center;
+
     }
 
     .size-button {
@@ -214,6 +214,7 @@
         width: 25%;
         text-align: center;
         margin: 0 auto;
+        margin-bottom: 30px;
     }
 }
 
