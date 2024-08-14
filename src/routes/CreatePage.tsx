@@ -17,31 +17,54 @@ const CreatePage = () => {
         setComponents([...components, newComponent]);
     };
 
-    const handleComponentChange = (index: number, content: string) => {
+    const handleComponentChange = (index: number, content: string, file?: File) => {
         const updatedComponents = [...components];
-        updatedComponents[index].content = content;
+
+        if (file) {
+            // אם הקומפוננט הוא תמונה, נשמור את התמונה
+            updatedComponents[index] = {
+                ...updatedComponents[index],
+                content: file.name, // שומר את שם הקובץ בלבד
+                file: file  // שומר את הקובץ עצמו לשימוש מאוחר יותר
+            };
+        } else {
+            // עבור טקסטים ושמות אחרים
+            updatedComponents[index].content = content;
+        }
+
         setComponents(updatedComponents);
     };
+
 
     const onSubmit = async () => {
         const formData = new FormData();
         formData.append("title", title);
-        formData.append("components", JSON.stringify(components));
 
-        if (image) {
-            formData.append("image", image);  // הוספת התמונה ל-FormData
-        }
+        const componentsWithImages = components.map((component, index) => {
+            if (component.type === 'image' && component.file) {
+                const imageFieldName = `image_${index}`;
+                formData.append(imageFieldName, component.file);
+                return {
+                    ...component,
+                    content: imageFieldName // יחליף את התוכן בשם שדה הקובץ 
+                };
+            }
+            return component;
+        });
+
+        formData.append("components", JSON.stringify(componentsWithImages));
 
         try {
             await pagesService.createPage(formData);
             dialogs.success("Success", "Page Created Successfully")
                 .then(() => {
-                    navigate("/");  // ניתוב מחדש לאחר יצירה מוצלחת
+                    navigate("/pages");
                 });
         } catch (error: any) {
             dialogs.error("Error", error.response?.data?.message || "Failed to create page");
         }
     };
+
 
     return (
         <div className="create-page-container">

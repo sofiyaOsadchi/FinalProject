@@ -29,6 +29,11 @@ const CreateProduct = () => {
             return;
         }
 
+        if (!data.variants.length) {
+            dialogs.error("Error", "Please add at least one variant.");
+            return;
+        }
+
         const formData = new FormData();
         formData.append("title", data.title);
         formData.append("subtitle", data.subtitle);
