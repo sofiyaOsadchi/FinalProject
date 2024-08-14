@@ -22,6 +22,9 @@ import AdminOrders from "./AdminOrders";
 import AdminDashboard from "./AdminDashboard";
 import Contact from "./Contact";
 import About from "./About";
+import PagesList from "./Pages";
+import CreatePage from "./CreatePage";
+import PageDetail from "./Page";
 
 export const router = createBrowserRouter([
     {
@@ -94,6 +97,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/about", element: <About />
+            },
+            {
+                path: "/pages", element: <PagesList />
+            },
+            {
+                path: "/pages/:id", element: <PageDetail />
+            },
+            {
+                path: "/create-page", element: <CreatePage />
             },
             
             
