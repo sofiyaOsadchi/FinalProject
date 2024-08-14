@@ -24,7 +24,6 @@ const CreatePage = () => {
             // אם הקומפוננט הוא תמונה, נשמור את התמונה
             updatedComponents[index] = {
                 ...updatedComponents[index],
-                content: file.name, // שומר את שם הקובץ בלבד
                 file: file  // שומר את הקובץ עצמו לשימוש מאוחר יותר
             };
         } else {
@@ -35,7 +34,6 @@ const CreatePage = () => {
         setComponents(updatedComponents);
     };
 
-
     const onSubmit = async () => {
         const formData = new FormData();
         formData.append("title", title);
@@ -43,10 +41,12 @@ const CreatePage = () => {
         const componentsWithImages = components.map((component, index) => {
             if (component.type === 'image' && component.file) {
                 const imageFieldName = `image_${index}`;
-                formData.append(imageFieldName, component.file);
+                formData.append(imageFieldName, component.file); // שולח את התמונה 
                 return {
                     ...component,
-                    content: imageFieldName // יחליף את התוכן בשם שדה הקובץ 
+                    image: {
+                        url: `/uploads/${component.file.name}` // או שם ייחודי שניתן לה בעת ההעלאה
+                    }
                 };
             }
             return component;
@@ -64,6 +64,7 @@ const CreatePage = () => {
             dialogs.error("Error", error.response?.data?.message || "Failed to create page");
         }
     };
+
 
 
     return (
