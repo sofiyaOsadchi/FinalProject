@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const pagesUrl = 'https://nodeapiproject-shop.onrender.com/api/pages';
+const pagesUrl = 'https://nodeapiproject-shop.onrender.com/api/v1/pages';
 
 export const createPage = (formData: FormData) => {
     return axios.post(pagesUrl, formData, {

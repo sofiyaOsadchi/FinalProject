@@ -1,50 +1,8 @@
 import React, { useState } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
 import dialogs from "../ui/dialogs";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import pagesService from '../services/pages';
-import './CreatePage.scss';
-
-const COMPONENT = 'COMPONENT';
-
-const DraggableComponent = ({ component, index, moveComponent }: any) => {
-    const [{ isDragging }, drag] = useDrag(() => ({
-        type: COMPONENT,
-        item: { index },
-        collect: (monitor) => ({
-            isDragging: !!monitor.isDragging(),
-        }),
-    }));
-
-    const [, drop] = useDrop(() => ({
-        accept: COMPONENT,
-        hover: (draggedItem: any) => {
-            if (draggedItem.index !== index) {
-                moveComponent(draggedItem.index, index);
-                draggedItem.index = index;
-            }
-        },
-    }));
-
-    return (
-        <div
-            ref={(node) => drag(drop(node))}
-            style={{ opacity: isDragging ? 0.5 : 1 }}
-            className="component-editor"
-        >
-            {component.type === 'title' && (
-                <h3>{component.content}</h3>
-            )}
-            {component.type === 'text' && (
-                <p>{component.content}</p>
-            )}
-            {component.type === 'image' && component.image && (
-                <img src={component.image.url} alt={component.alt || "Image"} />
-            )}
-        </div>
-    );
-};
 
 const CreatePage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -55,21 +13,13 @@ const CreatePage = () => {
     const navigate = useNavigate();
 
     const handleAddComponent = (type: string) => {
-        const newComponent = {
-            type,
-            content: '',
-            image: undefined,
-            alt: '',
-            styles: { color: '#000000', fontSize: '16px' },
-            position: { x: 0, y: 0 },
-        };
+        const newComponent = { type, content: '', styles: {}, position: { x: 0, y: 0 } };
         setComponents([...components, newComponent]);
     };
 
-    const moveComponent = (fromIndex: number, toIndex: number) => {
+    const handleComponentChange = (index: number, content: string) => {
         const updatedComponents = [...components];
-        const [movedComponent] = updatedComponents.splice(fromIndex, 1);
-        updatedComponents.splice(toIndex, 0, movedComponent);
+        updatedComponents[index].content = content;
         setComponents(updatedComponents);
     };
 
@@ -79,16 +29,16 @@ const CreatePage = () => {
         formData.append("components", JSON.stringify(components));
 
         if (image) {
-            formData.append("image", image);
+            formData.append("image", image);  // הוספת התמונה ל-FormData
         }
 
         try {
             await pagesService.createPage(formData);
             dialogs.success("Success", "Page Created Successfully")
                 .then(() => {
-                    navigate("/pages");
+                    navigate("/pages");  // ניתוב מחדש לאחר יצירה מוצלחת
                 });
-        } catch (error) {
+        } catch (error: any) {
             dialogs.error("Error", error.response?.data?.message || "Failed to create page");
         }
     };
@@ -107,6 +57,7 @@ const CreatePage = () => {
                     />
                 </section>
 
+                {/* אפשרות להעלאת תמונה */}
                 <section>
                     <input
                         type="file"
@@ -120,22 +71,46 @@ const CreatePage = () => {
                     {imageName && <p className="file-name">{imageName}</p>}
                 </section>
 
-                <section className="component-buttons">
+                {/* הוספת רכיבים לעמוד */}
+                <section>
                     <button type="button" onClick={() => handleAddComponent('title')}>Add Title</button>
                     <button type="button" onClick={() => handleAddComponent('text')}>Add Text</button>
                     <button type="button" onClick={() => handleAddComponent('image')}>Add Image</button>
                 </section>
 
-                <section className="components-list">
-                    {components.map((component, index) => (
-                        <DraggableComponent
-                            key={index}
-                            index={index}
-                            component={component}
-                            moveComponent={moveComponent}
-                        />
-                    ))}
-                </section>
+                {/* הצגת רכיבים קיימים */}
+                {components.map((component, index) => (
+                    <div key={index}>
+                        {component.type === 'title' && (
+                            <input
+                                type="text"
+                                placeholder="Title"
+                                value={component.content}
+                                onChange={(e) => handleComponentChange(index, e.target.value)}
+                            />
+                        )}
+                        {component.type === 'text' && (
+                            <textarea
+                                placeholder="Text"
+                                value={component.content}
+                                onChange={(e) => handleComponentChange(index, e.target.value)}
+                            />
+                        )}
+                        {component.type === 'image' && (
+                            <div>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                        const file = e.target.files?.[0] || null;
+                                        handleComponentChange(index, file ? file.name : "");
+                                        if (file) setImage(file);  // ניתן לשלב את העלאת התמונה כחלק מהרכיב
+                                    }}
+                                />
+                            </div>
+                        )}
+                    </div>
+                ))}
 
                 <button type="submit">Create Page</button>
             </form>
@@ -144,3 +119,5 @@ const CreatePage = () => {
 };
 
 export default CreatePage;
+
+
