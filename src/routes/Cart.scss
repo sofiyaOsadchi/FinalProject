@@ -83,10 +83,10 @@
 .variant {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    /* justify-content: start; */
     align-items: center;
     /* Center align the variant details */
-    gap: 16px;
+    gap: 16px;  
     width: 100%;
     
 
