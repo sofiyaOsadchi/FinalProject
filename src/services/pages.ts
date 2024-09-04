@@ -2,15 +2,17 @@ import axios from 'axios';
 
 const pagesUrl = 'https://nodeapiproject-shop.onrender.com/api/v1/pages';
 
-export const createPage = (formData: FormData) => {
-    return axios.post(pagesUrl, formData, {
+// יצירת עמוד חדש
+export const createPage = (pageData: any) => {
+    return axios.post(pagesUrl, pageData, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data" // מבטיח שמבנה הנתונים ישלח כראוי
+            "Content-Type": "application/json" // שליחת נתונים כ-JSON
         }
     });
 };
 
+// קבלת כל העמודים
 export const getAllPages = () => {
     return axios.get(pagesUrl, {
         headers: {
@@ -19,6 +21,7 @@ export const getAllPages = () => {
     });
 };
 
+// קבלת עמוד לפי ID
 export const getPage = (id: string) => {
     const url = `${pagesUrl}/${id}`;
     return axios.get(url, {
@@ -28,16 +31,18 @@ export const getPage = (id: string) => {
     });
 };
 
-export const updatePage = (pageId: string, formData: FormData) => {
+// עדכון עמוד קיים
+export const updatePage = (pageId: string, pageData: any) => {
     const url = `${pagesUrl}/${pageId}`;
-    return axios.put(url, formData, {
+    return axios.put(url, pageData, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data" // גם כאן, המידע יישלח בצורה נכונה
+            "Content-Type": "application/json" // עדכון כ-JSON
         }
     });
 };
 
+// מחיקת עמוד
 export const deletePage = (pageId: string) => {
     const url = `${pagesUrl}/${pageId}`;
     return axios.delete(url, {

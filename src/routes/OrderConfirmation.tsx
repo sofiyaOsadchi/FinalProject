@@ -8,6 +8,12 @@ import { FiX } from 'react-icons/fi';
 import dialogs from '../ui/dialogs';
 import { Tooltip } from 'flowbite-react';
 
+declare global {
+    interface Window {
+        dataLayer: any[];
+    }
+}
+
 const OrderConfirmation = () => {
     const [order, setOrder] = useState<IOrder | null>(null);
     const { user } = useAuth();
@@ -20,6 +26,20 @@ const OrderConfirmation = () => {
                 if (orderId) {
                     const res = await orderService.getOrderByOrderId(orderId);
                     setOrder(res.data);
+
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: 'purchase',
+                        transactionId: res.data.orderNumber,
+                        purchaseValue: res.data.totalAmount,
+                        currencyCode: 'USD', 
+                        items: res.data.products.map(product => ({
+                            item_name: product.title,
+                            item_id: product.productId,
+                            price: product.price,
+                            quantity: product.quantity
+                        }))
+                    });
                 }
             } catch (err) {
                 console.error('Error fetching order:', err);
