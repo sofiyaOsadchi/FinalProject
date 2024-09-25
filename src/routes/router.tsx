@@ -27,11 +27,12 @@ import CreatePage from "./CreatePage";
 import PageDetail from "./Page";
 import LandingPage from "./LandingPage/LandingPage";
 
+
 export const router = createBrowserRouter([
 
     {
-        path: "/osadchi-studio",
-        element: <LandingPage />,
+        path: "/studio",
+        element: <LandingPage/>,
         errorElement: <Error />,
     },
 
