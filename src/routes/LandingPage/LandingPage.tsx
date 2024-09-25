@@ -6,32 +6,32 @@ const services = [
     {
         title: 'Back-End Development',
         description: 'Ensuring robust, scalable server-side logic to power your web applications, integrating databases, and APIs efficiently.',
-        icon: 'public/img/Back-End Development.svg', 
+        icon: 'img/Back-End Development.svg', 
     },
     {
         title: 'Front-End Development',
         description: 'Building the user-facing side of your web applications with modern frameworks for a smooth, responsive experience.',
-        icon: 'public/img/Front-End Development.svg',
+        icon: 'img/Front-End Development.svg',
     },
     {
         title: 'Shopify Store Development',
         description: 'Developing custom eCommerce stores on Shopify, tailored to your business needs, with optimized functionality for increased sales.',
-        icon: 'public/img/Shopify Store Development.svg',
+        icon: 'img/Shopify Store Development.svg',
     },
     {
         title: 'WordPress & Elementor',
         description: 'Building dynamic and customizable websites using WordPress and Elementor to give you full control over content and layout.',
-        icon: 'public/img/WordPress & Elementor.svg',
+        icon: 'img/WordPress & Elementor.svg',
     },
     {
         title: 'Product & Web Design',
         description: 'Crafting visually striking, user-centered designs for both products and websites, ensuring they are intuitive, responsive, and aligned with your brand\'s goals.',
-        icon: 'public/img/Product & Web Design.svg',
+        icon: 'img/Product & Web Design.svg',
     },
     {
         title: 'UX/UI Consultation',
         description: 'Providing expert guidance on user experience and interface design to help you optimize usability and improve user engagement.',
-        icon: 'public/img/UI Consultation.svg',
+        icon: 'img/UI Consultation.svg',
     },
 ];
 
@@ -102,7 +102,7 @@ const LandingPage = () => {
 
 
             <div className="banner-section">
-                <img src="public/img/Tsofiya Osadchi.jpg" alt="Banner Image" className="banner-image" />
+                <img src="img/Tsofiya Osadchi.jpg" alt="Banner Image" className="banner-image" />
                 <div className="content-overlay">
                     <div className="content-square">
                         <h3 className="ecommerce-title">E-commerce Builder</h3>
