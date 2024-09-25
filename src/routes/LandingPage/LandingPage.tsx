@@ -115,8 +115,55 @@ const LandingPage = () => {
                 </div>
             </div>
 
+{/* sectio private projects
+ */}
+            <div className="banner-section">
+                <img src="img/Priimo.jpg" alt="Banner Image" className="banner-image" />
+                <div className="left-content-overlay">
+                    <div className="left-content-square">
+                        <h3 className="ecommerce-title">Software Design</h3>
+                        <h2 className="ecommerce-name">Priimo</h2>
+                        <p className="ecommerce-description">45x1U keyset. 30 Figma icons + 15 solid color</p>
+                        <div className="arrow-icon-container">
+                            <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            
+{/* ILAN
+ */}  
+
+            <div className="banner-section">
+                <img src="img/Ilan.jpg" alt="Banner Image" className="banner-image" />
+                <div className="content-overlay">
+                    <div className="content-square">
+                        <h3 className="ecommerce-title">E-commerce Builder</h3>
+                        <h2 className="ecommerce-name">Tsofiya Osadchi</h2>
+                        <p className="ecommerce-description">45x1U keyset. 30 Figma icons + 15 solid color</p>
+                        <div className="arrow-icon-container">
+                            <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* sectio private projects
+ */}
+            <div className="banner-section">
+                <img src="img/Reability.jpg" alt="Banner Image" className="banner-image" />
+                <div className="left-content-overlay">
+                    <div className="left-content-square">
+                        <h3 className="ecommerce-title">Software Design</h3>
+                        <h2 className="ecommerce-name">Priimo</h2>
+                        <p className="ecommerce-description">45x1U keyset. 30 Figma icons + 15 solid color</p>
+                        <div className="arrow-icon-container">
+                            <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
         </div>
     );
 };
