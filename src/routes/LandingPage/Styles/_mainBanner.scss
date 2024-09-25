@@ -1,0 +1,139 @@
+.banner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 97%;
+    height: 500px;
+    position: relative;
+    margin: 16px auto;
+    font-family: 'montserrat';
+}
+
+.banner {
+    background: linear-gradient(135deg, #D4DCEE 0%, #E8DBF7 100%);
+    width: 70%;
+    height: 100%;
+    border-radius: 40px;
+    position: relative;
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    margin-right: 16px;
+}
+
+.top-left-text {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #2B2E37;
+}
+
+.center-text {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2B2E37;
+    text-align: center;
+}
+
+.bottom-left-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.asterisk-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    background-color: #C8BEA0;
+    border-radius: 50%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.bottom-left-content p {
+    font-size: 1rem;
+    color: #2B2E37;
+    margin: 0;
+    max-width: 300px;
+    line-height: 1.5;
+}
+
+.side-banners {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 30%;
+    font-family: 'montserrat';
+}
+
+.small-banner {
+
+    background: linear-gradient(90deg, rgba(232, 219, 247, 0.8) 0%, rgba(212, 220, 238, 0.8) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 20px;
+    height: 50%;
+    border-radius: 40px;
+
+    position: relative;
+}
+
+.get-in-touch {
+    margin-bottom: 16px;
+}
+
+.banner-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.banner-content h2 {
+    font-size: 1.5rem;
+    color: #2B2E37;
+    margin: 0;
+    font-weight: 500;
+    text-align: left;
+}
+
+.banner-content p {
+    font-size: 0.7rem;
+    color: #707070;
+    margin-top: 5px;
+}
+
+.icon-container {
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.arrow-icon {
+    width: 30px;
+    height: 30px;
+}
+
+
+
+/* LandingPage.scss */

@@ -3,12 +3,12 @@ import { useDrag, useDrop } from 'react-dnd';
 import dialogs from "../ui/dialogs";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import pagesService from '../services/pages'; // השירות המעודכן ליצירת עמודים
+import pagesService from '../services/pages';
 import './CreatePage.scss';
 
 const COMPONENT = 'COMPONENT';
 
-const DraggableComponent = ({ component, index, moveComponent }: any) => {
+const DraggableComponent = ({ component, index, moveComponent, updateComponent }: any) => {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: COMPONENT,
         item: { index },
@@ -29,53 +29,88 @@ const DraggableComponent = ({ component, index, moveComponent }: any) => {
 
     return (
         <div ref={(node) => drag(drop(node))} style={{ opacity: isDragging ? 0.5 : 1 }} className="component-editor">
-            {component.type === 'title' && <h3>{component.content}</h3>}
-            {component.type === 'text' && <p>{component.content}</p>}
-            {component.type === 'image' && component.image && <img src={component.image.url} alt={component.alt || "Image"} />}
+            {/* עריכת טקסט לכותרת */}
+            {component.type === 'title' && (
+                <input
+                    type="text"
+                    value={component.content}
+                    onChange={(e) => updateComponent(index, 'content', e.target.value)}
+                    placeholder="Enter title text"
+                />
+            )}
+
+            {/* עריכת טקסט לפסקה */}
+            {component.type === 'text' && (
+                <textarea
+                    value={component.content}
+                    onChange={(e) => updateComponent(index, 'content', e.target.value)}
+                    placeholder="Enter paragraph text"
+                />
+            )}
+
+            {/* עריכת URL לתמונה */}
+            {component.type === 'image' && (
+                <>
+                    <input
+                        type="text"
+                        value={component.image?.url || ''}
+                        onChange={(e) => updateComponent(index, 'image', { url: e.target.value })}
+                        placeholder="Enter image URL"
+                    />
+                    {component.image?.url && <img src={component.image.url} alt={component.alt || "Image"} />}
+                </>
+            )}
         </div>
     );
 };
 
 const CreatePage = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm(); // שימוש ב-React Hook Form כדי לטפל בטופס
-    const [title, setTitle] = useState(''); // כותרת של העמוד
-    const [components, setComponents] = useState<any[]>([]); // רכיבים דינמיים בעמוד
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [title, setTitle] = useState(''); // כותרת העמוד
+    const [components, setComponents] = useState<any[]>([]); // רכיבי העמוד
     const navigate = useNavigate();
 
     // הוספת רכיב חדש לעמוד
     const handleAddComponent = (type: string) => {
         const newComponent = {
             type,
-            content: '', // טקסט לתוכן
-            image: undefined, // תמונה, אם זה רכיב תמונה
-            alt: '', // תיאור התמונה
-            styles: { color: '#000000', fontSize: '16px' }, // סגנונות ברירת מחדל
-            position: { x: 0, y: 0 }, // מיקום ברירת מחדל
+            content: '', // תוכן ברירת מחדל
+            image: undefined, // אם זה תמונה
+            alt: '', // תיאור לתמונה
+            styles: { color: '#000000', fontSize: '16px' }, // סגנונות
+            position: { x: 0, y: 0 }, // מיקום
         };
-        setComponents([...components, newComponent]); // עדכון רשימת הרכיבים
+        setComponents([...components, newComponent]); // עדכון הרכיבים עם רכיב חדש
     };
 
-    // פונקציה להזזת רכיב בעמוד (drag & drop)
+    // הזזת רכיב
     const moveComponent = (fromIndex: number, toIndex: number) => {
         const updatedComponents = [...components];
         const [movedComponent] = updatedComponents.splice(fromIndex, 1);
-        updatedComponents.splice(toIndex, 0, movedComponent); // שינוי מיקום של רכיב ברשימה
+        updatedComponents.splice(toIndex, 0, movedComponent);
+        setComponents(updatedComponents);
+    };
+
+    // עדכון תוכן של רכיב
+    const updateComponent = (index: number, key: string, value: any) => {
+        const updatedComponents = [...components];
+        updatedComponents[index] = { ...updatedComponents[index], [key]: value };
         setComponents(updatedComponents);
     };
 
     // שליחת הנתונים לשרת
     const onSubmit = async () => {
         const pageData = {
-            title, // הכותרת של העמוד
-            components // רשימת הרכיבים
+            title,
+            components,
         };
 
         try {
-            await pagesService.createPage(pageData); // שליחה לשירות יצירת עמוד
+            await pagesService.createPage(pageData);
             dialogs.success("Success", "Page Created Successfully")
-                .then(() => navigate("/pages")); // ניווט חזרה לרשימת העמודים לאחר יצירה מוצלחת
+                .then(() => navigate("/pages"));
         } catch (error) {
-            dialogs.error("Error", error.response?.data?.message || "Failed to create page"); // טיפול בשגיאה
+            dialogs.error("Error", error.response?.data?.message || "Failed to create page");
         }
     };
 
@@ -84,7 +119,6 @@ const CreatePage = () => {
             <h2>Create New Page</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <section>
-                    {/* שדה להזנת הכותרת */}
                     <input
                         type="text"
                         value={title}
@@ -95,20 +129,19 @@ const CreatePage = () => {
                 </section>
 
                 <section className="component-buttons">
-                    {/* כפתורים להוספת רכיבים דינמיים */}
                     <button type="button" onClick={() => handleAddComponent('title')}>Add Title</button>
                     <button type="button" onClick={() => handleAddComponent('text')}>Add Text</button>
                     <button type="button" onClick={() => handleAddComponent('image')}>Add Image</button>
                 </section>
 
                 <section className="components-list">
-                    {/* רשימת הרכיבים הדינמיים שנוצרו */}
                     {components.map((component, index) => (
                         <DraggableComponent
                             key={index}
                             index={index}
                             component={component}
-                            moveComponent={moveComponent} // פונקציה להזזת רכיב
+                            moveComponent={moveComponent}
+                            updateComponent={updateComponent} // פונקציה לעדכון תוכן הרכיב
                         />
                     ))}
                 </section>

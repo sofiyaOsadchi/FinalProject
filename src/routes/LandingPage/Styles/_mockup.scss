@@ -1,0 +1,75 @@
+.banner-section {
+    position: relative;
+    width: 97%;
+    margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content-overlay {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.content-square {
+    /* background: linear-gradient(60deg, #D4DCEE 0%, #E8DBF7 100%); */
+    background: linear-gradient(90deg, rgba(212, 220, 238, 0.8) 0%, rgba(232, 219, 247, 0.8) 100%);
+    padding: 8px;
+    border-radius: 10px;
+    width: 350px;
+    height: 100px;
+    position: relative;
+}
+
+.ecommerce-title {
+    font-size: .6rem;
+    color: #000000;
+    background-color: #FFFFFF;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 0;
+}
+
+.ecommerce-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2B2E37;
+    margin: 10px 0 0 0;
+    //alighn right
+    text-align: left;
+}
+
+.ecommerce-description {
+    font-size: .7rem;
+    color: #707070;
+    margin: 5px 0 0 0;
+}
+
+.arrow-icon-container {
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    align-items: center;
+
+}
+
+.arrow-icon {
+    width: 35px;
+    height: 35px;
+    filter: invert(19%) sepia(12%) saturate(0%) hue-rotate(210deg) brightness(96%) contrast(85%);
+}

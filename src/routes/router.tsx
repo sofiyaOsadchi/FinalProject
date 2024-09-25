@@ -25,8 +25,16 @@ import About from "./About";
 import PagesList from "./Pages";
 import CreatePage from "./CreatePage";
 import PageDetail from "./Page";
+import LandingPage from "./LandingPage/LandingPage";
 
 export const router = createBrowserRouter([
+
+    {
+        path: "/osadchi-studio",
+        element: <LandingPage />,
+        errorElement: <Error />,
+    },
+
     {
         path: "/",
         element: <Root />,
@@ -80,6 +88,9 @@ export const router = createBrowserRouter([
             {
                 path: "/orders", element: < UserOrders />
             },
+            /* {
+                path: "/osadchi-studio", element: < LandingPage />
+            }, */
             /* {
                 path: "/admin/analytics", element: < SalesPage />
             }, */

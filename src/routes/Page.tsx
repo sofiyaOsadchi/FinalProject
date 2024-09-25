@@ -10,6 +10,7 @@ const PageDetail = () => {
         const fetchPage = async () => {
             try {
                 const response = await pagesService.getPage(id);
+                console.log("Fetched Page Data:", response.data); // לוג כדי לראות אם הנתונים מגיעים
                 setPage(response.data);
             } catch (error) {
                 console.error('Failed to fetch page', error);
@@ -29,17 +30,25 @@ const PageDetail = () => {
                     <div
                         key={index}
                         style={{
-                            position: 'absolute',
-                            top: `${component.position.y}px`,
-                            left: `${component.position.x}px`,
+                            position: 'relative', // שימוש במיקום יחסית כדי להימנע ממיקום מוחלט שעשוי לגרום לבעיות
+                            marginBottom: '20px', // מרווח כדי להקל על קריאה
                             color: component.styles?.color,
                             fontSize: `${component.styles?.fontSize}px`,
                         }}
                     >
                         {component.type === 'title' && <h3>{component.content}</h3>}
                         {component.type === 'text' && <p>{component.content}</p>}
-                        {component.type === 'image' && component.image && (
-                            <img src={component.image.url} alt={component.alt || "Image"} />
+
+                        {/* הצגת תמונה רק אם יש URL לתמונה */}
+                        {component.type === 'image' && component.image?.url && (
+                            <>
+                                <p>Image URL: {component.image.url}</p> {/* לוג לבדיקה אם ה-URL מגיע */}
+                                <img
+                                    src={component.image.url}
+                                    alt={component.alt || "Image"}
+                                    style={{ maxWidth: '100%', height: 'auto' }} // הגבלת גודל התמונה
+                                />
+                            </>
                         )}
                     </div>
                 ))}

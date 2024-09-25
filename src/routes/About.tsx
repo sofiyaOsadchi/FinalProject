@@ -13,12 +13,11 @@ const About: React.FC = () => {
                 </p>
             </section>
 
-            <section className="section search-notifications">
-                <h2 className="section-title">Search and Notifications</h2>
+            <section className="section shopping-cart">
+                <h2 className="section-title">Shopping Cart</h2>
                 <p className="section-description">
-                    The search functionality is seamlessly integrated into the navigation bar, allowing users to quickly find products across different pages.
-                    Our store also features pop-up notifications for successful actions and confirmations before deleting items, ensuring that users are well-informed
-                    about their actions and reducing the risk of accidental deletions.
+                    The shopping cart is designed to be intuitive and user-friendly. Users can easily add products to their cart, update quantities, and view the total cost of their purchases.
+                    After completing a purchase, users can see a detailed order summary. They can also view their entire order history in their account page, allowing them to keep track of their past purchases.
                 </p>
             </section>
 
@@ -41,13 +40,7 @@ const About: React.FC = () => {
                 </p>
             </section>
 
-            <section className="section shopping-cart">
-                <h2 className="section-title">Shopping Cart</h2>
-                <p className="section-description">
-                    The shopping cart is designed to be intuitive and user-friendly. Users can easily add products to their cart, update quantities, and view the total cost of their purchases.
-                    After completing a purchase, users can see a detailed order summary. They can also view their entire order history in their account page, allowing them to keep track of their past purchases.
-                </p>
-            </section>
+        
 
             <section className="section admin-dashboard">
                 <h2 className="section-title">Admin Dashboard</h2>
