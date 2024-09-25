@@ -1,5 +1,6 @@
 import React from 'react';
 import './Styles/main.scss';
+import RuningCode from '../../components/RuningCode';
 
 
 const services = [
@@ -163,6 +164,50 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
+
+
+
+            <div className="banner-container">
+                <div className="banner">
+                    <RuningCode />
+                    <div className="top-left-text">
+                        <h3>ORIME</h3>
+                    </div>
+                    <div className="center-text">
+                        <h1>Design - Develop - Deliver</h1>
+                    </div>
+                    <div className="bottom-left-content">
+                        <img src="img/About US Star.svg" alt="Asterisk" className="asterisk-icon" />
+                        <p>I am passionately committed to utilizing design for beneficial outcomes that are user-focused, delightful, and human-oriented.</p>
+                    </div>
+
+                </div>
+
+                <div className="side-banners">
+                    <div className="small-banner get-in-touch">
+                        <div className="banner-content">
+                            <h2>Get in Touch</h2>
+                            <p>30 Figma icons + 15 solid color</p>
+                        </div>
+                        <div className="icon-container">
+                            <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        </div>
+                    </div>
+
+                    <div className="small-banner projects">
+                        <div className="banner-content">
+                            <h2>Projects</h2>
+                            <p>30 Figma icons + 15 solid color</p>
+                        </div>
+                        <div className="icon-container">
+                            <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
           
         </div>
     );
