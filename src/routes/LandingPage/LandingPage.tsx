@@ -49,7 +49,7 @@ const LandingPage = () => {
                     <h1>Design - Develop - Deliver</h1>
                 </div>
                 <div className="bottom-left-content">
-                    <img src="public/img/About US Star.svg" alt="Asterisk" className="asterisk-icon" />
+                    <img src="img/About US Star.svg" alt="Asterisk" className="asterisk-icon" />
                     <p>I am passionately committed to utilizing design for beneficial outcomes that are user-focused, delightful, and human-oriented.</p>
                 </div>
 
@@ -62,7 +62,7 @@ const LandingPage = () => {
                         <p>30 Figma icons + 15 solid color</p>
                     </div>
                     <div className="icon-container">
-                        <img src="public/img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@ const LandingPage = () => {
                         <p>30 Figma icons + 15 solid color</p>
                     </div>
                     <div className="icon-container">
-                        <img src="public/img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
                     </div>
                 </div> 
             </div>
@@ -109,7 +109,7 @@ const LandingPage = () => {
                         <h2 className="ecommerce-name">Tsofiya Osadchi</h2>
                         <p className="ecommerce-description">45x1U keyset. 30 Figma icons + 15 solid color</p>
                         <div className="arrow-icon-container">
-                            <img src="public/img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                            <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
                         </div>
                     </div>
                 </div>
