@@ -1,0 +1,374 @@
+/* עד 2500px */
+@media (max-width: 2500px) {
+    .banner-container {
+        width: 1888px;
+        height: 567px;
+    }
+
+    .banner {
+        width: 1495px;
+    }
+
+    .side-banners {
+        width: 377px;
+    }
+
+        .small-banner {
+height: 275px;
+        }
+}
+
+/* עד 1920px */
+@media (max-width: 1920px) {
+    .banner-container {
+            width: 1888px;
+            height: 567px;
+        }
+    
+        .banner {
+            width: 1495px;
+            height: 567px;
+        }
+    
+        .side-banners {
+            width: 377px;
+        }
+    
+        .small-banner {
+            height: 275px;
+        }
+
+    .center-text h2 {
+        font-size: 44px;
+        font-weight: 600;
+        margin-top: -20px;
+    }
+
+    .side-banners h2{
+        font-size: 28px;
+        font-weight: 500;
+    }
+
+    .top-left-text h3 {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+.icon-container {
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    right: 20px;
+    bottom: 20px;
+}
+
+.arrow-icon {
+    width: 40px;
+    height: 40px;
+}
+
+}
+
+/* עד 1400px */
+@media (max-width: 1400px) {
+.banner-container {
+        width: 1368px;
+        height: 567px;
+    }
+
+    .banner {
+        width: 975px;
+        height: 567px;
+    }
+
+    .side-banners {
+        width: 377px;
+    }
+
+    .small-banner {
+        height: 275px;
+    }
+
+    .center-text h2 {
+        font-size: 44px;
+        font-weight: 600;
+        margin-top: -20px;
+    }
+
+    .side-banners h2 {
+        font-size: 28px;
+        font-weight: 500;
+    }
+
+    .top-left-text h3 {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .icon-container {
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .arrow-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* עד 1000px */
+@media (max-width: 1000px) {
+    .banner-container {
+            width: 968px;
+            height: 567px;
+        }
+    
+        .banner {
+            width: 657px;
+            height: 567px;
+        }
+    
+        .side-banners {
+            width: 295px;
+        }
+    
+        .small-banner {
+            height: 275px;
+        }
+    
+        .center-text h2 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-top: -20px;
+        }
+    
+        .side-banners h2 {
+            font-size: 24px;
+            font-weight: 500;
+        }
+    
+        .top-left-text h3 {
+            font-size: 12px;
+            font-weight: 400;
+        }
+    
+        .icon-container {
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            right: 20px;
+            bottom: 20px;
+        }
+    
+        .arrow-icon {
+            width: 40px;
+            height: 40px;
+        }
+}
+
+/* עד 680px */
+@media (max-width: 680px) {
+    .banner-container {
+        flex-direction: column;
+        align-items: center;
+        width: 657px;
+            height: 570px;
+            
+    }
+
+
+   .banner {
+    margin-top: -5px;
+    margin-left: 16px;
+        margin-right: 16px;
+       width: 657px;
+       height: 378px;
+   }
+
+ .center-text h2 {
+     font-size: 23px;
+     font-weight: 600;
+     margin-top: -20px;
+ }
+
+ .bottom-left-content {
+     position: absolute;
+     bottom: 20px;
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     align-items: flex-start;
+ }
+
+  .top-left-text h3 {
+      font-size: 12px;
+      font-weight: 400;
+      margin-top: 5px;
+
+  }
+
+ .asterisk-icon {
+     width: 25px;
+     height: 25px;
+     margin-right: 10px;
+     background-color: #C8BEA0;
+     border-radius: 50%;
+     padding: 8px;
+     margin-bottom: 10px;
+ }
+
+ 
+
+ .bottom-left-content p {
+     font-size: 12px;
+     margin: 0;
+
+     line-height: 1.5;
+ }
+
+
+
+   .side-banners {
+       width: 657px;
+       height: 180px;
+   }
+
+   .small-banner {
+       height: 84px;
+       border-radius: 28px;
+   }
+
+  
+
+   .side-banners h2 {
+       font-size: 20px;
+       font-weight: 500;
+   }
+
+  
+
+   .banner-content p {
+    font-size: 12px;
+        font-weight: 400;
+       color: #181717;
+
+   }
+
+   .icon-container {
+       border-radius: 50%;
+       width: 40px;
+       height: 40px;
+       right: 15px;
+       bottom: 15px;
+   }
+
+   .arrow-icon {
+       width: 35px;
+       height: 35px;
+   }
+}
+
+/* מובייל - עד 480px */
+@media (max-width: 470px) {
+.banner-container {
+        flex-direction: column;
+        align-items: center;
+        width: 440px;
+        height: 570px;
+
+    }
+
+
+    .banner {
+        margin-top: -5px;
+        margin-left: 16px;
+        margin-right: 16px;
+        width: 440px;
+        height: 378px;
+    }
+
+    .center-text h2 {
+        font-size: 23px;
+        font-weight: 600;
+        margin-top: -20px;
+    }
+
+    .bottom-left-content {
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .top-left-text h3 {
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 5px;
+
+    }
+
+    .asterisk-icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+        background-color: #C8BEA0;
+        border-radius: 50%;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+
+
+
+    .bottom-left-content p {
+        font-size: 12px;
+        margin: 0;
+
+        line-height: 1.5;
+    }
+
+
+
+    .side-banners {
+        width: 440px;
+        height: 180px;
+    }
+
+    .small-banner {
+        height: 84px;
+        border-radius: 28px;
+    }
+
+
+
+    .side-banners h2 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+
+
+    .banner-content p {
+        font-size: 12px;
+        font-weight: 400;
+        color: #181717;
+
+    }
+
+    .icon-container {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .arrow-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
