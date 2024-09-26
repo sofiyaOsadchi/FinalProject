@@ -1,19 +1,68 @@
-// CodeTypingAnimation.scss
 .code-typing-animation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: relative;
     padding: 20px;
-    color: black;
+    color: #100f0f;
     background-color: transparent;
     font-family: 'Source Code Pro', monospace;
     font-size: 16px;
     overflow: hidden;
+    z-index: 1; // הקוד יהיה ברקע
 
     & code {
         white-space: pre-wrap;
         line-height: 1.5;
+    }
+
+    // סגנונות לסמן
+    .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background-color: #ffffff;
+        animation: blink 1s step-end infinite;
+        vertical-align: bottom;
+    }
+
+    // סגנונות להדגשת התחביר
+    .keyword {
+        color: #569CD6;
+    }
+
+    .function-name {
+        color: #f8f806;
+    }
+
+    .function {
+        color: #070707;
+    }
+
+    .string {
+        color: #CE9178;
+    }
+
+    .parameter {
+        color: #135b82;
+    }
+
+    .property {
+        color: #4EC9B0;
+    }
+
+    .method {
+        color: #d4d40b;
+    }
+}
+
+// אנימציית הבהוב לסמן
+@keyframes blink {
+
+    0%,
+    50% {
+        background-color: #ffffff;
+    }
+
+    51%,
+    100% {
+        background-color: transparent;
     }
 }

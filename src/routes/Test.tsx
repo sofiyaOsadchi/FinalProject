@@ -1,181 +1,140 @@
-import React, { useState } from 'react';
-import dialogs from "../ui/dialogs";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import pagesService from '../services/pages';
+import React, { useState, useEffect } from 'react';
+import './RuningCode.scss';
 
-const CreatePage = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const [title, setTitle] = useState('');
-    const [components, setComponents] = useState<any[]>([]);
-    const [image, setImage] = useState<File | null>(null);
-    const [imageName, setImageName] = useState<string>("");
-    const navigate = useNavigate();
 
-    const handleAddComponent = (type: string) => {
-        const newComponent = { type, content: '', styles: {}, position: { x: 0, y: 0 } };
-        setComponents([...components, newComponent]);
-    };
+const codeLines = [
+    "<span class='keyword'>function</span> <span class='function-name'>fetchData</span>() {",
+    "  <span class='keyword'>return</span> <span class='function'>fetch</span>(<span class='string'>'https://api.example.com/data'</span>)",
+    "    .<span class='method'>then</span>(<span class='parameter'>response</span> => <span class='parameter'>response</span>.<span class='property'>json</span>())",
+    "    .<span class='method'>then</span>(<span class='parameter'>data</span> => {",
+    "      <span class='function'>console</span>.<span class='method'>log</span>(<span class='parameter'>data</span>);",
+    "    });",
+    "}",
+    "",
+    "<span class='function-name'>fetchData</span>();"
+];
 
-    const handleComponentChange = (index: number, content: string) => {
-        const updatedComponents = [...components];
-        updatedComponents[index].content = content;
-        setComponents(updatedComponents);
-    };
+const RuningCode = () => {
+    const [displayedCode, setDisplayedCode] = useState('');
+    const [lineIndex, setLineIndex] = useState(0);
+    const [charIndex, setCharIndex] = useState(0);
 
-    const onSubmit = async () => {
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("components", JSON.stringify(components));
-
-        if (image) {
-            formData.append("image", image);  // הוספת התמונה ל-FormData
+    useEffect(() => {
+        if (lineIndex < codeLines.length) {
+            if (charIndex <= codeLines[lineIndex].length) {
+                const timeout = setTimeout(() => {
+                    setDisplayedCode(prev => prev + codeLines[lineIndex][charIndex] || '\n');
+                    setCharIndex(charIndex + 1);
+                }, 50); // מהירות ההקלדה
+                return () => clearTimeout(timeout);
+            } else {
+                setCharIndex(0);
+                setLineIndex(lineIndex + 1);
+                setDisplayedCode(prev => prev + '\n');
+            }
+        } else {
+            // לאחר סיום ההקלדה, להתחיל לגלול
+            const timeout = setTimeout(() => {
+                setDisplayedCode('');
+                setLineIndex(0);
+                setCharIndex(0);
+            }, 3000); // זמן המתנה לפני התחלה מחדש
+            return () => clearTimeout(timeout);
         }
-
-        try {
-            await pagesService.createPage(formData);
-            dialogs.success("Success", "Page Created Successfully")
-                .then(() => {
-                    navigate("/pages");  // ניתוב מחדש לאחר יצירה מוצלחת
-                });
-        } catch (error: any) {
-            dialogs.error("Error", error.response?.data?.message || "Failed to create page");
-        }
-    };
+    }, [charIndex, lineIndex]);
 
     return (
-        <div className="create-page-container">
-            <h2>Create New Page</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <section>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Page Title"
-                        required
-                    />
-                </section>
-
-                {/* אפשרות להעלאת תמונה */}
-                <section>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                            const file = e.target.files?.[0] || null;
-                            setImage(file);
-                            setImageName(file ? file.name : "");
-                        }}
-                    />
-                    {imageName && <p className="file-name">{imageName}</p>}
-                </section>
-
-                {/* הוספת רכיבים לעמוד */}
-                <section>
-                    <button type="button" onClick={() => handleAddComponent('title')}>Add Title</button>
-                    <button type="button" onClick={() => handleAddComponent('text')}>Add Text</button>
-                    <button type="button" onClick={() => handleAddComponent('image')}>Add Image</button>
-                </section>
-
-                {/* הצגת רכיבים קיימים */}
-                {components.map((component, index) => (
-                    <div key={index}>
-                        {component.type === 'title' && (
-                            <input
-                                type="text"
-                                placeholder="Title"
-                                value={component.content}
-                                onChange={(e) => handleComponentChange(index, e.target.value)}
-                            />
-                        )}
-                        {component.type === 'text' && (
-                            <textarea
-                                placeholder="Text"
-                                value={component.content}
-                                onChange={(e) => handleComponentChange(index, e.target.value)}
-                            />
-                        )}
-                        {component.type === 'image' && (
-                            <div>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => {
-                                        const file = e.target.files?.[0] || null;
-                                        handleComponentChange(index, file ? file.name : "");
-                                        if (file) setImage(file);  // ניתן לשלב את העלאת התמונה כחלק מהרכיב
-                                    }}
-                                />
-                            </div>
-                        )}
-                    </div>
-                ))}
-
-                <button type="submit">Create Page</button>
-            </form>
-        </div>
+        <pre className="code-typing-animation">
+            <code dangerouslySetInnerHTML={{ __html: displayedCode }} />
+            <span className="cursor">|</span>
+        </pre>
     );
 };
 
-
-
-////
-/* <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0C8SQ5RDCD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0C8SQ5RDCD');
-</script> */
-
-export default CreatePage;
+export default RuningCode;
 
 
 
+// RuningCode.scss
+/* .code - typing - animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100 %;
+    height: 100 %;
+    padding: 20px;
+    color: black;
+    background - color: transparent;
+    font - family: 'Source Code Pro', monospace;
+    font - size: 16px;
+    overflow: hidden;
 
+    & code {
+        white - space: pre - wrap;
+        line - height: 1.5;
+        display: block;
+        position: relative;
+        animation: scroll 20s linear infinite;
+    }
 
+    & .cursor {
+        display: inline - block;
+        width: 1px;
+        background - color: black;
+        animation: blink 1s step - end infinite;
+        position: absolute;
+    }
 
+    // סגנונות עבור הדגשת התחביר
+    .keyword {
+        color: #569CD6;
+    }
 
+    .function-name {
+        color: #DCDCAA;
+    }
 
+    .function {
+        color: #C586C0;
+    }
 
+    .string {
+        color: #CE9178;
+    }
 
+    .parameter {
+        color: #9CDCFE;
+    }
 
+    .property {
+        color: #4EC9B0;
+    }
 
+    .method {
+        color: #DCDCAA;
+    }
+}
 
+// אנימציית גלילה
+@keyframes scroll {
+    0 % {
+        transform: translateY(0);
+    }
 
+    100 % {
+        transform: translateY(-10 %);
+    }
+}
 
+// אנימציית הבהוב הסמן
+@keyframes blink {
 
+    from,
+        to {
+        background - color: transparent;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    50 % {
+        background- color: black;
+}
+} */

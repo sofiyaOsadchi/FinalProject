@@ -6,7 +6,8 @@
     height: 500px;
     position: relative;
     margin: 16px auto;
-    font-family: 'montserrat';
+    font-family: 'montserrat';  
+    
 }
 
 .banner {
@@ -19,6 +20,9 @@
     margin-bottom: 16px;
     margin-top: 16px;
     margin-right: 16px;
+    position: relative;
+        z-index: 2;
+ 
 }
 
 .top-left-text {
@@ -28,9 +32,11 @@
     font-size: 1.5rem;
     font-weight: 400;
     color: #2B2E37;
+    z-index: 2;
 }
 
 .center-text {
+        position: absolute;
     display: flex;
     justify-content: left;
     align-items: center;

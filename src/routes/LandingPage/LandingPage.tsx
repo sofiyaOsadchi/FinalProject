@@ -174,7 +174,7 @@ const LandingPage = () => {
                         <h3>ORIME</h3>
                     </div>
                     <div className="center-text">
-                        <h1>Design - Develop - Deliver</h1>
+                        <h2>Design - Develop - Deliver</h2>
                     </div>
                     <div className="bottom-left-content">
                         <img src="img/About US Star.svg" alt="Asterisk" className="asterisk-icon" />
