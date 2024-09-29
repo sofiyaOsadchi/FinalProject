@@ -91,3 +91,53 @@
     height: 35px;
     filter: invert(19%) sepia(12%) saturate(0%) hue-rotate(210deg) brightness(96%) contrast(85%);
 }
+
+
+@media (max-width: 2500px) {
+    .content-square {
+        width: 22%;
+        height: 160px;
+    }
+
+    
+}
+@media (max-width: 1920px) {
+    .content-square {
+        width: 28%;
+        height: 160px;
+    }
+
+    
+}
+@media (max-width: 1400px) {
+    .content-square {
+        width: 35%;
+        height: 160px;
+    }
+
+    
+}
+@media (max-width: 1000px) {
+    .content-square {
+        width: 50%;
+        height: 160px;
+    }
+
+    
+}
+@media (max-width: 680px) {
+    .content-square {
+        width: 538px;
+        height: 160px;
+    }
+
+    
+}
+@media (max-width: 380px) {
+    .content-square {
+        width: 538px;
+        height: 160px;
+    }
+
+    
+}
