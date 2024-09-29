@@ -1,42 +1,66 @@
 /* עד 2500px */
 @media (max-width: 2500px) {
+    /* רוחב מקסימלי: 2500px */
+    /* רוחב ה-banner-container: נניח 2400px */
+    /* אחוז רוחב ה-banner-container: (2400 / 2500) * 100% = 96% */
+
     .banner-container {
-        width: 1888px;
+        width: 96%;
+        /* 2400px מתוך 2500px */
         height: 567px;
     }
 
     .banner {
-        width: 1495px;
+        /* נניח רוחב של 2000px */
+        /* אחוז רוחב ה-banner: (2000 / 2500) * 100% = 80% */
+        width: 80%;
+        /* 2000px מתוך 2500px */
     }
 
     .side-banners {
-        width: 377px;
+        /* נניח רוחב של 500px */
+        /* אחוז רוחב ה-side-banners: (500 / 2500) * 100% = 20% */
+        width: 20%;
+        /* 500px מתוך 2500px */
     }
 
-        .small-banner {
-height: 275px;
-        }
+    .small-banner {
+        height: 275px;
+    }
 }
 
 /* עד 1920px */
 @media (max-width: 1920px) {
+    /* רוחב מקסימלי: 1920px */
+    /* רוחב ה-banner-container: 1888px */
+    /* אחוז רוחב ה-banner-container: (1888 / 1920) * 100% ≈ 98.333% */
+
     .banner-container {
-            width: 1888px;
-            height: 567px;
-        }
-    
-        .banner {
-            width: 1495px;
-            height: 567px;
-        }
-    
-        .side-banners {
-            width: 377px;
-        }
-    
-        .small-banner {
-            height: 275px;
-        }
+        width: 98.333%;
+        /* 1888px מתוך 1920px */
+        height: 567px;
+    }
+
+    /* רוחב ה-banner: 1495px */
+    /* אחוז רוחב ה-banner: (1495 / 1920) * 100% ≈ 77.864% */
+
+    .banner {
+        width: 77.864%;
+        /* 1495px מתוך 1920px */
+        height: 567px;
+    }
+
+    /* רוחב ה-side-banners: 377px */
+    /* אחוז רוחב ה-side-banners: (377 / 1920) * 100% ≈ 19.635% */
+
+    .side-banners {
+        width: 19.635%;
+        /* 377px מתוך 1920px */
+    }
+
+    .small-banner {
+        height: 275px;
+    }
 
     .center-text h2 {
         font-size: 44px;
@@ -44,7 +68,7 @@ height: 275px;
         margin-top: -20px;
     }
 
-    .side-banners h2{
+    .side-banners h2 {
         font-size: 28px;
         font-weight: 500;
     }
@@ -54,35 +78,46 @@ height: 275px;
         font-weight: 400;
     }
 
-.icon-container {
-    border-radius: 50%;
-    width: 52px;
-    height: 52px;
-    right: 20px;
-    bottom: 20px;
-}
+    .icon-container {
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        right: 20px;
+        bottom: 20px;
+    }
 
-.arrow-icon {
-    width: 40px;
-    height: 40px;
-}
-
+    .arrow-icon {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 /* עד 1400px */
 @media (max-width: 1400px) {
+    /* רוחב מקסימלי: 1400px */
+    /* רוחב ה-banner-container: 1368px */
+    /* אחוז רוחב ה-banner-container: (1368 / 1400) * 100% ≈ 97.714% */
+
 .banner-container {
-        width: 1368px;
-        height: 567px;
+        max-width: 1400px;
+      
+        
     }
+
+    /* רוחב ה-banner: 975px */
+    /* אחוז רוחב ה-banner: (975 / 1400) * 100% ≈ 69.643% */
 
     .banner {
-        width: 975px;
+    width: 72%;        /* 975px מתוך 1400px */
         height: 567px;
+        padding: 32px;
     }
 
+    /* רוחב ה-side-banners: 377px */
+    /* אחוז רוחב ה-side-banners: (377 / 1400) * 100% ≈ 26.929% */
+
     .side-banners {
-        width: 377px;
+    width: 28%;        
     }
 
     .small-banner {
@@ -121,173 +156,87 @@ height: 275px;
 
 /* עד 1000px */
 @media (max-width: 1000px) {
+    /* רוחב מקסימלי: 1000px */
+    /* רוחב ה-banner-container: 968px */
+    /* אחוז רוחב ה-banner-container: (968 / 1000) * 100% = 96.8% */
+
     .banner-container {
-            width: 968px;
-            height: 567px;
-        }
-    
-        .banner {
-            width: 657px;
-            height: 567px;
-        }
-    
-        .side-banners {
-            width: 295px;
-        }
-    
-        .small-banner {
-            height: 275px;
-        }
-    
-        .center-text h2 {
-            font-size: 40px;
-            font-weight: 600;
-            margin-top: -20px;
-        }
-    
-        .side-banners h2 {
-            font-size: 24px;
-            font-weight: 500;
-        }
-    
-        .top-left-text h3 {
-            font-size: 12px;
-            font-weight: 400;
-        }
-    
-        .icon-container {
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            right: 20px;
-            bottom: 20px;
-        }
-    
-        .arrow-icon {
-            width: 40px;
-            height: 40px;
-        }
+        width: 96.8%;
+        /* 968px מתוך 1000px */
+        height: 567px;
+    }
+
+    /* רוחב ה-banner: 657px */
+    /* אחוז רוחב ה-banner: (657 / 1000) * 100% = 65.7% */
+
+    .banner {
+        width: 65.7%;
+        /* 657px מתוך 1000px */
+        height: 567px;
+    }
+
+    /* רוחב ה-side-banners: 295px */
+    /* אחוז רוחב ה-side-banners: (295 / 1000) * 100% = 29.5% */
+
+    .side-banners {
+        width: 29.5%;
+        /* 295px מתוך 1000px */
+    }
+
+    .small-banner {
+        height: 275px;
+    }
+
+    .center-text h2 {
+        font-size: 40px;
+        font-weight: 600;
+        margin-top: -20px;
+    }
+
+    .side-banners h2 {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .top-left-text h3 {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .icon-container {
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .arrow-icon {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 /* עד 680px */
 @media (max-width: 680px) {
+    /* רוחב מקסימלי: 680px */
+    /* רוחב ה-banner-container: 657px */
+    /* אחוז רוחב ה-banner-container: (657 / 680) * 100% ≈ 96.618% */
+
     .banner-container {
-        flex-direction: column;
-        align-items: center;
-        width: 657px;
-            height: 570px;
-            
-    }
-
-
-   .banner {
-    margin-top: -5px;
-    margin-left: 16px;
-        margin-right: 16px;
-       width: 657px;
-       height: 378px;
-   }
-
- .center-text h2 {
-     font-size: 23px;
-     font-weight: 600;
-     margin-top: -20px;
- }
-
- .bottom-left-content {
-     position: absolute;
-     bottom: 20px;
-     display: flex;
-     align-items: center;
-     flex-direction: column;
-     align-items: flex-start;
- }
-
-  .top-left-text h3 {
-      font-size: 12px;
-      font-weight: 400;
-      margin-top: 5px;
-
-  }
-
- .asterisk-icon {
-     width: 25px;
-     height: 25px;
-     margin-right: 10px;
-     background-color: #C8BEA0;
-     border-radius: 50%;
-     padding: 8px;
-     margin-bottom: 10px;
- }
-
- 
-
- .bottom-left-content p {
-     font-size: 12px;
-     margin: 0;
-
-     line-height: 1.5;
- }
-
-
-
-   .side-banners {
-       width: 657px;
-       height: 180px;
-   }
-
-   .small-banner {
-       height: 84px;
-       border-radius: 28px;
-   }
-
-  
-
-   .side-banners h2 {
-       font-size: 20px;
-       font-weight: 500;
-   }
-
-  
-
-   .banner-content p {
-    font-size: 12px;
-        font-weight: 400;
-       color: #181717;
-
-   }
-
-   .icon-container {
-       border-radius: 50%;
-       width: 40px;
-       height: 40px;
-       right: 15px;
-       bottom: 15px;
-   }
-
-   .arrow-icon {
-       width: 35px;
-       height: 35px;
-   }
-}
-
-/* מובייל - עד 480px */
-@media (max-width: 470px) {
-.banner-container {
-        flex-direction: column;
-        align-items: center;
-        width: 440px;
+        width: 96.618%;
+        /* 657px מתוך 680px */
         height: 570px;
-
+        flex-direction: column;
+        align-items: center;
     }
-
 
     .banner {
+        width: 100%;
+        height: 378px;
         margin-top: -5px;
         margin-left: 16px;
         margin-right: 16px;
-        width: 440px;
-        height: 378px;
     }
 
     .center-text h2 {
@@ -300,7 +249,6 @@ height: 275px;
         position: absolute;
         bottom: 20px;
         display: flex;
-        align-items: center;
         flex-direction: column;
         align-items: flex-start;
     }
@@ -309,7 +257,6 @@ height: 275px;
         font-size: 12px;
         font-weight: 400;
         margin-top: 5px;
-
     }
 
     .asterisk-icon {
@@ -322,19 +269,14 @@ height: 275px;
         margin-bottom: 10px;
     }
 
-
-
     .bottom-left-content p {
         font-size: 12px;
         margin: 0;
-
         line-height: 1.5;
     }
 
-
-
     .side-banners {
-        width: 440px;
+        width: 100%;
         height: 180px;
     }
 
@@ -343,20 +285,108 @@ height: 275px;
         border-radius: 28px;
     }
 
+    .side-banners h2 {
+        font-size: 20px;
+        font-weight: 500;
+    }
 
+    .banner-content p {
+        font-size: 12px;
+        font-weight: 400;
+        color: #181717;
+    }
+
+    .icon-container {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .arrow-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* מובייל - עד 470px */
+@media (max-width: 470px) {
+    /* רוחב מקסימלי: 470px */
+    /* רוחב ה-banner-container: 440px */
+    /* אחוז רוחב ה-banner-container: (440 / 470) * 100% ≈ 93.617% */
+
+    .banner-container {
+        width: 93.617%;
+        /* 440px מתוך 470px */
+        height: 570px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner {
+        width: 100%;
+        height: 378px;
+        margin-top: -5px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .center-text h2 {
+        font-size: 23px;
+        font-weight: 600;
+        margin-top: -20px;
+    }
+
+    .bottom-left-content {
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .top-left-text h3 {
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 5px;
+    }
+
+    .asterisk-icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+        background-color: #C8BEA0;
+        border-radius: 50%;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+
+    .bottom-left-content p {
+        font-size: 12px;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .side-banners {
+        width: 100%;
+        height: 180px;
+    }
+
+    .small-banner {
+        height: 84px;
+        border-radius: 28px;
+    }
 
     .side-banners h2 {
         font-size: 20px;
         font-weight: 500;
     }
 
-
-
     .banner-content p {
         font-size: 12px;
         font-weight: 400;
         color: #181717;
-
     }
 
     .icon-container {

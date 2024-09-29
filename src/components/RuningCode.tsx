@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './RuningCode.scss';
 
 const codeLines = [
@@ -16,54 +16,45 @@ const codeLines = [
 ];
 
 const RuningCode = () => {
-    const [lineIndex, setLineIndex] = useState(0);
-    const [charIndex, setCharIndex] = useState(0);
-    const codeRef = useRef(null);
-    const displayedCode = useRef('');
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [displayedText, setDisplayedText] = useState('');
+    const typingSpeed = 50; // מהירות ההקלדה בין תווים
+    const linePause = 5 ; // פאוזה בין שורות
+
+    const currentLine = currentIndex < codeLines.length ? codeLines[currentIndex] : '';
 
     useEffect(() => {
-        let currentLine = codeLines[lineIndex];
-
-        if (lineIndex < codeLines.length) {
-            if (charIndex <= currentLine.length) {
-                const timeout = setTimeout(() => {
-                    const newChar = currentLine[charIndex];
-                    displayedCode.current += newChar;
-
-                    // עדכון ה-innerHTML של אלמנט ה-code ישירות
-                    if (codeRef.current) {
-                        codeRef.current.innerHTML = displayedCode.current + '<span class="cursor"></span>';
-                    }
-
-                    setCharIndex(charIndex + 1);
-                }, 35); // מהירות הקלדה
-
-                return () => clearTimeout(timeout);
-            } else {
-                setCharIndex(0);
-                setLineIndex(lineIndex + 1);
-                displayedCode.current += '<br/>';
-            }
-        } else {
-            
+        if (currentIndex < codeLines.length) {
             const timeout = setTimeout(() => {
-              displayedCode.current = '';
-              setLineIndex(0);
-              setCharIndex(0);
-              if (codeRef.current) {
-                codeRef.current.innerHTML = '';
-              }
-            }, 5000); // זמן המתנה לפני התחלה מחדש
-      
+                if (displayedText.length < currentLine.length) {
+                    setDisplayedText(currentLine.slice(0, displayedText.length + 1));
+                } else {
+                    setTimeout(() => { // פאוזה בין שורות
+                        setCurrentIndex(currentIndex + 1);
+                        setDisplayedText('');
+                    }, linePause);
+                }
+            }, typingSpeed);
+
             return () => clearTimeout(timeout);
-            
+        } else {
+            // לולאה – הפעלה מחדש לאחר סיום ההקלדה של כל הקווים
+            const resetTimeout = setTimeout(() => {
+                setCurrentIndex(0);
+                setDisplayedText('');
+            }, 2000); // זמן הפסקה בין לופים
+
+            return () => clearTimeout(resetTimeout);
         }
-    }, [charIndex, lineIndex]);
+    }, [currentIndex, displayedText, currentLine, typingSpeed, linePause]);
 
     return (
-        <pre className="code-typing-animation">
-            <code ref={codeRef}></code>
-        </pre>
+        <div className="code-container">
+            {codeLines.slice(0, currentIndex).map((line, index) => (
+                <div key={index} dangerouslySetInnerHTML={{ __html: line }} />
+            ))}
+            <div dangerouslySetInnerHTML={{ __html: displayedText }} />
+        </div>
     );
 };
 

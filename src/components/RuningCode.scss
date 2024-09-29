@@ -1,19 +1,41 @@
-.code-typing-animation {
+.code-container {
     position: relative;
     padding: 20px;
-    color: #100f0f;
-    background-color: transparent;
+    color: #dcdcdc; // text color
+    background-color: transparent; // no background color 
     font-family: 'Source Code Pro', monospace;
     font-size: 16px;
+    z-index: 1;
     overflow: hidden;
-    z-index: 1; // הקוד יהיה ברקע
 
-    & code {
-        white-space: pre-wrap;
-        line-height: 1.5;
+    .keyword {
+        color: #c792ea;
     }
 
-    // סגנונות לסמן
+    .function-name {
+        color: #82AAFF;
+    }
+
+    .function {
+        color: #ffffff;
+    }
+
+    .string {
+        color: #ecc48d;
+    }
+
+    .parameter {
+        color: #F07178;
+    }
+
+    .property {
+        color: #89DDFF;
+    }
+
+    .method {
+        color: #82AAFF;
+    }
+
     .cursor {
         display: inline-block;
         width: 2px;
@@ -21,35 +43,6 @@
         background-color: #ffffff;
         animation: blink 1s step-end infinite;
         vertical-align: bottom;
-    }
-
-    // סגנונות להדגשת התחביר
-    .keyword {
-        color: #569CD6;
-    }
-
-    .function-name {
-        color: #f8f806;
-    }
-
-    .function {
-        color: #070707;
-    }
-
-    .string {
-        color: #CE9178;
-    }
-
-    .parameter {
-        color: #135b82;
-    }
-
-    .property {
-        color: #4EC9B0;
-    }
-
-    .method {
-        color: #d4d40b;
     }
 }
 
