@@ -1,8 +1,5 @@
-/* עד 2500px */
+
 @media (max-width: 2500px) {
-    /* רוחב מקסימלי: 2500px */
-    /* רוחב ה-banner-container: נניח 2400px */
-    /* אחוז רוחב ה-banner-container: (2400 / 2500) * 100% = 96% */
 
     .banner-container {
         width: 98%;
@@ -11,17 +8,11 @@
     }
 
     .banner {
-        /* נניח רוחב של 2000px */
-        /* אחוז רוחב ה-banner: (2000 / 2500) * 100% = 80% */
         width: 83%;
-        /* 2000px מתוך 2500px */
     }
 
     .side-banners {
-        /* נניח רוחב של 500px */
-        /* אחוז רוחב ה-side-banners: (500 / 2500) * 100% = 20% */
         width: 15%;
-        /* 500px מתוך 2500px */
     }
 
     .small-banner {
@@ -29,33 +20,23 @@
     }
 }
 
-/* עד 1920px */
 @media (max-width: 1920px) {
-    /* רוחב מקסימלי: 1920px */
-    /* רוחב ה-banner-container: 1888px */
-    /* אחוז רוחב ה-banner-container: (1888 / 1920) * 100% ≈ 98.333% */
 
     .banner-container {
         width: 98.333%;
-        /* 1888px מתוך 1920px */
+        
         height: 567px;
     }
 
-    /* רוחב ה-banner: 1495px */
-    /* אחוז רוחב ה-banner: (1495 / 1920) * 100% ≈ 77.864% */
 
     .banner {
-        width: 77.864%;
-        /* 1495px מתוך 1920px */
+        width: 79%;
         height: 567px;
     }
 
-    /* רוחב ה-side-banners: 377px */
-    /* אחוז רוחב ה-side-banners: (377 / 1920) * 100% ≈ 19.635% */
 
     .side-banners {
-        width: 22.136%;
-        /* 377px מתוך 1920px */
+        width: 19.96%;
     }
 
     .small-banner {
@@ -94,30 +75,25 @@
 
 /* עד 1400px */
 @media (max-width: 1400px) {
-    /* רוחב מקסימלי: 1400px */
-    /* רוחב ה-banner-container: 1368px */
-    /* אחוז רוחב ה-banner-container: (1368 / 1400) * 100% ≈ 97.714% */
 
 .banner-container {
-        max-width: 1400px;
+        width: 97.7%;
+        
+            height: 567px;
       
         
     }
 
-    /* רוחב ה-banner: 975px */
-    /* אחוז רוחב ה-banner: (975 / 1400) * 100% ≈ 69.643% */
 
     .banner {
-    width: 72%;        /* 975px מתוך 1400px */
+    width: 72%;        
         height: 567px;
         padding: 32px;
     }
 
-    /* רוחב ה-side-banners: 377px */
-    /* אחוז רוחב ה-side-banners: (377 / 1400) * 100% ≈ 26.929% */
 
     .side-banners {
-    width: 28%;        
+    width: 27%;        
     }
 
     .small-banner {
@@ -156,31 +132,21 @@
 
 /* עד 1000px */
 @media (max-width: 1000px) {
-    /* רוחב מקסימלי: 1000px */
-    /* רוחב ה-banner-container: 968px */
-    /* אחוז רוחב ה-banner-container: (968 / 1000) * 100% = 96.8% */
 
     .banner-container {
         width: 96.8%;
-        /* 968px מתוך 1000px */
         height: 567px;
     }
 
-    /* רוחב ה-banner: 657px */
-    /* אחוז רוחב ה-banner: (657 / 1000) * 100% = 65.7% */
 
     .banner {
-        width: 65.7%;
-        /* 657px מתוך 1000px */
+        width: 70%;
         height: 567px;
     }
-
-    /* רוחב ה-side-banners: 295px */
-    /* אחוז רוחב ה-side-banners: (295 / 1000) * 100% = 29.5% */
 
     .side-banners {
         width: 29.5%;
-        /* 295px מתוך 1000px */
+   
     }
 
     .small-banner {
