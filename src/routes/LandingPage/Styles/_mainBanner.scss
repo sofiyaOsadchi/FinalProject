@@ -3,13 +3,12 @@ display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    /* Full width to match design */
-    height: 600px;
-    /* Adjusted height for banner */
+    height: 567px;
     position: relative;
     margin: 16px auto;
     font-family: 'montserrat';
     background-image: url('/img/New Hero Banner.jpg');
+    background-image: url('public/img/New Hero Banner.jpg');
     background-size: cover;
     /* This will maintain the aspect ratio */
     background-position: center;
@@ -105,7 +104,7 @@ display: flex;
 
 .small-banner {
 
-    background: #FFFFFFB2;
+    background: #FFFFFF50;
     display: flex;
     justify-content: space-between;
     align-items: end;
@@ -116,6 +115,9 @@ display: flex;
     position: relative;
 }
 
+.small-banner:hover {
+    background: #FFFFFF80;
+}
 .get-in-touch {
     margin-bottom: 16px;
 }
