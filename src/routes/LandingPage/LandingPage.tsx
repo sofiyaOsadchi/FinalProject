@@ -1,6 +1,7 @@
 import React from 'react';
 import './Styles/main.scss';
 import RuningCode from '../../components/RuningCode';
+import StudioContact from './StudioContact';
 
 
 const services = [
@@ -104,7 +105,7 @@ const LandingPage = () => {
                 <div className="content-overlay">
                     <div className="content-square">
                         <h3 className="ecommerce-title">E-commerce Builder</h3>
-                        <h2 className="ecommerce-name">Tsofiya Osadchi</h2>
+                        <h2 className="ecommerce-name">T&T Fashion</h2>
                         <p className="ecommerce-description">45x1U keyset. 30 Figma icons + 15 solid color</p>
                         <div className="arrow-icon-container">
                             <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
@@ -161,6 +162,8 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
+
+<StudioContact />
 
         </div>
     );
