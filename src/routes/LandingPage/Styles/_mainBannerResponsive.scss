@@ -1,4 +1,4 @@
-
+/* 
 @media (max-width: 2500px) {
 
     .banner-container {
@@ -18,11 +18,11 @@
     .small-banner {
         height: 275px;
     }
-}
+} */
 
 @media (max-width: 1920px) {
 
-    .banner-container {
+   /*  .banner-container {
         width: 98.333%;
         
         height: 567px;
@@ -42,7 +42,7 @@
     .small-banner {
         height: 275px;
     }
-
+ */
     .center-text h2 {
         font-size: 44px;
         font-weight: 600;
@@ -75,7 +75,7 @@
 
 /* עד 1400px */
 @media (max-width: 1400px) {
-
+/* 
 .banner-container {
         width: 97.7%;
         
@@ -98,7 +98,7 @@
 
     .small-banner {
         height: 275px;
-    }
+    } */
 
     .center-text h2 {
         font-size: 44px;
@@ -133,7 +133,7 @@
 /* עד 1000px */
 @media (max-width: 1000px) {
 
-    .banner-container {
+    /* .banner-container {
         width: 96.8%;
         height: 567px;
     }
@@ -143,15 +143,15 @@
         width: 70%;
         height: 567px;
     }
-
+*/
     .side-banners {
-        width: 29.5%;
+        width: 305px;
    
     }
 
-    .small-banner {
+   /*  .small-banner {
         height: 275px;
-    }
+    }  */
 
     .center-text h2 {
         font-size: 40px;
@@ -185,14 +185,11 @@
 
 /* עד 680px */
 @media (max-width: 680px) {
-    /* רוחב מקסימלי: 680px */
-    /* רוחב ה-banner-container: 657px */
-    /* אחוז רוחב ה-banner-container: (657 / 680) * 100% ≈ 96.618% */
+    
 
     .banner-container {
-        width: 96.618%;
-        /* 657px מתוך 680px */
-        height: 570px;
+        /* width: 96.618%;
+        height: 570px; */
         flex-direction: column;
         align-items: center;
     }

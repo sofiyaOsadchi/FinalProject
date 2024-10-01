@@ -1,9 +1,10 @@
 .banner-section {
     position: relative;
-    width: 97%;
-    margin: 20px auto;
+
     border-radius: 20px;
     overflow: hidden;
+    margin-top: 16px;
+    height: 908px;
 }
 
 .banner-image {
@@ -109,7 +110,7 @@
 
     
 }*/
-@media (max-width: 1400px) {
+/* @media (max-width: 1400px) {
     .content-square {
         width: 300px;
         height: 130px;
@@ -124,7 +125,7 @@
     }
 
     
-} 
+}  */
 /* @media (max-width: 680px) {
     .content-square {
         width: 538px;
