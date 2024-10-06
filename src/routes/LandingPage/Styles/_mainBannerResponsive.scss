@@ -22,27 +22,6 @@
 
 @media (max-width: 1920px) {
 
-   /*  .banner-container {
-        width: 98.333%;
-        
-        height: 567px;
-    }
-
-
-    .banner {
-        width: 79%;
-        height: 567px;
-    }
-
-
-    .side-banners {
-        width: 19.96%;
-    }
-
-    .small-banner {
-        height: 275px;
-    }
- */
     .center-text h2 {
         font-size: 44px;
         font-weight: 600;
@@ -75,30 +54,6 @@
 
 /* עד 1400px */
 @media (max-width: 1400px) {
-/* 
-.banner-container {
-        width: 97.7%;
-        
-            height: 567px;
-      
-        
-    }
-
-
-    .banner {
-    width: 72%;        
-        height: 567px;
-        padding: 32px;
-    }
-
-
-    .side-banners {
-    width: 27%;        
-    }
-
-    .small-banner {
-        height: 275px;
-    } */
 
     .center-text h2 {
         font-size: 44px;
@@ -132,26 +87,11 @@
 
 /* עד 1000px */
 @media (max-width: 1000px) {
-
-    /* .banner-container {
-        width: 96.8%;
-        height: 567px;
-    }
-
-
-    .banner {
-        width: 70%;
-        height: 567px;
-    }
-*/
+    
     .side-banners {
         width: 305px;
    
     }
-
-   /*  .small-banner {
-        height: 275px;
-    }  */
 
     .center-text h2 {
         font-size: 40px;
@@ -188,8 +128,6 @@
     
 
     .banner-container {
-        /* width: 96.618%;
-        height: 570px; */
         flex-direction: column;
         align-items: center;
     }
@@ -275,21 +213,17 @@
 
 /* מובייל - עד 470px */
 @media (max-width: 470px) {
-    /* רוחב מקסימלי: 470px */
-    /* רוחב ה-banner-container: 440px */
-    /* אחוז רוחב ה-banner-container: (440 / 470) * 100% ≈ 93.617% */
 
     .banner-container {
-        width: 93.617%;
-        /* 440px מתוך 470px */
-        height: 570px;
+       /*  width: 93.617%;
+        height: 570px; */
         flex-direction: column;
         align-items: center;
     }
 
     .banner {
-        width: 100%;
-        height: 378px;
+       /*  width: 100%;
+        height: 378px; */
         margin-top: -5px;
         margin-left: 16px;
         margin-right: 16px;
