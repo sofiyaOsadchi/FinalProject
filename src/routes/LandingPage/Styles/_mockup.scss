@@ -94,51 +94,67 @@
 }
 
 
-/* @media (max-width: 2500px) {
-    .content-square {
-        width: 22%;
-        height: 16%;
+/* סגנון מותאם למסכים מתחת ל-680px */
+@media (max-width: 680px) {
+    .banner-section {
+        position: relative;
+        height: auto;
     }
 
-    
+    .banner-image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .fashion {
+        content: url('/img/T&T Fashion.jpg');
+    }
+
+    .shemesh {
+        content: url('/img/Ilan Overview.jpg');
+    }
+
+    .priimo {
+        content: url('/img/PriimoMobile.jpg');
+    }
+
+    .reability {
+        content: url('/img/ReAbility Online.jpg');
+    }
+
+    .content-overlay,
+    .left-content-overlay {
+        position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0;
+            background: none;
+    }
+
+    .content-square,
+    .left-content-square {
+        background: none;
+            width: 100%;
+            height: 100%;
+            text-align: start;
+            /* padding: 0; */
+            padding-left: 10px;
+    }
+
+    .ecommerce-title {
+        font-size: .6rem;
+/*         margin-bottom: 2px;
+ */    }
+
+    .ecommerce-name {
+        font-size: 0.9rem;
+    }
+
+    .ecommerce-description {
+        font-size: 0.6rem;
+    }
+
+
 }
-@media (max-width: 1920px) {
-    .content-square {
-        width: 28%;
-        height: 160px;
-    }
-
-    
-}*/
-/* @media (max-width: 1400px) {
-    .content-square {
-        width: 300px;
-        height: 130px;
-    }
-
-    
-}
-@media (max-width: 1000px) {
-    .content-square {
-        width: 280px;
-            height: 110px;
-    }
-
-    
-}  */
-/* @media (max-width: 680px) {
-    .content-square {
-        width: 538px;
-        height: 160px;
-    }
-
-    
-}
-@media (max-width: 380px) {
-    .content-square {
-        width: 538px;
-        height: 160px;
-    }
-
-    
-} */

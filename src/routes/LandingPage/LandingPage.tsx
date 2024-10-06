@@ -101,7 +101,7 @@ const LandingPage = () => {
 
 
             <div className="banner-section">
-                <img src="img/Tsofiya Osadchi.jpg" alt="Banner Image" className="banner-image" />
+                <img src="img/Tsofiya Osadchi.jpg" alt="Banner Image" className="banner-image fashion" />
                 <div className="content-overlay">
                     <div className="content-square">
                         <h3 className="ecommerce-title">E-commerce Builder</h3>
@@ -117,7 +117,7 @@ const LandingPage = () => {
 {/* sectio private projects
  */}
             <div className="banner-section">
-                <img src="img/Priimo.jpg" alt="Banner Image" className="banner-image" />
+                <img src="img/Priimo.jpg" alt="Banner Image" className="banner-image priimo" />
                 <div className="left-content-overlay">
                     <div className="left-content-square">
                         <h3 className="ecommerce-title">Software Design</h3>
@@ -134,7 +134,7 @@ const LandingPage = () => {
  */}  
 
             <div className="banner-section">
-                <img src="img/Ilan.jpg" alt="Banner Image" className="banner-image" />
+                <img src="img/Ilan.jpg" alt="Banner Image" className="banner-image shemesh" />
                 <div className="content-overlay">
                     <div className="content-square">
                         <h3 className="ecommerce-title">E-commerce Builder</h3>
@@ -150,7 +150,7 @@ const LandingPage = () => {
             {/* sectio private projects
  */}
             <div className="banner-section">
-                <img src="img/Reability.jpg" alt="Banner Image" className="banner-image" />
+                <img src="img/Reability.jpg" alt="Banner Image" className="banner-image reability" />
                 <div className="left-content-overlay">
                     <div className="left-content-square">
                         <h3 className="ecommerce-title">Software Design</h3>
