@@ -163,6 +163,54 @@ const LandingPage = () => {
                 </div>
             </div>
 
+            <section className="aboutUs-container">
+                <div className="aboutUs-content">
+                    <h2 className="aboutUs-title">About Us</h2>
+                    <p className="aboutUs-description">At Orime, we are passionate about transforming ideas into digital solutions that bring real results. With expertise in design and development, our team delivers tailored services that meet the unique needs of each project. From creating visually compelling websites to developing robust web applications, we blend creativity and functionality seamlessly.</p>
+                    <p className="aboutUs-description">Our collaborative approach ensures that every project reflects your brand’s goals, while our commitment to excellence drives results that exceed expectations.</p>
+                    <p className="aboutUs-description">Ready to build something amazing? Let’s bring your ideas to life.</p>
+                </div>
+
+                <div className="members-container">
+                    <div className="aboutUs-member">
+                        <div className="image-placeholder"></div>
+                        <div className='member-info'>
+                            <div className='member-details'>
+                                <h3 className='member-title'>Tamar Tamam</h3>
+                                <p className='member-description'>Full-Stack Developer</p>
+                            </div>
+                            <div className='member-social'>
+                                <img src='img/Back-End Development.svg' alt='Back-End Development' />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="aboutUs-member">
+                        <div className="image-placeholder"></div>
+                        <div className='member-info'>
+                            <div className='member-details'>
+                                <h3 className='member-title'>Tsofiya Osadchi</h3>
+                                <p className='member-description'>Full-Stack Developer</p>
+                            </div>
+                            <div className='member-social'>
+                                <img src='img/Back-End Development.svg' alt='Back-End Development' />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="aboutUs-member">
+                        <div className="image-placeholder"></div>
+                        <div className='member-info'>
+                            <div className='member-details'>
+                                <h3 className='member-title'>Alex Osadchi</h3>
+                                <p className='member-description'>Product Designer (UX/UI)</p>
+                            </div>
+                            <div className='member-social'>
+                                <img src='img/Product & Web Design.svg' alt='Product & Web Design' />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 <StudioContact />
 
         </div>
