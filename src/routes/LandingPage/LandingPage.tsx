@@ -45,7 +45,7 @@ const LandingPage = () => {
             <div className="banner-container">
                 <div className="banner">
                     <div className="top-left-text">
-                        <h3>ORIME</h3>
+<img src="img/Logo.png" alt="orime-logo" />
                     </div>
                     <div className="center-text">
                         <h2>Design - Develop - Deliver</h2>
@@ -105,7 +105,7 @@ const LandingPage = () => {
 
 
             <div className="banner-section" id="firstProject">
-                <img src="img/Tsofiya Osadchi.jpg" alt="Banner Image" className="banner-image fashion" />
+                <img src="img/T&T Fashion.jpg" alt="Banner Image" className="banner-image fashion" />
                 <a href="https://finalproject-ousr.onrender.com/about" target="_blank" rel="noopener noreferrer" className="content-overlay">
                     <div className="content-square">
                         <h3 className="ecommerce-title">Full Stuck Development</h3>

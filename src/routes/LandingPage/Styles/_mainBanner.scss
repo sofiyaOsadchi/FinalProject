@@ -43,6 +43,11 @@ display: flex;
     z-index: 2;
 }
 
+.top-left-text img {
+    width: 80px;
+    margin-right: 10px;
+}
+
 .center-text {
     position: absolute;
     display: flex;
