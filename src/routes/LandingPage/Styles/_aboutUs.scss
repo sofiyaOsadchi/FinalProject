@@ -22,54 +22,54 @@
             color: #555;
             line-height: 1.6;
             max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
     }
 
-    // Members container styling
     .members-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center; // Center all members in the container
+        justify-content: center;
         gap: 20px;
         margin-top: 40px;
-        flex-direction: row;
+
+        .tamar-img {
+            background-image: url('/img/Tamar.png');
+            background-size: cover;
+        }
+
+        .tsofiya-img {
+            background-image: url('/img/Tsofiya.png');
+            background-size: cover;
+        }
+
+        .alex-img {
+            background-image: url('/img/Tsofiya.png');
+            background-size: cover;
+        }
 
         .aboutUs-member {
-            background-color: white;
+
             border-radius: 10px;
             padding: 20px;
             width: 100%;
-            height: 497.45px;
             max-width: 398px;
             text-align: start;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 500px;
 
-            .image-placeholder {
-                background-color: #ffffff;
-                width: 120px;
-                height: 120px;
-                margin: 0 auto 15px;
-                // border-radius: 50%;  // להפוך את התמונה לעיגול
-            }
 
-            .member-details {
-                display: flex;
-                flex-direction: column;
-            }
 
             .member-info {
                 display: flex;
-                flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
-                border-radius: 16px;
                 padding: 15px;
-                background: linear-gradient(265.79deg, rgba(212, 220, 238, 0.6) 2.98%, rgba(232, 219, 247, 0.6) 81.37%);
-                margin-top: auto; // לדחוף את המידע למטה בתוך הכרטיס
+                background: linear-gradient(265.79deg, rgba(212, 220, 238, 0.6), rgba(232, 219, 247, 0.6));
+                border-radius: 16px;
+                margin-top: auto;
             }
 
             .member-title {
@@ -85,19 +85,49 @@
             }
 
             .member-social {
-                background-color: #F5F5F5;
                 width: 52px;
                 height: 52px;
                 border-radius: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                background-color: #f5f5f5;
 
-                img {
-                    width: 27.53px;
-                    height: 27.53px;
 
-                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1400px) {
+    .aboutUs-container {
+        .members-container {
+            .aboutUs-member {
+                max-width: 310px; // כרטיסיות עם רוחב נמוך יותר
+                height: 390px; // אפשר לשנות גובה אם נדרש
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .aboutUs-container {
+        .members-container {
+            .aboutUs-member {
+                max-width: 252px; // הכרטיסיות יתפסו את כל רוחב המסך
+                height: 323px; // אפשר לשנות גובה אם נדרש
+            }
+        }
+    }
+}
+
+@media (max-width: 680px) {
+    .aboutUs-container {
+        .members-container {
+            .aboutUs-member {
+                max-width: 350px; // הכרטיסיות יתפסו את כל רוחב המסך
+                height: 430px; // אפשר לשנות גובה אם נדרש
             }
         }
     }

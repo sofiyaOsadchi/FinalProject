@@ -8,7 +8,7 @@ const services = [
     {
         title: 'Back-End Development',
         description: 'Ensuring robust, scalable server-side logic to power your web applications, integrating databases, and APIs efficiently.',
-        icon: 'img/Back-End Development.svg', 
+        icon: 'img/Back-End Development.svg',
     },
     {
         title: 'Front-End Development',
@@ -42,40 +42,44 @@ const services = [
 const LandingPage = () => {
     return (
         <div className="landing-page">
-        <div className="banner-container">
-            <div className="banner">
-                <div className="top-left-text">
-                    <h3>ORIME</h3>
-                </div>
+            <div className="banner-container">
+                <div className="banner">
+                    <div className="top-left-text">
+                        <h3>ORIME</h3>
+                    </div>
                     <div className="center-text">
                         <h2>Design - Develop - Deliver</h2>
-                        <p>Designing ideas, Building solutions</p> 
+                        <p>Designing ideas, Building solutions</p>
                     </div>
 
-            </div>
-
-            <div className="side-banners">
-                <div className="small-banner get-in-touch">
-                    <div className="banner-content">
-                        <h2>Get in Touch</h2>
-                        <p>30 Figma icons + 15 solid color</p>
-                    </div>
-                    <div className="icon-container">
-                        <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
-                    </div>
                 </div>
 
-                <div className="small-banner projects">
-                    <div className="banner-content">
-                        <h2>Projects</h2>
-                        <p>30 Figma icons + 15 solid color</p>
-                    </div>
-                    <div className="icon-container">
-                        <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
-                    </div>
-                </div> 
+                <div className="side-banners">
+                    <a href="#contactForm" className="small-banner get-in-touch">
+                        <div className="banner-content">
+                            <h2>Get in Touch</h2>
+                            <p>30 Figma icons + 15 solid color</p>
+                        </div>
+
+                        <div className="icon-container">
+                            <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        </div>
+
+
+                    </a>
+
+
+                    <a href="#firstProject" className="small-banner projects">
+                        <div className="banner-content">
+                            <h2>Projects</h2>
+                            <p>30 Figma icons + 15 solid color</p>
+                        </div>
+                        <div className="icon-container">
+                            <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
 
             <div className="services-section">
                 <div className="left-side">
@@ -100,9 +104,9 @@ const LandingPage = () => {
             </div>
 
 
-            <div className="banner-section">
+            <div className="banner-section" id="firstProject">
                 <img src="img/Tsofiya Osadchi.jpg" alt="Banner Image" className="banner-image fashion" />
-                <div className="content-overlay">
+                <a href="https://finalproject-ousr.onrender.com/about" target="_blank" rel="noopener noreferrer" className="content-overlay">
                     <div className="content-square">
                         <h3 className="ecommerce-title">Full Stuck Development</h3>
                         <h2 className="ecommerce-name">T&T Fashion</h2>
@@ -111,10 +115,10 @@ const LandingPage = () => {
                             <img src="img/Arrow.svg" alt="Arrow Icon" className="arrow-icon" />
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
-{/* sectio private projects
+            {/* sectio private projects
  */}
             <div className="banner-section">
                 <img src="img/Priimo.jpg" alt="Banner Image" className="banner-image priimo" />
@@ -130,8 +134,8 @@ const LandingPage = () => {
                 </div>
             </div>
 
-{/* ILAN
- */}  
+            {/* ILAN
+ */}
 
             <div className="banner-section">
                 <img src="img/Ilan.jpg" alt="Banner Image" className="banner-image shemesh" />
@@ -172,8 +176,8 @@ const LandingPage = () => {
                 </div>
 
                 <div className="members-container">
-                    <div className="aboutUs-member">
-                        <div className="image-placeholder"></div>
+                    <div className="aboutUs-member tamar-img">
+
                         <div className='member-info'>
                             <div className='member-details'>
                                 <h3 className='member-title'>Tamar Tamam</h3>
@@ -184,8 +188,8 @@ const LandingPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="aboutUs-member">
-                        <div className="image-placeholder"></div>
+                    <div className="aboutUs-member tsofiya-img">
+
                         <div className='member-info'>
                             <div className='member-details'>
                                 <h3 className='member-title'>Tsofiya Osadchi</h3>
@@ -196,8 +200,8 @@ const LandingPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="aboutUs-member">
-                        <div className="image-placeholder"></div>
+                    <div className="aboutUs-member alex-img">
+
                         <div className='member-info'>
                             <div className='member-details'>
                                 <h3 className='member-title'>Alex Osadchi</h3>
@@ -211,7 +215,9 @@ const LandingPage = () => {
                 </div>
             </section>
 
-<StudioContact />
+            <div id="contactForm">
+                <StudioContact />
+            </div>
 
         </div>
     );
