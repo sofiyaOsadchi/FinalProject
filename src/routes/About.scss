@@ -73,3 +73,47 @@
 .dashboard-tabs li strong {
     color: #333;
 }
+
+
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 1rem 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-description {
+        font-size: 0.9rem;
+    }
+
+    .text-image-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .welcome .text-image-container {
+        flex-direction: column-reverse;
+    }
+
+    .admin-dashboard .right-align {
+        flex-direction: column-reverse;
+    }
+
+    .section-image {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 1rem;
+    }
+
+    .left-align .section-image, .right-align .section-image {
+        order: 0;
+        margin: 0 auto;
+    }
+
+    .dashboard-tabs li {
+        font-size: 0.9rem;
+    }
+}
