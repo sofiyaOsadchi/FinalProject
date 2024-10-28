@@ -68,13 +68,7 @@ export interface ICartWithTotals extends ICart {
     totalPrice: number;
 } 
 
-// טיפוס עבור הקונטקסט של עגלת הקניות
-export interface CartContextProps {
-    cart: ICartWithTotals | null;
-    setCart: Dispatch<SetStateAction<ICartWithTotals | null>>;
-    fetchCart: () => void;
-    addToCart: (productId: string, variantId: string, quantity: number, size: string, price: number) => Promise<void>;
-}
+
 
 
 export type IOrderProduct = {
@@ -102,12 +96,7 @@ export type OrderResponse = {
     orders: IOrder[];
 };
 
-export interface CartContextProps {
-    cart: ICartWithTotals | null;
-    setCart: Dispatch<SetStateAction<ICartWithTotals | null>>;
-    fetchCart: () => void;
-    addToCart: (productId: string, variant: IVariant) => void; // Removed price
-}
+
 export interface DateRangePickerProps {
     startDate: Date | null;
     endDate: Date | null;
