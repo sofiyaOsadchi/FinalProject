@@ -68,17 +68,13 @@ export const CartProvider: FC<ContextProviderProps> = ({ children }) => {
         const guestCart = localStorage.getItem('guestCart');
         if (guestCart && token) {
             const cartItems: ICartItem[] = JSON.parse(guestCart).items;
-            try {
-                // שליחת כל המוצרים יחדיו לקריאה אחת בשרת
-                await cartService.bulkAddToCart(cartItems);
-                localStorage.removeItem('guestCart');
-                fetchCart();
-            } catch (error) {
-                console.error('Error merging guest cart to user cart:', error);
+            for (const item of cartItems) {
+                await addToCart(item.productId, item.variantId, item.quantity, item.size, item.price, false);
             }
+            localStorage.removeItem('guestCart');
+            fetchCart();
         }
     };
-
 
     useEffect(() => {
         if (token) {

@@ -57,13 +57,13 @@ export const clearCart = (/* token: string */) => {
     });
 };
 
-export const bulkAddToCart = (items: ICartItem[]) => {
+/* export const bulkAddToCart = (items: ICartItem[]) => {
     return axios.post(`${cartUrl}/bulk-add`, { items }, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
         }
     });
-};
+}; */
 
 
 export const cartService = {
@@ -72,7 +72,7 @@ export const cartService = {
     updateProductQuantity,
     removeProductFromCart,
     clearCart,
-    bulkAddToCart
-};
+/*     bulkAddToCart
+ */};
 
 export default cartService;
