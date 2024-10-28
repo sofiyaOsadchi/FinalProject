@@ -1,76 +1,105 @@
-import cartService from '../services/cart';
-import { ICartItem } from '../@Types/productType'; // עדכון לפי הטיפוסים המוגדרים
-import './Cart.scss';
 import { useCart } from '../hooks/useCart';
-import { FiArrowLeft, FiTrash } from 'react-icons/fi'; // Importing FiArrowLeft from react-icons/fi
-import dialogs from '../ui/dialogs';
-import { Link, useNavigate } from 'react-router-dom'; // Importing Link from react-router-dom
+import { FiArrowLeft, FiTrash } from 'react-icons/fi';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Tooltip } from 'flowbite-react';
 import { useAuth } from '../hooks/useAuth';
+import dialogs from '../ui/dialogs';
+import './Cart.scss';
+import cartService from '../services/cart';
 import { createOrder } from '../services/order';
-import { useSearch } from '../hooks/useSearch';
-
 
 const Cart = () => {
-    const { cart, fetchCart } = useCart();
-    const { searchTerm } = useSearch();
+    const { cart, fetchCart, setCart } = useCart();
     const { token } = useAuth();
     const navigate = useNavigate();
     const [quantities, setQuantities] = useState<{ [variantId: string]: number }>({});
 
     useEffect(() => {
-        if (token) {
-            fetchCart(); // Fetch cart items when token changes (e.g., on login)
-        }
+        fetchCart(); // Fetch cart items on component mount and when token changes
     }, [token]);
 
-    const handleRemoveItem = async (variantId: string) => {
-        try {
-            await cartService.removeProductFromCart(variantId);
-            fetchCart(); // Refresh cart after removal
-        } catch (error) {
-            console.error('Failed to remove product from cart.', error);
+    const handleRemoveItem = (variantId: string) => {
+        if (!token) {
+            // Remove item from localStorage for guest users
+            const guestCart = localStorage.getItem('guestCart');
+            if (guestCart) {
+                let cart = JSON.parse(guestCart);
+                cart.items = cart.items.filter((item: any) => item.variantId !== variantId);
+                cart.totalQuantity = cart.items.reduce((total: number, item: any) => total + item.quantity, 0);
+                cart.totalPrice = cart.items.reduce((total: number, item: any) => total + item.price * item.quantity, 0);
+                localStorage.setItem('guestCart', JSON.stringify(cart));
+                setCart(cart);
+            }
+        } else {
+            // Remove item from backend for authenticated users
+            cartService.removeProductFromCart(variantId)
+                .then(() => fetchCart())
+                .catch((error) => console.error('Failed to remove product from cart.', error));
+        }
+    };
+
+    const handleQuantityChange = async (variantId: string, newQuantity: number) => {
+        if (!variantId) {
+            console.error('variantId is undefined');
+            return;
+        }
+
+        if (!token) {
+            // Update quantity in localStorage for guest users
+            const guestCart = localStorage.getItem('guestCart');
+            if (guestCart) {
+                let cart = JSON.parse(guestCart);
+                const itemIndex = cart.items.findIndex((item: any) => item.variantId === variantId);
+                if (itemIndex > -1) {
+                    cart.items[itemIndex].quantity = newQuantity;
+                    cart.totalQuantity = cart.items.reduce((total: number, item: any) => total + item.quantity, 0);
+                    cart.totalPrice = cart.items.reduce((total: number, item: any) => total + item.price * item.quantity, 0);
+                    localStorage.setItem('guestCart', JSON.stringify(cart));
+                    setCart(cart);
+                }
+            }
+        } else {
+            // Update quantity in backend for authenticated users
+            try {
+                await cartService.updateProductQuantity(variantId, newQuantity);
+                fetchCart();
+            } catch (error) {
+                console.error('Failed to update product quantity.', error);
+            }
         }
     };
 
     const handleClearCart = async () => {
         const result = await dialogs.confirm("Clear Cart", "Are you sure you want to clear the cart?");
         if (result.isConfirmed) {
-            try {
-                await cartService.clearCart();
-                fetchCart(); // Refresh cart after clearing
+            if (!token) {
+                // Clear guest cart from localStorage
+                localStorage.removeItem('guestCart');
+                setCart(null);
                 dialogs.success("Cart Cleared", "Your cart has been cleared successfully.");
-            } catch (error) {
-                console.error('Failed to clear cart.', error);
-                dialogs.error("Error", "Failed to clear the cart.");
+            } else {
+                // Clear cart from backend for authenticated users
+                try {
+                    await cartService.clearCart();
+                    fetchCart();
+                    dialogs.success("Cart Cleared", "Your cart has been cleared successfully.");
+                } catch (error) {
+                    console.error('Failed to clear cart.', error);
+                    dialogs.error("Error", "Failed to clear the cart.");
+                }
             }
         }
     };
-
-    const handleQuantityChange = async (variantId: string, newQuantity: number) => {
-        console.log('מעודכן כמות עבור variantId:', variantId, 'ל:', newQuantity); // בדוק מה מודפס כאן
-        if (!variantId) {
-            console.error('variantId is undefined');
-            return;
-        }
-        try {
-            await cartService.updateProductQuantity(variantId, newQuantity);
-            fetchCart(); // עדכן את הסל כדי לשקף את השינויים
-        } catch (error) {
-            console.error('שגיאה בעדכון כמות המוצר:', error.response?.data || error.message);
-        }
-    };
-
 
     const handleCheckout = async () => {
-        try {
-            if (!token) {
-                dialogs.error("Error", "You must be logged in to checkout.");
-                return;
-            }
+        if (!token) {
+            dialogs.error("Error", "You must be logged in to checkout.");
+            return;
+        }
 
-            const orderProducts = cart.items.map((item: ICartItem) => ({
+        try {
+            const orderProducts = cart.items.map((item: any) => ({
                 productId: item.productId,
                 variantId: item.variantId,
                 quantity: item.quantity,
@@ -83,7 +112,7 @@ const Cart = () => {
             const orderId = response.data._id;
             dialogs.success("Order Successful", "Your order has been placed successfully.").then(async () => {
                 await cartService.clearCart();
-                fetchCart(); // Refresh cart after order placement
+                fetchCart();
                 navigate(`/order-confirmation/${orderId}`);
             });
         } catch (error) {
@@ -117,9 +146,7 @@ const Cart = () => {
                     <Link to="#" onClick={handleClearCart} className="clear-cart-link text-red-500 hover:underline">Clear Cart</Link>
                 </div>
                 <div className="cart-items space-y-4">
-                    {cart.items
-                        .filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())) // Filter items based on search term
-                        .map((item: ICartItem) => (
+                    {cart.items.map((item: any) => (
                         <div className="cart-item flex flex-col p-4 border rounded-lg shadow-sm" key={item.productId + item.variantId}>
                             <div className="flex items-center mb-4">
                                 <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />

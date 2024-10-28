@@ -10,28 +10,25 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, title,
     const [selectedVariant, setSelectedVariant] = useState<IVariant | null>(variants[0] || null);
     const { addToCart } = useCart();
     const { isLoggedIn } = useAuth();
-        
 
     const handleAddToCart = async () => {
-        if (!isLoggedIn) { // שינוי: בדיקה אם המשתמש מחובר
-            dialogs.error("Not Logged In", "You must be logged in to add items to the cart.");
-            return;
-        }
         if (selectedVariant) {
             console.log("Adding product to cart:", selectedVariant);
             try {
-                await addToCart(productId, selectedVariant._id, 1, selectedVariant.size, selectedVariant.price);
+                await addToCart(productId, selectedVariant._id, 1, selectedVariant.size, selectedVariant.price, !isLoggedIn);
+
                 dialogs.success(
                     "Product Added",
                     `<div style="display: flex; align-items: center;">
                         <img src="${image.url}" alt="${title}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;" />
                         <div>
-                            <p>${title} has been added to your cart.</p>
+                            <p>${title} has been added to your cart${!isLoggedIn ? " (Guest)" : ""}.</p>
                         </div>
                     </div>`
                 );
             } catch (error) {
                 console.error("Failed to add product to cart:", error);
+                dialogs.error("Error", "Failed to add the product to your cart.");
             }
         } else {
             console.error("No variant selected");
@@ -40,7 +37,7 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, title,
 
     return (
         <div className="add-to-cart-container">
-            <p> {selectedVariant.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
+            <p> {selectedVariant?.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
             <div className="price-container" style={{ marginBottom: '20px', marginTop: '15px' }}>
                 <span className="original-price" style={{ marginRight: '10px' }}>
                     ${(selectedVariant?.price * 1.2).toFixed(2)}

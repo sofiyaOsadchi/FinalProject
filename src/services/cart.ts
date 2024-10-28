@@ -11,6 +11,17 @@ export const getCart = () => {
     });
 };
 
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * Adds a product to the cart. 
+ * @param {string} productId - The id of the product.
+ * @param {string} variantId - The id of the variant.
+ * @param {number} quantity - The quantity to add to the cart.
+ * @param {string} size - The size of the product.
+ * @param {number} price - The price of the product.
+ * @returns {Promise<AxiosResponse<any>>} - The response from the API.
+ */
+/******  a4fc9471-b117-45f3-86af-068c8fcfa269  *******/
 export const addProductToCart = (productId: string, variantId: string, quantity: number, size: string, price: number) => {
     return axios.post(`${cartUrl}/add`, {
         productId,
@@ -56,7 +67,7 @@ export const clearCart = (/* token: string */) => {
     });
 };
 
-export const cart = {
+export const cartService = {
     getCart,
     addProductToCart,
     updateProductQuantity,
@@ -64,4 +75,4 @@ export const cart = {
     clearCart
 };
 
-export default cart;
+export default cartService;

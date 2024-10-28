@@ -47,16 +47,27 @@ export interface ICartItem {
     image: IImage;
 }
 
-// טיפוס עבור עגלת קניות
-export interface ICart {
-    userId: string;
-    items: ICartItem[];
-}
+
 
 // טיפוס עבור עגלת קניות עם סיכומים
 export interface ICartWithTotals extends ICart {
     totalQuantity: number;
     totalPrice: number;
+} 
+
+
+export interface ICart {
+    userId?: string; // הפיכת userId לאופציונלי כדי לתמוך במשתמשי אורח
+    items: ICartItem[];
+    isGuest?: boolean; // הוספת שדה חדש לזיהוי האם מדובר במשתמש אורח
+}
+
+export interface CartContextProps {
+    cart: ICartWithTotals | null;
+    setCart: Dispatch<SetStateAction<ICartWithTotals | null>>;
+    fetchCart: () => void;
+    addToCart: (productId: string, variantId: string, quantity: number, size: string, price: number, isGuest?: boolean) => Promise<void>;
+    mergeGuestCartToUserCart: () => void; // הוספת פונקציה למיזוג עגלת אורח
 }
 
 // טיפוס עבור הקונטקסט של עגלת הקניות
