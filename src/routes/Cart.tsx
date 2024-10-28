@@ -6,9 +6,8 @@ import { Tooltip } from 'flowbite-react';
 import { useAuth } from '../hooks/useAuth';
 import dialogs from '../ui/dialogs';
 import './Cart.scss';
-
-import { createOrder } from '../services/order';
 import { cartService } from '../services/cart';
+import { createOrder } from '../services/order';
 
 const Cart = () => {
     const { cart, fetchCart, setCart } = useCart();

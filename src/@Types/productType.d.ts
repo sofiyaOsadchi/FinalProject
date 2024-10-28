@@ -48,14 +48,6 @@ export interface ICartItem {
 }
 
 
-
-// טיפוס עבור עגלת קניות עם סיכומים
-export interface ICartWithTotals extends ICart {
-    totalQuantity: number;
-    totalPrice: number;
-} 
-
-
 export interface ICart {
     userId?: string; // הפיכת userId לאופציונלי כדי לתמוך במשתמשי אורח
     items: ICartItem[];
@@ -69,6 +61,12 @@ export interface CartContextProps {
     addToCart: (productId: string, variantId: string, quantity: number, size: string, price: number, isGuest?: boolean) => Promise<void>;
     mergeGuestCartToUserCart: () => void; // הוספת פונקציה למיזוג עגלת אורח
 }
+
+// טיפוס עבור עגלת קניות עם סיכומים
+export interface ICartWithTotals extends ICart {
+    totalQuantity: number;
+    totalPrice: number;
+} 
 
 // טיפוס עבור הקונטקסט של עגלת הקניות
 export interface CartContextProps {

@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, FC } from 'react';
 import cartService from '../services/cart';
-import { CartContextProps, ICartItem, ICartWithTotals } from '../@Types/productType';
+import { CartContextProps, ICartWithTotals, ICartItem } from '../@Types/productType';
 import { ContextProviderProps } from '../@Types/types';
 import { useAuth } from '../hooks/useAuth';
 
