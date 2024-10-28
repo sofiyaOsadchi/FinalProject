@@ -73,6 +73,9 @@
 .dashboard-tabs li strong {
     color: #333;
 }
+
+
+
 @media (max-width: 768px) {
     .about-container {
         padding: 1rem 2rem;
@@ -105,8 +108,7 @@
         margin-bottom: 1rem;
     }
 
-    .left-align .section-image,
-    .right-align .section-image {
+    .left-align .section-image, .right-align .section-image {
         order: 0;
         margin: 0 auto;
     }
