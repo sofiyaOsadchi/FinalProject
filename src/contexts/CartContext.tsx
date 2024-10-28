@@ -4,6 +4,7 @@ import { CartContextProps, ICartWithTotals, ICartItem } from '../@Types/productT
 import { ContextProviderProps } from '../@Types/types';
 import { useAuth } from '../hooks/useAuth';
 
+
 export const CartContext = createContext<CartContextProps | undefined>(undefined);
 
 export const CartProvider: FC<ContextProviderProps> = ({ children }) => {
