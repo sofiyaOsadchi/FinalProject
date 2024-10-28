@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ICartItem } from '../@Types/productType';
 
 const baseUrl = "https://nodeapiproject-shop.onrender.com/api/v1";
 const cartUrl = `${baseUrl}/cart`;
@@ -56,12 +57,22 @@ export const clearCart = (/* token: string */) => {
     });
 };
 
+export const bulkAddToCart = (items: ICartItem[]) => {
+    return axios.post(`${cartUrl}/bulk-add`, { items }, {
+        headers: {
+            "x-auth-token": localStorage.getItem("token"),
+        }
+    });
+};
+
+
 export const cartService = {
     getCart,
     addProductToCart,
     updateProductQuantity,
     removeProductFromCart,
-    clearCart
+    clearCart,
+    bulkAddToCart
 };
 
 export default cartService;
